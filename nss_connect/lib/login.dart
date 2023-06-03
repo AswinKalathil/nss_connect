@@ -56,6 +56,7 @@ class Login extends StatelessWidget {
                   child: Text(
                     'Your Username',
                     style: TextStyle(
+                      fontWeight: FontWeight.bold,
                       color: Colors.grey.shade600,
                     ),
                   ),
@@ -91,6 +92,7 @@ class Login extends StatelessWidget {
                   child: Text(
                     'Password',
                     style: TextStyle(
+                      fontWeight: FontWeight.bold,
                       color: Colors.grey.shade600,
                     ),
                   ),
