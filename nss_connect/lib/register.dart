@@ -5,6 +5,7 @@ import 'Secretary.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
+  static const String id = 'registerScreen';
 
   @override
   State<Register> createState() => _RegisterState();

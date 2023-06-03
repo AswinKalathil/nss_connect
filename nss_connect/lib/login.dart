@@ -32,13 +32,10 @@ class _LoginState extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
-<<<<<<< Updated upstream
-                  // onTap: (){Navigator.of(context).push()},
+
+                  onTap: (){Navigator.pushNamed(context,Register.id);},
                   child: Text('Register...'),
-=======
-                  // onTap: (){Navigator.of(context).push(Register())},
-                  child: Text('Register'),
->>>>>>> Stashed changes
+
                 )
               ],
             ),
