@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'credCard.dart';
 import 'Secretary.dart';
+import 'register.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -31,8 +32,13 @@ class _LoginState extends State<Login> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
+<<<<<<< Updated upstream
                   // onTap: (){Navigator.of(context).push()},
                   child: Text('Register...'),
+=======
+                  // onTap: (){Navigator.of(context).push(Register())},
+                  child: Text('Register'),
+>>>>>>> Stashed changes
                 )
               ],
             ),
