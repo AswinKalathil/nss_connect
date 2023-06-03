@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nss_connect/register.dart';
 import 'login.dart';
 import 'register.dart';
+import 'cfmdta.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
       routes: {
         Login.id: (ctx) => Login(),
         Register.id: (ctx) => Register(),
+        ConfirmData.id: (ctx) => ConfirmData(),
       },
       home: const Login(),
     );

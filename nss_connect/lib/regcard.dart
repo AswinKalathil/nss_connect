@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:nss_connect/cfmdta.dart';
 
 class RegCard extends StatefulWidget {
   const RegCard({super.key});
@@ -14,14 +16,17 @@ class _RegCardState extends State<RegCard> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      height: MediaQuery.of(context).size.height * 0.6,
+      height: MediaQuery.of(context).size.height * 0.45,
       width: MediaQuery.of(context).size.width,
       child: Card(
         color: Colors.white,
         elevation: 10,
-        child: Column(children: [
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 10),
             child: Text(
               'Register Unit',
               style: TextStyle(
@@ -48,7 +53,11 @@ class _RegCardState extends State<RegCard> {
               ),
             ),
           ),
-          Container(
+              SizedBox(
+                height: 10,
+              ),
+
+              Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               border: Border.all(
@@ -87,7 +96,103 @@ class _RegCardState extends State<RegCard> {
 
           //Login button
           GestureDetector(
-              onTap: () {},
+              onTap: () {
+                showDialog(context: context, builder: (context) => AlertDialog(
+                  title: Text('OTP Authentication '),
+                  content: Container(
+                    padding: EdgeInsets.all(10),
+                    height: MediaQuery.of(context).size.height * 0.15,
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    child: Column(
+                      children: [
+
+                        Text('OTP send to ******@gmail.com'),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              height: 68,
+                              width: 55,
+                              child: TextField(
+                                onChanged: (value){
+                                  if (value.length == 1)
+                                 { FocusScope.of(context).nextFocus();}
+                                },
+                                style: Theme.of(context).textTheme.headline6,
+                                keyboardType: TextInputType.number,
+                                textAlign: TextAlign.center,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(1),
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 68,
+                              width: 55,
+                              child: TextField(
+                                onChanged: (value){
+                                  if (value.length == 1)
+                                  { FocusScope.of(context).nextFocus();}
+                                },
+                                style: Theme.of(context).textTheme.headline6,
+                                keyboardType: TextInputType.number,
+                                textAlign: TextAlign.center,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(1),
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 68,
+                              width: 55,
+                              child: TextField(
+                                onChanged: (value){
+                                  if (value.length == 1)
+                                  { FocusScope.of(context).nextFocus();}
+                                },
+                                style: Theme.of(context).textTheme.headline6,
+                                keyboardType: TextInputType.number,
+                                textAlign: TextAlign.center,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(1),
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 68,
+                              width: 55,
+                              child: TextField(
+                                onChanged: (value){
+                                  if (value.length == 1)
+                                  { FocusScope.of(context).nextFocus();}
+                                },
+                                style: Theme.of(context).textTheme.headline6,
+                                keyboardType: TextInputType.number,
+                                textAlign: TextAlign.center,
+                                inputFormatters: [
+                                  LengthLimitingTextInputFormatter(1),
+                                  FilteringTextInputFormatter.digitsOnly,
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                  
+                  ,
+                  actions: [
+                    TextButton(onPressed: (){Navigator.pushNamed(context,ConfirmData.id);}, child: Text('proceed'))
+                  ],
+                ), );
+              },
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 height: MediaQuery.of(context).size.height * 0.07,
