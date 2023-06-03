@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'Secretary.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  String selectedOption = 'Volunteer';
 
   @override
   Widget build(BuildContext context) {
@@ -15,19 +23,42 @@ class Login extends StatelessWidget {
         )),
         child: Column(children: [
           Container(
-            padding: const EdgeInsets.only(top: 50, right: 10),
-            height: MediaQuery.of(context).size.height * 0.25,
-            width: MediaQuery.of(context).size.width,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Dropdown',
-                ),
-              ],
+  padding: const EdgeInsets.only(top: 50, right: 10),
+  height: MediaQuery.of(context).size.height * 0.25,
+  width: MediaQuery.of(context).size.width,
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.end,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      DropdownButton<String>(
+        value: selectedOption,
+        onChanged: (String? newValue) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DestinationPage(),
             ),
+          );
+        },
+        items: [
+          DropdownMenuItem<String>(
+            value: 'Volunteer',
+            child: Text('Volunteer'),
           ),
+          DropdownMenuItem<String>(
+            value: 'PO',
+            child: Text('PO'),
+          ),
+          DropdownMenuItem<String>(
+            value: 'Secretary',
+            child: Text('Secretary'),
+          ),
+        ],
+      ),
+    ],
+  ),
+),
+
           Container(
             padding: EdgeInsets.all(10),
             height: MediaQuery.of(context).size.height * 0.6,
@@ -126,6 +157,58 @@ class Login extends StatelessWidget {
                     ),
                   ),
                 ),
+
+                SizedBox(
+                  height: 15,
+                ),
+
+//forgot password container
+            Container(
+             width: MediaQuery.of(context).size.width*0.8,
+             padding: EdgeInsets.symmetric(horizontal: 8),
+             child: Row(
+               mainAxisAlignment: MainAxisAlignment.end,
+               children: [
+                 GestureDetector(
+                   onTap: (){},
+                   child: Text('Forgot Password',
+                   style: TextStyle(
+                     color: Colors.grey.withOpacity(0.7),
+                     fontSize: 15,
+                     fontWeight: FontWeight.w500,
+                   ),),
+                 )
+               ],
+             ),
+           ),
+           SizedBox(
+            height: 20,
+           ),
+
+//Login button   
+       GestureDetector(
+             onTap: (){},
+             child: Container(
+               width: MediaQuery.of(context).size.width*0.8,
+               height: MediaQuery.of(context).size.height*0.07,
+               padding: EdgeInsets.symmetric(
+                   vertical: 5,
+                  horizontal: 12,
+               ),
+               decoration: BoxDecoration(
+                color: Color.fromARGB(255, 35, 25, 173).withOpacity(0.7),
+                 borderRadius: BorderRadius.all(Radius.circular(5)),
+               ),
+               child: Center(
+                 child: Text('Login',
+                 style: TextStyle(
+                 color: Colors.white,
+                 fontWeight: FontWeight.w400,
+                 letterSpacing: 1.25,
+               ),),
+               ),
+             )
+           )
               ]),
             ),
           ),
