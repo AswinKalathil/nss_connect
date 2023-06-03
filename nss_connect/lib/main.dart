@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'login.dart';
+import 'register.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Nexa',
       ),
+      initialRoute: Login.id,
+      routes: {
+        Login.id: (ctx) => Login(),
+        Register.id: (ctx) => Register(),
+      },
       home: const Login(),
     );
   }

@@ -4,6 +4,7 @@ import 'Secretary.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
+  static const String id = 'loginScreen';
 
   @override
   State<Login> createState() => _LoginState();
@@ -17,7 +18,7 @@ class _LoginState extends State<Login> {
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-          image: AssetImage('assets\\images\\doodleBack.png'),
+          image: AssetImage('assets/images/doodleBack.png'),
           fit: BoxFit.cover,
         )),
         child: Column(children: [
@@ -31,7 +32,7 @@ class _LoginState extends State<Login> {
               children: [
                 GestureDetector(
                   // onTap: (){Navigator.of(context).push()},
-                  child: Text('Register'),
+                  child: Text('Register...'),
                 )
               ],
             ),
