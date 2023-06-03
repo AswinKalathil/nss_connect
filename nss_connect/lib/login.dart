@@ -44,6 +44,7 @@ class Login extends StatelessWidget {
                       color: Colors.black,
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
+                      fontFamily: 'Nexa',
                     ),
                   ),
                 ),
@@ -107,6 +108,9 @@ class Login extends StatelessWidget {
                   ),
                   width: MediaQuery.of(context).size.width * 0.8,
                   child: TextField(
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
                     style: TextStyle(),
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
