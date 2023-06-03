@@ -54,7 +54,7 @@ class Login extends StatelessWidget {
                   alignment: AlignmentDirectional.topStart,
                   padding: EdgeInsets.only(bottom: 10, left: 30),
                   child: Text(
-                    'Your Username',
+                    'Username',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.grey.shade600,
