@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'register.dart';
+import 'otpDialog.dart';
 
 class credCard extends StatefulWidget {
   const credCard({super.key});
@@ -150,7 +151,9 @@ class _credCardState extends State<credCard> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    otp(context, 'ss');
+                  },
                   child: Text(
                     'Forgot Password',
                     style: TextStyle(
