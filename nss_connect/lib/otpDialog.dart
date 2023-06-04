@@ -101,7 +101,7 @@ void otp(BuildContext context, String unitNum) {
       actions: [
         TextButton(
             onPressed: () {
-              Navigator.pushNamed(context, ConfirmData.id);
+              Navigator.of(context).pop();
             },
             child: Text('proceed'))
       ],

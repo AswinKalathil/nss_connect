@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'register.dart';
 
 class credCard extends StatefulWidget {
   const credCard({super.key});
@@ -9,13 +10,16 @@ class credCard extends StatefulWidget {
 
 class _credCardState extends State<credCard> {
   String? selectedOption = 'Volunteer';
-
+  String? poString = 'PO';
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      height: MediaQuery.of(context).size.height * 0.6,
+      height: MediaQuery.of(context).size.height *
+          (selectedOption == poString ? 0.72 : .6),
       width: MediaQuery.of(context).size.width,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(15))),
       child: Card(
         color: Colors.white,
         elevation: 10,
@@ -187,7 +191,42 @@ class _credCardState extends State<credCard> {
                     ),
                   ),
                 ),
-              ))
+              )),
+          if (selectedOption == poString)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                'or',
+                style: TextStyle(color: Colors.grey, fontSize: 15),
+              ),
+            ),
+          if (selectedOption == poString)
+            GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, Register.id);
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: MediaQuery.of(context).size.height * 0.07,
+                  padding: EdgeInsets.symmetric(
+                    vertical: 5,
+                    horizontal: 12,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 35, 25, 173).withOpacity(0.7),
+                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Register Unit',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        letterSpacing: 1.25,
+                      ),
+                    ),
+                  ),
+                ))
         ]),
       ),
     );

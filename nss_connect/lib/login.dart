@@ -23,22 +23,8 @@ class _LoginState extends State<Login> {
           fit: BoxFit.cover,
         )),
         child: Column(children: [
-          Container(
-            padding: const EdgeInsets.only(top: 50, right: 10),
-            height: MediaQuery.of(context).size.height * 0.25,
-            width: MediaQuery.of(context).size.width,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GestureDetector(
-
-                  onTap: (){Navigator.pushNamed(context,Register.id);},
-                  child: Text('Register...'),
-
-                )
-              ],
-            ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * .15,
           ),
           credCard()
         ]),

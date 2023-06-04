@@ -28,7 +28,7 @@ class _RegCardState extends State<RegCard> {
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: Text(
-                  'Register Unit1',
+                  'Register Unit',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 30,
