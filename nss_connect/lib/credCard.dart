@@ -63,6 +63,7 @@ class _credCardState extends State<credCard> {
           SizedBox(
             height: MediaQuery.of(context).size.width * 0.06,
           ),
+          
           Container(
             alignment: AlignmentDirectional.topStart,
             padding: EdgeInsets.only(bottom: 10, left: 30),

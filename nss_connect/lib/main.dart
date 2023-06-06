@@ -3,6 +3,7 @@ import 'package:nss_connect/register.dart';
 import 'login.dart';
 import 'register.dart';
 import 'cfmdta.dart';
+import 'home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,8 +20,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Nexa',
       ),
-      initialRoute: Login.id,
+      initialRoute: Home.id,
       routes: {
+        Home.id: (ctx) => Home(),
         Login.id: (ctx) => Login(),
         Register.id: (ctx) => Register(),
         ConfirmData.id: (ctx) => ConfirmData(),
