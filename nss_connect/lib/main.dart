@@ -3,6 +3,7 @@ import 'package:nss_connect/register.dart';
 import 'login.dart';
 import 'cfmdta.dart';
 import 'home.dart';
+import 'colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: primaryViolet,
         fontFamily: 'Nexa',
       ),
       initialRoute: Home.id,
