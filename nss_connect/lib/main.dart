@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/register.dart';
 import 'login.dart';
-import 'register.dart';
 import 'cfmdta.dart';
 import 'home.dart';
 
