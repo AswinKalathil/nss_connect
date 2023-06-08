@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'longButton.dart';
 import 'otpDialog.dart';
 
 class RegCard extends StatefulWidget {
@@ -92,33 +93,11 @@ class _RegCardState extends State<RegCard> {
                 height: 20,
               ),
 
-              //Login button
-              GestureDetector(
-                  onTap: () {
+              LongButton(
+                  buttonText: 'Continue',
+                  buttonAction: () {
                     otp(context, 'ss');
-                  },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    height: MediaQuery.of(context).size.height * 0.07,
-                    padding: EdgeInsets.symmetric(
-                      vertical: 5,
-                      horizontal: 12,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 35, 25, 173).withOpacity(0.7),
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Continue',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                          letterSpacing: 1.25,
-                        ),
-                      ),
-                    ),
-                  ))
+                  })
             ]),
       ),
     );

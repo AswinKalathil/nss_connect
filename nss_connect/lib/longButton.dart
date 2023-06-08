@@ -4,12 +4,14 @@ class LongButton extends StatelessWidget {
   final String buttonText;
   final Function buttonAction;
   // const LongButton({super.key});
-  LongButton({required this.buttonText, required this.buttonAction});
+  const LongButton({required this.buttonText, required this.buttonAction});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: buttonAction(),
+        onTap: () {
+          buttonAction();
+        },
         child: Container(
           width: MediaQuery.of(context).size.width * 0.8,
           height: MediaQuery.of(context).size.height * 0.07,
