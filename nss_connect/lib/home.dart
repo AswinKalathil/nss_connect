@@ -13,10 +13,13 @@ class Home extends StatelessWidget {
       },
       child: Card(
         elevation: 4,
-        child: Container(
-          width: 100,
-          height: 100,
-          color: Colors.white10,
+        child: Center(
+          child: Container(
+            child: Text('Welcome tour'),
+            width: 100,
+            height: 100,
+            color: const Color.fromARGB(26, 71, 61, 61),
+          ),
         ),
       ),
     );
