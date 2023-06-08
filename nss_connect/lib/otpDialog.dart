@@ -10,7 +10,7 @@ void otp(BuildContext context, String unitNum) {
       title: Text('Enter OTP'),
       content: Container(
         padding: EdgeInsets.all(10),
-        height: MediaQuery.of(context).size.height * 0.2,
+        height: MediaQuery.of(context).size.height * 0.1,
         width: MediaQuery.of(context).size.width * 0.7,
         child: Column(
           children: [
@@ -18,11 +18,47 @@ void otp(BuildContext context, String unitNum) {
               'OTP send to **$unitNum@gmail.com',
               style: TextStyle(fontSize: 15),
             ),
-            Row(
+            
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              displayBottomSheet(context);
+            },
+            child: Text('proceed'))
+      ],
+    ),
+  );
+}
+
+void displayBottomSheet(BuildContext context) {
+  double otpBoxSize=MediaQuery.of(context).size.height * 0.1;
+
+  showModalBottomSheet<void>(
+
+            context: context,
+            builder: (BuildContext context) {
+              return Container(
+                height: MediaQuery.of(context).size.height * 0.3,
+                padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom +10),
+                
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Container(
+        padding: EdgeInsets.all(10),
+        height: MediaQuery.of(context).size.height * 0.2,
+        width: MediaQuery.of(context).size.width * 0.7,
+        child:Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 SizedBox(
-                  height: 68,
+                  height: otpBoxSize,
                   width: 55,
                   child: TextField(
                     onChanged: (value) {
@@ -40,7 +76,7 @@ void otp(BuildContext context, String unitNum) {
                   ),
                 ),
                 SizedBox(
-                  height: 68,
+                  height: otpBoxSize,
                   width: 55,
                   child: TextField(
                     onChanged: (value) {
@@ -58,7 +94,7 @@ void otp(BuildContext context, String unitNum) {
                   ),
                 ),
                 SizedBox(
-                  height: 68,
+                  height: otpBoxSize,
                   width: 55,
                   child: TextField(
                     onChanged: (value) {
@@ -76,7 +112,7 @@ void otp(BuildContext context, String unitNum) {
                   ),
                 ),
                 SizedBox(
-                  height: 68,
+                  height: otpBoxSize,
                   width: 55,
                   child: TextField(
                     onChanged: (value) {
@@ -94,18 +130,16 @@ void otp(BuildContext context, String unitNum) {
                   ),
                 )
               ],
-            ),
-          ],
-        ),
-      ),
-      actions: [
-        TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('proceed'))
-      ],
-    ),
+            ),),
+                      ElevatedButton(
+                        child: const Text('Close BottomSheet'),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
   );
 }
 
