@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nss_connect/longButton.dart';
 import 'register.dart';
 import 'otpDialog.dart';
+import 'expansionAnimation.dart';
 
 class credCard extends StatefulWidget {
   const credCard({super.key});
@@ -27,7 +28,9 @@ class _credCardState extends State<credCard> {
         elevation: 10,
         child: Column(children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(
+              top: 20,
+            ),
             child: Text(
               'Login as',
               style: TextStyle(
@@ -62,7 +65,7 @@ class _credCardState extends State<credCard> {
           ),
 
           SizedBox(
-            height: MediaQuery.of(context).size.width * 0.06,
+            height: 10,
           ),
           Container(
             alignment: AlignmentDirectional.topStart,

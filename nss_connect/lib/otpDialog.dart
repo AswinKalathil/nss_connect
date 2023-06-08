@@ -7,10 +7,9 @@ void otp(BuildContext context, String unitNum) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Text('Enter OTP'),
       content: Container(
         padding: EdgeInsets.all(10),
-        height: MediaQuery.of(context).size.height * 0.1,
+        height: MediaQuery.of(context).size.height * 0.08,
         width: MediaQuery.of(context).size.width * 0.7,
         child: Column(
           children: [
@@ -18,7 +17,6 @@ void otp(BuildContext context, String unitNum) {
               'OTP send to **$unitNum@gmail.com',
               style: TextStyle(fontSize: 15),
             ),
-            
           ],
         ),
       ),
@@ -35,112 +33,121 @@ void otp(BuildContext context, String unitNum) {
 }
 
 void displayBottomSheet(BuildContext context) {
-  double otpBoxSize=MediaQuery.of(context).size.height * 0.1;
-
+  double factor = 0.7;
+  double otpBoxSize = MediaQuery.of(context).size.height * 0.05;
+  double botomSheetSize = MediaQuery.of(context).size.height * factor;
   showModalBottomSheet<void>(
-
-            context: context,
-            builder: (BuildContext context) {
-              return Container(
-                height: MediaQuery.of(context).size.height * 0.3,
-                padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom +10),
-                
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Container(
-        padding: EdgeInsets.all(10),
-        height: MediaQuery.of(context).size.height * 0.2,
-        width: MediaQuery.of(context).size.width * 0.7,
-        child:Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  height: otpBoxSize,
-                  width: 55,
-                  child: TextField(
-                    onChanged: (value) {
-                      if (value.length == 1) {
-                        FocusScope.of(context).nextFocus();
-                      }
-                    },
-                    style: Theme.of(context).textTheme.headline6,
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.center,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(1),
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
-                  ),
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return Container(
+          height: botomSheetSize,
+          padding: EdgeInsets.only(
+              top: 10,
+              left: 10,
+              right: 10,
+              bottom: MediaQuery.of(context).viewInsets.bottom + 10),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Text(
+                  'Enter OTP',
+                  style: TextStyle(fontSize: 20),
                 ),
-                SizedBox(
-                  height: otpBoxSize,
-                  width: 55,
-                  child: TextField(
-                    onChanged: (value) {
-                      if (value.length == 1) {
-                        FocusScope.of(context).nextFocus();
-                      }
-                    },
-                    style: Theme.of(context).textTheme.headline6,
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.center,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(1),
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: otpBoxSize,
-                  width: 55,
-                  child: TextField(
-                    onChanged: (value) {
-                      if (value.length == 1) {
-                        FocusScope.of(context).nextFocus();
-                      }
-                    },
-                    style: Theme.of(context).textTheme.headline6,
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.center,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(1),
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: otpBoxSize,
-                  width: 55,
-                  child: TextField(
-                    onChanged: (value) {
-                      if (value.length == 1) {
-                        FocusScope.of(context).nextFocus();
-                      }
-                    },
-                    style: Theme.of(context).textTheme.headline6,
-                    keyboardType: TextInputType.number,
-                    textAlign: TextAlign.center,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(1),
-                      FilteringTextInputFormatter.digitsOnly,
-                    ],
-                  ),
-                )
-              ],
-            ),),
-                      ElevatedButton(
-                        child: const Text('Close BottomSheet'),
-                        onPressed: () => Navigator.pop(context),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: otpBoxSize,
+                        width: 55,
+                        child: TextField(
+                          autofocus: true,
+                          onChanged: (value) {
+                            if (value.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                          },
+                          style: Theme.of(context).textTheme.headline6,
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                        ),
                       ),
+                      SizedBox(
+                        height: otpBoxSize,
+                        width: 55,
+                        child: TextField(
+                          onChanged: (value) {
+                            if (value.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                          },
+                          style: Theme.of(context).textTheme.headline6,
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: otpBoxSize,
+                        width: 55,
+                        child: TextField(
+                          onChanged: (value) {
+                            if (value.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                          },
+                          style: Theme.of(context).textTheme.headline6,
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: otpBoxSize,
+                        width: 55,
+                        child: TextField(
+                          onChanged: (value) {
+                            if (value.length == 1) {
+                              FocusScope.of(context).nextFocus();
+                            }
+                          },
+                          style: Theme.of(context).textTheme.headline6,
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(1),
+                            FilteringTextInputFormatter.digitsOnly,
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),
-              );
-            }
-  );
+                ElevatedButton(
+                  child: const Text('Submit'),
+                  onPressed: () => Navigator.pop(context),
+                ),
+              ],
+            ),
+          ),
+        );
+      });
 }
 
 class OtpDialog extends StatefulWidget {
