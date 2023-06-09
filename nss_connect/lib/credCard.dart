@@ -12,8 +12,21 @@ class credCard extends StatefulWidget {
 }
 
 class _credCardState extends State<credCard> {
+  final _userNameController = TextEditingController();
+  final _passwordController = TextEditingController();
   String? selectedOption = 'Volunteer';
   String? poString = 'PO';
+
+  void _submitData() {
+    final enterdUsername = _userNameController.text;
+    final enterdPassword = _passwordController.text;
+    if (enterdUsername.isEmpty || enterdPassword.isEmpty) {
+      return;
+    }
+
+    print("user name: $enterdUsername\npassword: $enterdPassword");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -88,6 +101,10 @@ class _credCardState extends State<credCard> {
             ),
             width: MediaQuery.of(context).size.width * 0.8,
             child: TextField(
+              controller: _userNameController,
+              onSubmitted: (_) {
+                _submitData();
+              },
               style: TextStyle(),
               cursorColor: Colors.black,
               decoration: InputDecoration(
@@ -124,6 +141,10 @@ class _credCardState extends State<credCard> {
             ),
             width: MediaQuery.of(context).size.width * 0.8,
             child: TextField(
+              controller: _passwordController,
+              onSubmitted: (_) {
+                _submitData();
+              },
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,
@@ -179,6 +200,8 @@ class _credCardState extends State<credCard> {
               buttonText: 'Login',
               buttonAction: () {
                 print('Pressed login');
+
+                _submitData();
               }),
           if (selectedOption == poString)
             Padding(

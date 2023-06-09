@@ -6,7 +6,7 @@ class introscreen1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue,
+      color: Colors.white,
       child: Center(
         child: Text('page1'),
       ),
