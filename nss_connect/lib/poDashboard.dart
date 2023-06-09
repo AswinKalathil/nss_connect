@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class VolunteerDashboardPage extends StatefulWidget {
-  static const String id = 'volunteerDashboard';
+class PoDashboardPage extends StatefulWidget {
+  static const String id = 'poDashboard';
   @override
-  State<VolunteerDashboardPage> createState() => _VolunteerDashboardPageState();
+  State<PoDashboardPage> createState() => _PoDashboardPageState();
 }
 
-class _VolunteerDashboardPageState extends State<VolunteerDashboardPage> {
+class _PoDashboardPageState extends State<PoDashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Volunteer Dashboard'),
+        title: Text('PO Dashboard'),
       ),
       body: GridView.count(
         crossAxisCount: 2,

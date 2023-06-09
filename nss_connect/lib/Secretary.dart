@@ -7,7 +7,7 @@ class SecretaryDashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Destination Page'),
+        title: Text('secretary Dashboard'),
       ),
       body: Center(
         child: Text('This is the destination page.'),

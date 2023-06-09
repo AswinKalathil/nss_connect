@@ -16,7 +16,7 @@ class _credCardState extends State<credCard> {
   final _userNameController = TextEditingController();
   final _passwordController = TextEditingController();
   String? _selectedOption = 'volunteerDashboard';
-  String? poString = 'PO';
+  String? poString = 'poDashboard';
 
   void _submitData() {
     final enterdUsername = _userNameController.text;
@@ -74,7 +74,7 @@ class _credCardState extends State<credCard> {
                 child: Text('Volunteer'),
               ),
               DropdownMenuItem<String>(
-                value: 'PO',
+                value: 'poDashboard',
                 child: Text('Program officer'),
               ),
               DropdownMenuItem<String>(

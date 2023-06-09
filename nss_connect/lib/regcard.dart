@@ -12,6 +12,7 @@ class RegCard extends StatefulWidget {
 
 class _RegCardState extends State<RegCard> {
   String? selectedOption = 'Volunteer';
+  final _unitNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +69,7 @@ class _RegCardState extends State<RegCard> {
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: TextField(
                   style: TextStyle(),
+                  controller: _unitNumberController,
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -96,7 +98,7 @@ class _RegCardState extends State<RegCard> {
               LongButton(
                   buttonText: 'Continue',
                   buttonAction: () {
-                    otp(context, 'ss');
+                    otp(context, _unitNumberController.text);
                   })
             ]),
       ),
