@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/Secretary.dart';
 import 'package:nss_connect/longButton.dart';
 import 'register.dart';
 import 'otpDialog.dart';
@@ -14,17 +15,23 @@ class credCard extends StatefulWidget {
 class _credCardState extends State<credCard> {
   final _userNameController = TextEditingController();
   final _passwordController = TextEditingController();
-  String? selectedOption = 'Volunteer';
+  String? _selectedOption = 'volunteerDashboard';
   String? poString = 'PO';
 
   void _submitData() {
     final enterdUsername = _userNameController.text;
     final enterdPassword = _passwordController.text;
+    String nextPageId;
     if (enterdUsername.isEmpty || enterdPassword.isEmpty) {
       return;
     }
 
     print("user name: $enterdUsername\npassword: $enterdPassword");
+    Navigator.of(context).pushReplacementNamed(_selectedOption as String);
+    // if (_selectedOption == 'SecretaryDashboard')
+    //   Navigator.of(context).pushReplacementNamed(id);
+    // else if (_selectedOption == 'VolunteerDashboard')
+    //   Navigator.of(context).pushReplacementNamed(VolunteerDashboard.id);
   }
 
   @override
@@ -32,7 +39,7 @@ class _credCardState extends State<credCard> {
     return Container(
       padding: EdgeInsets.all(10),
       height: MediaQuery.of(context).size.height *
-          (selectedOption == poString ? 0.72 : .6),
+          (_selectedOption == poString ? 0.72 : .6),
       width: MediaQuery.of(context).size.width,
       decoration:
           BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(15))),
@@ -55,15 +62,15 @@ class _credCardState extends State<credCard> {
             ),
           ),
           DropdownButton<String>(
-            value: selectedOption,
+            value: _selectedOption,
             onChanged: (String? newValue) {
               setState(() {
-                selectedOption = newValue;
+                _selectedOption = newValue;
               });
             },
             items: [
               DropdownMenuItem<String>(
-                value: 'Volunteer',
+                value: 'volunteerDashboard',
                 child: Text('Volunteer'),
               ),
               DropdownMenuItem<String>(
@@ -71,7 +78,7 @@ class _credCardState extends State<credCard> {
                 child: Text('Program officer'),
               ),
               DropdownMenuItem<String>(
-                value: 'Secretary',
+                value: 'secretaryDashboard',
                 child: Text('Secretary'),
               ),
             ],
@@ -203,7 +210,7 @@ class _credCardState extends State<credCard> {
 
                 _submitData();
               }),
-          if (selectedOption == poString)
+          if (_selectedOption == poString)
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -211,7 +218,7 @@ class _credCardState extends State<credCard> {
                 style: TextStyle(color: Colors.grey, fontSize: 15),
               ),
             ),
-          if (selectedOption == poString)
+          if (_selectedOption == poString)
             LongButton(
                 buttonText: 'Register Unit',
                 buttonAction: () {

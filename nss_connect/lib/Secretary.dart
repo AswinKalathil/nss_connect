@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class DestinationPage extends StatelessWidget {
-  const DestinationPage({super.key});
-
+class SecretaryDashboard extends StatelessWidget {
+  const SecretaryDashboard({super.key});
+  static const String id = 'secretaryDashboard';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

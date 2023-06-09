@@ -5,6 +5,7 @@ import 'package:nss_connect/register.dart';
 import 'login.dart';
 import 'cfmdta.dart';
 import 'home.dart';
+import 'Secretary.dart';
 import 'colors.dart';
 
 void main() {
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
           Login.id: (ctx) => Login(),
           Register.id: (ctx) => Register(),
           ConfirmData.id: (ctx) => ConfirmData(),
+          SecretaryDashboard.id :(ctx) => SecretaryDashboard(),
         },
         home: AnimatedSplashScreen(
             duration: 1500,
