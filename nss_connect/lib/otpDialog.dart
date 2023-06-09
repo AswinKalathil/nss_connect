@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nss_connect/colors.dart';
 
 import 'cfmdta.dart';
 
@@ -140,8 +141,11 @@ void displayBottomSheet(BuildContext context) {
                   ),
                 ),
                 ElevatedButton(
+                  style: ButtonStyle(backgroundColor:  MaterialStateProperty.all<Color>(primaryButton)),
                   child: const Text('Submit'),
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
               ],
             ),

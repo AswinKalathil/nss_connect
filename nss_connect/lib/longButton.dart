@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'colors.dart';
 
 class LongButton extends StatelessWidget {
   final String buttonText;
@@ -20,7 +21,7 @@ class LongButton extends StatelessWidget {
             horizontal: 12,
           ),
           decoration: BoxDecoration(
-            color: Color.fromARGB(255, 35, 25, 173).withOpacity(0.7),
+            color: primaryButton,
             borderRadius: BorderRadius.all(Radius.circular(5)),
           ),
           child: Center(

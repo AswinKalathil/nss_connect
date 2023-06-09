@@ -18,9 +18,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: primaryViolet,
-          fontFamily: 'Nexa',
+        theme: ThemeData().copyWith(
+          buttonTheme:
+              ThemeData().buttonTheme.copyWith(buttonColor: primaryButton),
+          colorScheme: ThemeData().colorScheme.copyWith(
+                primary: primaryColor,
+                secondary: secondaryColor,
+              ),
         ),
         // initialRoute: Home.id,
         routes: {
