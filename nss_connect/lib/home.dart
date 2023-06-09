@@ -11,15 +11,12 @@ class Home extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(context, Login.id);
       },
-      child: Container(
-        width: 200,
-        height: 200,
-        color: Colors.blue,
-        child: Center(
-          child: Text(
-            'Login',
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          ),
+      child: Card(
+        elevation: 4,
+        child: Container(
+          width: 100,
+          height: 100,
+          color: Colors.white10,
         ),
       ),
     );
