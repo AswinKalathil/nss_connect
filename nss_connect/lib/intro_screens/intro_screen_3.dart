@@ -12,7 +12,7 @@ class introscreen3 extends StatelessWidget {
         child: Text(
           'AI Task Management',
           style: TextStyle(
-              fontSize: 30, fontWeight: FontWeight.bold, color: secondaryColor),
+              fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
         ),
       ),
     );
