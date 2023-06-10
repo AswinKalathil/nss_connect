@@ -1,12 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:nss_connect/HomeDasboard.dart';
+import 'package:nss_connect/pageTrasitions.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'intro_screens/intro_screen_1.dart';
 import 'intro_screens/intro_screen_2.dart';
 import 'intro_screens/intro_screen_3.dart';
-import 'login.dart';
+
 
 class WelcomeTour extends StatefulWidget {
   const WelcomeTour({super.key});
@@ -37,12 +37,14 @@ class _WelcomeTourState extends State<WelcomeTour> {
     _timer = Timer.periodic(Duration(seconds: 3), (_) async {
       if (_controller.page == 2) {
         _timer?.cancel();
-        await Future.delayed(Duration(seconds: 1));
-        Navigator.pushReplacementNamed(context, HomeDashboard.id);
+        await Future.delayed(Duration(seconds: 2));
+
+        nextPage(context, HomeDashboard());
+        
       } else {
-        // 
+        //
         _controller.nextPage(
-          duration: Duration(milliseconds: 1000),
+          duration: Duration(milliseconds: 300),
           curve: Curves.easeIn,
         );
       }
@@ -70,20 +72,15 @@ class _WelcomeTourState extends State<WelcomeTour> {
             alignment: const Alignment(.7, 0.75),
             child: GestureDetector(
               onTap: () {
-                Navigator.pushReplacementNamed(context, HomeDashboard.id);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (_) => HomeDashboard()),
+                );
+                // nextPage(context, HomeDashboard());
               },
               child: Text('Skip'),
             ),
           ),
-
-          // GestureDetector(
-          //   onTap: () {
-          //     _controller.nextPage(
-          //         duration: Duration(milliseconds: 500),
-          //         curve: Curves.easeIn);
-          //   },
-          //   child: Text('Next'),
-          // ),
         ],
       ),
     );

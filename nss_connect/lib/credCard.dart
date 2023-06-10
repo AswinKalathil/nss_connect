@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/Secretary.dart';
 import 'package:nss_connect/longButton.dart';
+import 'package:nss_connect/pageTrasitions.dart';
 import 'register.dart';
 import 'otpDialog.dart';
 import 'expansionAnimation.dart';
@@ -204,7 +205,7 @@ class _credCardState extends State<credCard> {
             height: 20,
           ),
 
-          //Login button
+          //Register button
           LongButton(
               buttonText: 'Login',
               buttonAction: () {
@@ -224,6 +225,7 @@ class _credCardState extends State<credCard> {
             LongButton(
                 buttonText: 'Register Unit',
                 buttonAction: () {
+                  // nextPage(context, Register());
                   Navigator.pushNamed(context, Register.id);
                 })
         ]),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
 import 'package:nss_connect/longButton.dart';
+import 'package:nss_connect/pageTrasitions.dart';
 
 class HomeDashboard extends StatelessWidget {
   const HomeDashboard({super.key});
@@ -14,7 +15,7 @@ class HomeDashboard extends StatelessWidget {
       body: Center(
         child: LongButton(
             buttonText: 'Login',
-            buttonAction: () => Navigator.pushNamed(context, Login.id)),
+            buttonAction: () => nextPagePush(context,Login())),
       ),
     );
   }
