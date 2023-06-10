@@ -29,7 +29,7 @@ class LongButton extends StatelessWidget {
               buttonText,
               style: TextStyle(
                 color: Colors.white,
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.bold,
                 letterSpacing: 1.25,
               ),
             ),

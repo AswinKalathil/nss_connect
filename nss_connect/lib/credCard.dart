@@ -112,6 +112,7 @@ class _credCardState extends State<credCard> {
               onSubmitted: (_) {
                 _submitData();
               },
+              textInputAction: TextInputAction.next,
               style: TextStyle(),
               cursorColor: Colors.black,
               decoration: InputDecoration(
@@ -152,6 +153,7 @@ class _credCardState extends State<credCard> {
               onSubmitted: (_) {
                 _submitData();
               },
+              textInputAction: TextInputAction.next,
               obscureText: true,
               enableSuggestions: false,
               autocorrect: false,

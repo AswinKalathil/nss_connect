@@ -22,7 +22,7 @@ final thirdColor = const MaterialColor(
 );
 
 final primaryButton = const MaterialColor(
-  0xFF23234A,
+  0xFF2E2E61,
   <int, Color>{
     50: Color(0xFFECECFF),
   },

@@ -21,35 +21,36 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData().copyWith(
-          buttonTheme:
-              ThemeData().buttonTheme.copyWith(buttonColor: primaryButton),
-          colorScheme: ThemeData().colorScheme.copyWith(
-                primary: primaryColor,
-                secondary: secondaryColor,
-              ),
-        ),
-        // initialRoute: Home.id,
-        routes: {
-          Home.id: (ctx) => Home(),
-          HomeDashboard.id:(ctx)=>HomeDashboard(),
-          Login.id: (ctx) => Login(),
-          Register.id: (ctx) => Register(),
-          ConfirmData.id: (ctx) => ConfirmData(),
-          SecretaryDashboard.id: (ctx) => SecretaryDashboard(),
-          VolunteerDashboardPage.id: (ctx) => VolunteerDashboardPage(),
-          PoDashboardPage.id: (ctx) => PoDashboardPage(),
-        },
-        home: AnimatedSplashScreen(
-            duration: 1500,
-            splash: Icons.home,
-            nextScreen: Home(),
-            splashTransition: SplashTransition.rotationTransition,
-            pageTransitionType: PageTransitionType.rightToLeft,
-            centered: true,
-            backgroundColor: Color.fromARGB(255, 237, 83, 83))
-        // home: const Login(),
-        );
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData().copyWith(
+        buttonTheme:
+            ThemeData().buttonTheme.copyWith(buttonColor: primaryButton),
+        colorScheme: ThemeData().colorScheme.copyWith(
+              primary: primaryColor,
+              secondary: secondaryColor,
+            ),
+      ),
+      // initialRoute: Home.id,
+      routes: {
+        WelcomeTour.id: (ctx) => WelcomeTour(),
+        HomeDashboard.id: (ctx) => HomeDashboard(),
+        Login.id: (ctx) => Login(),
+        Register.id: (ctx) => Register(),
+        ConfirmData.id: (ctx) => ConfirmData(),
+        SecretaryDashboard.id: (ctx) => SecretaryDashboard(),
+        VolunteerDashboardPage.id: (ctx) => VolunteerDashboardPage(),
+        PoDashboardPage.id: (ctx) => PoDashboardPage(),
+      },
+      home: WelcomeTour(),
+      // home: AnimatedSplashScreen(
+      //     duration: 1500,
+      //     splash: Icons.home,
+      //     nextScreen: Home(),
+      //     splashTransition: SplashTransition.rotationTransition,
+      //     pageTransitionType: PageTransitionType.rightToLeft,
+      //     centered: true,
+      //     backgroundColor: Color.fromARGB(255, 237, 83, 83))
+      // home: const Login(),
+    );
   }
 }

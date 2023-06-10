@@ -9,7 +9,11 @@ class introscreen2 extends StatelessWidget {
     return Container(
       color: secondaryColor,
       child: Center(
-        child: Text('page2'),
+        child: Text(
+          'Blood Donor Connection',
+          style: TextStyle(
+              fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+        ),
       ),
     );
   }

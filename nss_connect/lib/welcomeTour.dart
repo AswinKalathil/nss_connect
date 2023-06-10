@@ -6,15 +6,15 @@ import 'intro_screens/intro_screen_2.dart';
 import 'intro_screens/intro_screen_3.dart';
 import 'login.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class WelcomeTour extends StatefulWidget {
+  const WelcomeTour({super.key});
   static const String id = 'welcomeScreen';
 
   @override
-  State<Home> createState() => _HomeState();
+  State<WelcomeTour> createState() => _WelcomeTourState();
 }
 
-class _HomeState extends State<Home> {
+class _WelcomeTourState extends State<WelcomeTour> {
   PageController _controller = PageController();
 
   @override

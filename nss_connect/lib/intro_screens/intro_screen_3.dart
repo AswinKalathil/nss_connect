@@ -9,7 +9,11 @@ class introscreen3 extends StatelessWidget {
     return Container(
       color: primaryColor,
       child: Center(
-        child: Text('page3'),
+        child: Text(
+          'AI Task Management',
+          style: TextStyle(
+              fontSize: 30, fontWeight: FontWeight.bold, color: secondaryColor),
+        ),
       ),
     );
   }
