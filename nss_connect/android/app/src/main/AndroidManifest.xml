@@ -3,7 +3,7 @@
    <application
         android:label="nss_connect"
         android:name="${applicationName}"
-        android:icon="@mipmap/launcher_icon">
+        android:icon="@mipmap/applogo">
         <activity
             android:name=".MainActivity"
             android:exported="true"
