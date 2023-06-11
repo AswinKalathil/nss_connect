@@ -34,10 +34,10 @@ class _WelcomeTourState extends State<WelcomeTour> {
   }
 
   void _startTimer() {
-    _timer = Timer.periodic(Duration(seconds: 3), (_) async {
+    _timer = Timer.periodic(Duration(seconds: 2), (_) async {
       if (_controller.page == 2) {
         _timer?.cancel();
-        await Future.delayed(Duration(seconds: 2));
+        await Future.delayed(Duration(seconds: 1));
 
         nextPage(context, HomeDashboard());
         

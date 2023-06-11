@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nss_connect/regcard.dart';
+
+import 'package:nss_connect/ConfirmCard.dart';
 import 'credCard.dart';
 import 'Secretary.dart';
 
@@ -24,8 +25,8 @@ class _ConfirmDataState extends State<ConfirmData> {
             )),
         child: Column(children: [
           Container(
-            padding: const EdgeInsets.only(top: 50, right: 10),
-            height: MediaQuery.of(context).size.height * 0.25,
+            padding: const EdgeInsets.only(top: 500, right: 10),
+            height: MediaQuery.of(context).size.height * 0.2,
             width: MediaQuery.of(context).size.width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -35,7 +36,7 @@ class _ConfirmDataState extends State<ConfirmData> {
               ],
             ),
           ),
-          RegCard()
+          ConfirmCard()
         ]),
       ),
     );

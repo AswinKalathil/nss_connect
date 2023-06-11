@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:nss_connect/pageTrasitions.dart';
-import 'package:nss_connect/regdata.dart';
+import 'package:nss_connect/ConfirmCard.dart';
 
-import 'cfmdta.dart';
+import 'ConfirmData.dart';
 
 void otp(BuildContext context, String unitNum) {
   showDialog(
@@ -150,7 +150,7 @@ void displayBottomSheet(BuildContext context) {
                   onPressed: () {
                     Navigator.pop(context);
                     // Navigator.pushNamed(context,RegData.id)
-                    nextPagePush(context, RegData());
+                    nextPagePush(context, ConfirmData());
                   },
                 ),
               ],

@@ -6,7 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/register.dart';
 import 'login.dart';
-import 'cfmdta.dart';
+import 'ConfirmData.dart';
 import 'welcomeTour.dart';
 import 'Secretary.dart';
 import 'colors.dart';
