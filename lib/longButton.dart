@@ -4,7 +4,7 @@ import 'colors.dart';
 class LongButton extends StatelessWidget {
   final String buttonText;
   final Function buttonAction;
-  // const LongButton({super.key});
+  
   const LongButton({required this.buttonText, required this.buttonAction});
 
   @override

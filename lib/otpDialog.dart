@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nss_connect/ResetPassword.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:nss_connect/pageTrasitions.dart';
-import 'package:nss_connect/ConfirmCard.dart';
+import 'package:nss_connect/accountDataCards.dart';
 
-import 'ConfirmData.dart';
+import 'createPoAccount.dart';
 
-void otp(BuildContext context, String unitNum) {
+void otpEmail(BuildContext context, String unitNum) {
   showDialog(
     context: context,
     builder: (context) => AlertDialog(
@@ -27,15 +28,44 @@ void otp(BuildContext context, String unitNum) {
         TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              displayBottomSheet(context);
+              displayBottomSheet(context, CreatePoAccount(unitNumber: unitNum,));
             },
-            child: Text('proceed'))
+            child: Text('OK'))
       ],
     ),
   );
 }
 
-void displayBottomSheet(BuildContext context) {
+void otpPhone(BuildContext context, String userId) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      content: Container(
+        padding: EdgeInsets.all(10),
+        height: MediaQuery.of(context).size.height * 0.08,
+        width: MediaQuery.of(context).size.width * 0.7,
+        child: Column(
+          children: [
+            Text(
+              'OTP send to +91**$userId@99989',
+              style: TextStyle(fontSize: 15),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              displayBottomSheet(context, ResetPassword(userId: userId,));
+            },
+            child: Text('OK'))
+      ],
+    ),
+  );
+}
+
+void displayBottomSheet(BuildContext context, Widget nextPage) {
   double factor = 0.7;
   double otpBoxSize = MediaQuery.of(context).size.height * 0.05;
   double botomSheetSize = MediaQuery.of(context).size.height * factor;
@@ -150,7 +180,7 @@ void displayBottomSheet(BuildContext context) {
                   onPressed: () {
                     Navigator.pop(context);
                     // Navigator.pushNamed(context,RegData.id)
-                    nextPagePush(context, ConfirmData());
+                    nextPagePush(context, nextPage);
                   },
                 ),
               ],

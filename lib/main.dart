@@ -6,7 +6,7 @@ import 'package:page_transition/page_transition.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/register.dart';
 import 'login.dart';
-import 'ConfirmData.dart';
+import 'createPoAccount.dart';
 import 'welcomeTour.dart';
 import 'Secretary.dart';
 import 'colors.dart';
@@ -36,21 +36,12 @@ class MyApp extends StatelessWidget {
         HomeDashboard.id: (ctx) => HomeDashboard(),
         Login.id: (ctx) => Login(),
         Register.id: (ctx) => Register(),
-        ConfirmData.id: (ctx) => ConfirmData(),
+        CreatePoAccount.id: (ctx) => CreatePoAccount(unitNumber: 'gg',),
         SecretaryDashboard.id: (ctx) => SecretaryDashboard(),
         VolunteerDashboardPage.id: (ctx) => VolunteerDashboardPage(),
         PoDashboardPage.id: (ctx) => PoDashboardPage(),
       },
       home: WelcomeTour(),
-      // home: AnimatedSplashScreen(
-      //     duration: 1500,
-      //     splash: Icons.home,
-      //     nextScreen: Home(),
-      //     splashTransition: SplashTransition.rotationTransition,
-      //     pageTransitionType: PageTransitionType.rightToLeft,
-      //     centered: true,
-      //     backgroundColor: Color.fromARGB(255, 237, 83, 83))
-      // home: const Login(),
     );
   }
 }

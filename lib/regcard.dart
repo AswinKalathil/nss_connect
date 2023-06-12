@@ -98,7 +98,7 @@ class _RegCardState extends State<RegCard> {
               LongButton(
                   buttonText: 'Continue',
                   buttonAction: () {
-                    otp(context, _unitNumberController.text);
+                    otpEmail(context, _unitNumberController.text);
                   })
             ]),
       ),

@@ -187,7 +187,7 @@ class _credCardState extends State<credCard> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    otp(context, 'ss');
+                    otpPhone(context, 'ss');
                   },
                   child: Text(
                     'Forgot Password',
