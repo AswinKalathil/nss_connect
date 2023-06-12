@@ -73,9 +73,18 @@ class _WelcomeTourState extends State<WelcomeTour> {
             child: GestureDetector(
               onTap: () {
                 Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (_) => HomeDashboard()),
-                );
+    context,
+    PageRouteBuilder(
+      transitionDuration: Duration(milliseconds: 300),
+      pageBuilder: (_, __, ___) => HomeDashboard(),
+      transitionsBuilder: (_, animation, __, child) {
+        return FadeTransition(
+          opacity: animation,
+          child: child,
+        );
+      },
+    ),
+  );
                 // nextPage(context, HomeDashboard());
               },
               child: Text('Skip'),
