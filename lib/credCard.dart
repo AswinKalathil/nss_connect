@@ -28,7 +28,8 @@ class _credCardState extends State<credCard> {
     }
 
     print("user name: $enterdUsername\npassword: $enterdPassword");
-    Navigator.of(context).pushReplacementNamed(_selectedOption as String);
+    Navigator.of(context).pop();
+    Navigator.of(context).pushNamed(_selectedOption as String);
     // if (_selectedOption == 'SecretaryDashboard')
     //   Navigator.of(context).pushReplacementNamed(id);
     // else if (_selectedOption == 'VolunteerDashboard')
