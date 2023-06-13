@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:nss_connect/HomeDasboard.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:smooth_page_indicator/src/effects/customizable_effect.dart';
 import 'intro_screens/intro_screen_1.dart';
 import 'intro_screens/intro_screen_2.dart';
 import 'intro_screens/intro_screen_3.dart';
-
 
 class WelcomeTour extends StatefulWidget {
   const WelcomeTour({super.key});
@@ -37,10 +37,9 @@ class _WelcomeTourState extends State<WelcomeTour> {
     _timer = Timer.periodic(Duration(seconds: 2), (_) async {
       if (_controller.page == 2) {
         _timer?.cancel();
-        await Future.delayed(Duration(seconds: 1));
+        // await Future.delayed(Duration(seconds: 1));
 
-        nextPage(context, HomeDashboard());
-        
+        // nextPage(context, HomeDashboard());
       } else {
         //
         _controller.nextPage(
@@ -65,31 +64,48 @@ class _WelcomeTourState extends State<WelcomeTour> {
             ],
           ),
           Container(
-            alignment: const Alignment(0, 0.75),
-            child: SmoothPageIndicator(controller: _controller, count: 3),
+            alignment: const Alignment(0, 0.76),
+            child: SmoothPageIndicator(
+                effect: ExpandingDotsEffect(
+                  dotWidth: 12,
+                  dotHeight: 12,
+                  activeDotColor: const Color.fromARGB(255, 109, 181, 239),
+                  dotColor: const Color.fromARGB(255, 203, 203, 203),
+                  spacing: 8.0,
+                  expansionFactor: 4,
+                  strokeWidth: 2.0,
+                  radius: 8,
+                ),
+                controller: _controller,
+                count: 3),
           ),
           Container(
-            alignment: const Alignment(.7, 0.75),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.pushReplacement(
-    context,
-    PageRouteBuilder(
-      transitionDuration: Duration(milliseconds: 300),
-      pageBuilder: (_, __, ___) => HomeDashboard(),
-      transitionsBuilder: (_, animation, __, child) {
-        return FadeTransition(
-          opacity: animation,
-          child: child,
-        );
-      },
-    ),
-  );
-                // nextPage(context, HomeDashboard());
-              },
-              child: Text('Skip'),
-            ),
-          ),
+              alignment: const Alignment(.95, -.83),
+              child: TextButton(
+                  // style: TextButton.styleFrom(
+                  //   backgroundColor: Colors.grey.withOpacity(.3), // Set the background color
+                  // ),
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 300),
+                        pageBuilder: (_, __, ___) => HomeDashboard(),
+                        transitionsBuilder: (_, animation, __, child) {
+                          return FadeTransition(
+                            opacity: animation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                    // nextPage(context, HomeDashboard());
+                  },
+                 child: Icon(
+                  Icons.close_rounded,
+                  color: const Color.fromARGB(255, 40, 40, 40),
+                  size: 30,
+                  ))),
         ],
       ),
     );
