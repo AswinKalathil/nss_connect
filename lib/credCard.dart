@@ -63,27 +63,29 @@ class _credCardState extends State<credCard> {
               ),
             ),
           ),
-          DropdownButton<String>(
-            value: _selectedOption,
-            onChanged: (String? newValue) {
-              setState(() {
-                _selectedOption = newValue;
-              });
-            },
-            items: [
-              DropdownMenuItem<String>(
-                value: 'volunteerDashboard',
-                child: Text('Volunteer'),
-              ),
-              DropdownMenuItem<String>(
-                value: 'poDashboard',
-                child: Text('Program officer'),
-              ),
-              DropdownMenuItem<String>(
-                value: 'secretaryDashboard',
-                child: Text('Secretary'),
-              ),
-            ],
+          DropdownButtonHideUnderline(
+            child: DropdownButton<String>(
+              value: _selectedOption,
+              onChanged: (String? newValue) {
+                setState(() {
+                  _selectedOption = newValue;
+                });
+              },
+              items: [
+                DropdownMenuItem<String>(
+                  value: 'volunteerDashboard',
+                  child: Text('Volunteer',),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'poDashboard',
+                  child: Text('Program officer'),
+                ),
+                DropdownMenuItem<String>(
+                  value: 'secretaryDashboard',
+                  child: Text('Secretary'),
+                ),
+              ],
+            ),
           ),
 
           SizedBox(
