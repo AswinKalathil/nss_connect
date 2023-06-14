@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/Secretary.dart';
-import 'package:nss_connect/longButton.dart';
+import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'register.dart';
 import 'otpDialog.dart';
@@ -43,9 +43,8 @@ class _credCardState extends State<credCard> {
       height: MediaQuery.of(context).size.height *
           (_selectedOption == poString ? 0.72 : .6),
       width: MediaQuery.of(context).size.width,
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(15))),
       child: Card(
+        shape: CardShape(),
         color: Colors.white,
         elevation: 10,
         child: Column(children: [
@@ -74,7 +73,9 @@ class _credCardState extends State<credCard> {
               items: [
                 DropdownMenuItem<String>(
                   value: 'volunteerDashboard',
-                  child: Text('Volunteer',),
+                  child: Text(
+                    'Volunteer',
+                  ),
                 ),
                 DropdownMenuItem<String>(
                   value: 'poDashboard',

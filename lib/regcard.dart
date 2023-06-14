@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'longButton.dart';
+import 'widgetStyles.dart';
 import 'otpDialog.dart';
 
 class RegCard extends StatefulWidget {
@@ -21,6 +21,7 @@ class _RegCardState extends State<RegCard> {
       height: MediaQuery.of(context).size.height * 0.45,
       width: MediaQuery.of(context).size.width,
       child: Card(
+        shape: CardShape(),
         color: Colors.white,
         elevation: 10,
         child: Column(

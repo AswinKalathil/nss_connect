@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'longButton.dart';
+import 'widgetStyles.dart';
 import 'otpDialog.dart';
 
 class AccountDataCard extends StatefulWidget {
@@ -20,6 +20,7 @@ class _AccountDataCardState extends State<AccountDataCard> {
       height: MediaQuery.of(context).size.height * 0.65,
       width: MediaQuery.of(context).size.width,
       child: Card(
+        shape: CardShape(),
         color: Colors.white,
         elevation: 10,
         child: Column(
@@ -191,6 +192,7 @@ class _UserDataCardState extends State<UserDataCard> {
       height: MediaQuery.of(context).size.height * 0.65,
       width: MediaQuery.of(context).size.width,
       child: Card(
+        shape: CardShape(),
         color: Colors.white,
         elevation: 10,
         child: Column(
