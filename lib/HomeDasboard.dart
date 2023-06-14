@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
-import 'package:nss_connect/longButton.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 
 class HomeDashboard extends StatelessWidget {
@@ -28,20 +27,20 @@ class HomeDashboard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width * 0.15, horizontal: MediaQuery.of(context).size.width * 0.11),
+                  padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width * 0.15, horizontal: MediaQuery.of(context).size.width * 0.10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text('WELCOME TO', style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: 30,
+                        fontSize: 32,
                         fontWeight: FontWeight.bold,
                         color: const Color.fromARGB(255, 0, 0, 0),
                       ),),
                       Text('NSS', style: TextStyle(
                         fontFamily: 'Poppins',
-                        fontSize: 30,
+                        fontSize: 32,
                         fontWeight: FontWeight.bold,
                         color: const Color.fromARGB(255, 0, 0, 0),
                       ),),
@@ -72,8 +71,13 @@ class HomeDashboard extends StatelessWidget {
               ),),),
             ),
           ],
+          
         ),
         )),
     );
   }
 }
+
+         
+
+        
