@@ -8,6 +8,7 @@ class HomeDashboard extends StatelessWidget {
   static const String id = 'homeDashboard';
   @override
   Widget build(BuildContext context) {
+    double width80 =MediaQuery.of(context).size.width * 0.8;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -34,35 +35,44 @@ class HomeDashboard extends StatelessWidget {
               ),
             ),
             Container(
+              // color: Colors.amber,
+               width: MediaQuery.of(context).size.width * 0.8,
               height: (MediaQuery.of(context).size.height -MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom )* 0.15,
               child: Row(
+
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width * 0.02, horizontal: MediaQuery.of(context).size.width * 0.10),
+                  Container(
+                    height: 120,
+                    
+                    padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width * 0.02, horizontal: MediaQuery.of(context).size.width * 0.02),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('WELCOME TO', style: TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 32,
+                          fontSize: width80*.09,
                           fontWeight: FontWeight.bold,
                           color: const Color.fromARGB(255, 0, 0, 0),
                         ),),
                         Text('NSS', style: TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 32,
+                          fontSize: width80*.09,
                           fontWeight: FontWeight.bold,
                           color: const Color.fromARGB(255, 0, 0, 0),
                         ),),
                       ],
                     ),
                   ),
-                  Image(
-                    image: AssetImage('assets/images/nss.png'),
-                    height: MediaQuery.of(context).size.width * 0.2,
-                    width: MediaQuery.of(context).size.width * 0.2,)
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Image(
+                      image: AssetImage('assets/images/nss.png'),
+                      height: MediaQuery.of(context).size.width * 0.2,
+                      width: MediaQuery.of(context).size.width * 0.2,),
+                  )
                 ],
               ),
             ),
