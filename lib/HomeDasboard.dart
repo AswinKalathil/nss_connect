@@ -1,4 +1,5 @@
-import 'widgetStyles.dart';
+import 'package:flutter/gestures.dart';
+import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
 import 'package:nss_connect/pageTrasitions.dart';
@@ -8,105 +9,133 @@ class HomeDashboard extends StatelessWidget {
   static const String id = 'homeDashboard';
   @override
   Widget build(BuildContext context) {
-    double width80 =MediaQuery.of(context).size.width * 0.8;
+    double width80 = MediaQuery.of(context).size.width * 0.8;
+    double width25 = MediaQuery.of(context).size.width * 0.25;
     return Scaffold(
       body: SafeArea(
         child: Container(
-          padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top , bottom: MediaQuery.of(context).padding.bottom),
-          height: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom,
+          padding: EdgeInsets.only(
+              top: MediaQuery.of(context).padding.top,
+              bottom: MediaQuery.of(context).padding.bottom),
+          height: MediaQuery.of(context).size.height -
+              MediaQuery.of(context).padding.top -
+              MediaQuery.of(context).padding.bottom,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/images/homeBackground.png'),
-            fit: BoxFit.fitWidth,
-            alignment: Alignment.bottomLeft,
-            opacity: 0.35,
+            image: DecorationImage(
+              image: AssetImage('assets/images/homeBackground.png'),
+              fit: BoxFit.fitWidth,
+              alignment: Alignment.bottomLeft,
+              opacity: 0.3,
+            ),
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.25,
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: Card(
+                  elevation: 5,
+                ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: (MediaQuery.of(context).size.height -
+                        MediaQuery.of(context).padding.top -
+                        MediaQuery.of(context).padding.bottom) *
+                    0.15,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 120,
+                      padding: EdgeInsets.symmetric(
+                          vertical: MediaQuery.of(context).size.width * 0.02,
+                          horizontal: MediaQuery.of(context).size.width * 0.02),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'WELCOME TO',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: width80 * .09,
+                              fontWeight: FontWeight.bold,
+                              color: const Color.fromARGB(255, 0, 0, 0),
+                            ),
+                          ),
+                          Text(
+                            'NSS',
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: width80 * .09,
+                              fontWeight: FontWeight.bold,
+                              color: const Color.fromARGB(255, 0, 0, 0),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Image(
+                        image: AssetImage('assets/images/nss.png'),
+                        height: MediaQuery.of(context).size.width * 0.2,
+                        width: MediaQuery.of(context).size.width * 0.2,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.21,
+              ),
+              Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.symmetric(
+                    vertical: MediaQuery.of(context).size.height * 0.03),
+                height: MediaQuery.of(context).size.height * 0.15,
+                child: Text.rich(
+                  TextSpan(
+                    text: 'Are you a member?',
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: ' Login',
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () => nextPagePush(context, Login()),
+                        style: TextStyle(
+                          fontFamily: 'Nexa',
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.underline,
+                          color: secondaryColor,
+                        ),
+                      ),
+                      TextSpan(
+                        text: ' here',
+                      ),
+                    ],
+                  ),
+                  style: TextStyle(
+                    fontFamily: 'Ysabeau',
+                    shadows: [
+                      Shadow(
+                        blurRadius: 13.0,
+                        color: Color.fromARGB(255, 120, 121, 109),
+                        offset: Offset(3.0, 8.0),
+                      ),
+                    ],
+                    fontSize: width25 * .17,
+                    color: primaryColor,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.25,
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: Card(
-                elevation: 5,
-                
-              ),
-            ),
-            Container(
-              // color: Colors.amber,
-               width: MediaQuery.of(context).size.width * 0.8,
-              height: (MediaQuery.of(context).size.height -MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom )* 0.15,
-              child: Row(
-
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 120,
-                    
-                    padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.width * 0.02, horizontal: MediaQuery.of(context).size.width * 0.02),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('WELCOME TO', style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: width80*.09,
-                          fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 0, 0, 0),
-                        ),),
-                        Text('NSS', style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontSize: width80*.09,
-                          fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 0, 0, 0),
-                        ),),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Image(
-                      image: AssetImage('assets/images/nss.png'),
-                      height: MediaQuery.of(context).size.width * 0.2,
-                      width: MediaQuery.of(context).size.width * 0.2,),
-                  )
-                ],
-              ),
-            ),
-            
-            SizedBox(height: MediaQuery.of(context).size.height * 0.21,),
-            Container(
-              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height* 0.05),
-              child: LongButton(buttonText: 'LOGIN', buttonAction: ()=>nextPagePush(context,Login())),
-              
-            ),
-          ],
-          
-          ),
-        )),
+      ),
     );
   }
 }
-
-         
-
-        // height: MediaQuery.of(context).size.height * 0.08,
-              // padding: const EdgeInsets.all(50),
-              // child: ElevatedButton(
-              //   style: ElevatedButton.styleFrom(
-                  
-              //     minimumSize: Size(MediaQuery.of(context).size.width * 0.7, 0),
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //     ),
-              //     padding: EdgeInsets.symmetric(vertical: 15, horizontal: 30),
-              //   ),
-              //   onPressed: ()=>nextPagePush(context,Login()),
-              //   child: Text('LOGIN', style: TextStyle(
-              //   fontSize: 20,
-              //   fontWeight: FontWeight.bold,
-              //   color: const Color.fromARGB(255, 255, 255, 255),
-              // ),),),

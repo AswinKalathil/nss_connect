@@ -29,6 +29,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  google_fonts: ^5.0.0 #google fonts
   flutter:
     sdk: flutter
 
@@ -109,6 +110,13 @@ flutter:
         - asset: assets/fonts/Poppins-SemiBold.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
-  #
+    - family: Diphylleia
+      fonts:
+        - asset: assets/fonts/Diphylleia-Regular.ttf 
+    
+    - family: Ysabeau
+      fonts:
+        - asset: assets/fonts/Ysabeau-Variable.ttf
+          weight: 600
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
