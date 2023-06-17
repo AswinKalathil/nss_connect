@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/Sec_Pages/SecHome.dart';
-import 'colors.dart';
 
 class SecretaryDashboard extends StatefulWidget {
   const SecretaryDashboard({super.key});
