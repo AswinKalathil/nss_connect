@@ -1,4 +1,3 @@
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:nss_connect/HomeDasboard.dart';
 import 'package:nss_connect/login2.dart';
 import 'package:nss_connect/poDashboard.dart';

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:nss_connect/accountDataCards.dart';
-import 'credCard.dart';
-import 'Secretary.dart';
 
 class CreatePoAccount extends StatefulWidget {
   const CreatePoAccount({super.key,required this.unitNumber});

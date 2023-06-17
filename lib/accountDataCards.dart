@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'package:nss_connect/login2.dart';
+import 'package:nss_connect/pageTrasitions.dart';
+import 'package:nss_connect/poDashboard.dart';
 import 'widgetStyles.dart';
-import 'otpDialog.dart';
 
 class AccountDataCard extends StatefulWidget {
   const AccountDataCard({super.key});
@@ -12,7 +13,41 @@ class AccountDataCard extends StatefulWidget {
 }
 
 class _AccountDataCardState extends State<AccountDataCard> {
-  final _unitNumberController = TextEditingController();
+  final _poUserNameController = TextEditingController();
+  final _poPasswordController = TextEditingController();
+  final _poPassword2Controller = TextEditingController();
+
+  void _submitData() {
+    final enterdUsername = _poUserNameController.text;
+    final enterdPassword1 = _poPasswordController.text;
+    final enterdPassword2 = _poPassword2Controller.text;
+
+    if (enterdUsername.isEmpty || enterdPassword1.isEmpty) {
+      print("no username error ");
+      //no username error code here
+      return;
+    } else if (enterdPassword1.isEmpty) {
+      print("no username error ");
+      //no password1 error code here
+      return;
+    } else if (enterdPassword1.isEmpty) {
+      print("no username error ");
+      //no password2 error code here
+      return;
+    }
+    if (enterdPassword1 != enterdPassword2) {
+      print("$enterdPassword1  :   $enterdPassword2");
+
+      print("Password miss match");
+      //password mismatch error
+      return;
+    } else {
+      Navigator.of(context).pop();
+      nextPage(context, PoDashboardPage());
+    }
+    print(
+        "====================================\nuser name: $enterdUsername\n password1: $enterdPassword1\n password reenterd: $enterdPassword2\n====================================");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +100,7 @@ class _AccountDataCardState extends State<AccountDataCard> {
                 ),
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: TextField(
+                  controller: _poUserNameController,
                   style: TextStyle(),
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
@@ -101,6 +137,7 @@ class _AccountDataCardState extends State<AccountDataCard> {
                 ),
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: TextField(
+                  controller: _poPasswordController,
                   obscureText: true,
                   enableSuggestions: false,
                   autocorrect: false,
@@ -140,6 +177,7 @@ class _AccountDataCardState extends State<AccountDataCard> {
                 ),
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: TextField(
+                  controller: _poPassword2Controller,
                   obscureText: false,
                   enableSuggestions: false,
                   autocorrect: false,
@@ -172,7 +210,8 @@ class _AccountDataCardState extends State<AccountDataCard> {
               LongButton(
                   buttonText: 'SignUp',
                   buttonAction: () {
-                    Navigator.of(context).pushNamed(Login2.id);
+                    _submitData();
+                    // Navigator.of(context).pushNamed();
                   })
             ]),
       ),
@@ -180,6 +219,7 @@ class _AccountDataCardState extends State<AccountDataCard> {
   }
 }
 
+//volunteer   reentry================================
 class UserDataCard extends StatefulWidget {
   const UserDataCard({super.key});
 

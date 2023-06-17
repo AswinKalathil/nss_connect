@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nss_connect/Secretary.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'register.dart';
 import 'otpDialog.dart';
-import 'expansionAnimation.dart';
 
 class credCard extends StatefulWidget {
   const credCard({super.key});

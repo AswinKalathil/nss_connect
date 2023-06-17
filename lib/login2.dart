@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/slidingCards.dart';
-import 'credCard.dart';
-import 'Secretary.dart';
-import 'register.dart';
+
 
 class Login2 extends StatefulWidget {
   const Login2({super.key});
