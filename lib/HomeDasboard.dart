@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,49 @@ class HomeDashboard extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: Card(
                   elevation: 5,
+                  // child: Row(
+                  //   children: [Container(
+                  //     width: MediaQuery.of(context).size.width,
+                  //     child: CarouselSlider(
+                  //       options: CarouselOptions(
+                  //         // height: MediaQuery.of(context).size.height * 0.25,
+                  //         viewportFraction: 1,
+                  //         autoPlay: true,
+                  //         autoPlayInterval: Duration(seconds: 5),
+                  //         autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  //         autoPlayCurve: Curves.fastOutSlowIn,
+                  //         pauseAutoPlayOnTouch: true,
+                  //         aspectRatio: 2.0,
+                  //         onPageChanged: (index, reason) {
+                  //           // setState(() {
+                  //           //   _current = index;
+                  //           // });
+                  //         },
+                  //       ),
+                  //       items: [1, 2, 3, 4, 5].map((i) {
+                  //         return Builder(
+                  //           builder: (BuildContext context) {
+                  //             return Container(
+                  //               width: MediaQuery.of(context).size.width,
+                  //               margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  //               decoration: BoxDecoration(
+                  //                 color: Colors.amber,
+                  //               ),
+                  //               child: Text(
+                  //                 'text $i',
+                  //                 style: TextStyle(fontSize: 16.0),
+                  //               ),
+                  //             );
+                  //           },
+                  //         );
+                  //       }).toList(),
+                  //     ),
+                  //   )]
+                  // ),
+                  // child: CarouselSlider.builder(
+                  //   itemCount: itemCount,
+                  //   itemBuilder: itemBuilder,
+                  //   options: options),
                 ),
               ),
               Container(
