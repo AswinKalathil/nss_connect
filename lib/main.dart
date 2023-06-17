@@ -1,4 +1,6 @@
+import 'package:flutter/services.dart';
 import 'package:nss_connect/HomeDasboard.dart';
+import 'package:nss_connect/Sec_Pages/SecHome.dart';
 import 'package:nss_connect/login2.dart';
 import 'package:nss_connect/poDashboard.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
@@ -12,6 +14,7 @@ import 'Secretary.dart';
 import 'colors.dart';
 
 void main() {
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
 
@@ -43,6 +46,7 @@ class MyApp extends StatelessWidget {
         VolunteerDashboardPage.id: (ctx) => VolunteerDashboardPage(),
         PoDashboardPage.id: (ctx) => PoDashboardPage(),
         Login2.id: (ctx) => Login2(),
+        Sec_Home.id: (ctx) => Sec_Home(),
       },
       home: WelcomeTour(),
     );
