@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         VolunteerDashboardPage.id: (ctx) => VolunteerDashboardPage(),
         PoDashboardPage.id: (ctx) => PoDashboardPage(),
         Login2.id: (ctx) => Login2(),
-        Sec_Home.id: (ctx) => Sec_Home(),
+        SecHome.id: (ctx) => SecHome(),
       },
       home: WelcomeTour(),
     );
