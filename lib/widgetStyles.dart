@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'colors.dart';
 
 class LongButton extends StatelessWidget {
   final String buttonText;
