@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/slidingCards.dart';
 import 'credCard.dart';
 import 'Secretary.dart';
 import 'register.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
-  static const String id = 'loginScreen';
+class Login2 extends StatefulWidget {
+  const Login2({super.key});
+  static const String id = 'login2Screen';
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Login2> createState() => _Login2State();
+
+
+
+  
 }
 
-class _LoginState extends State<Login> {
+class _Login2State extends State<Login2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
-        
+        width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             image: DecorationImage(
           image: AssetImage('assets/images/doodleBack.png'),
@@ -27,7 +32,7 @@ class _LoginState extends State<Login> {
           SizedBox(
             height: MediaQuery.of(context).size.height * .15,
           ),
-          credCard()
+          SlidingCards(),
         ]),
       ),
     );

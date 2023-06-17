@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nss_connect/login2.dart';
 import 'widgetStyles.dart';
 import 'otpDialog.dart';
 
@@ -168,7 +169,11 @@ class _AccountDataCardState extends State<AccountDataCard> {
                 height: 20,
               ),
 
-              LongButton(buttonText: 'SignUp', buttonAction: () {})
+              LongButton(
+                  buttonText: 'SignUp',
+                  buttonAction: () {
+                    Navigator.of(context).pushNamed(Login2.id);
+                  })
             ]),
       ),
     );
