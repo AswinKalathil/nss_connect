@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
-import 'package:nss_connect/login2.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/poDashboard.dart';
 import 'widgetStyles.dart';
@@ -228,7 +227,6 @@ class UserDataCard extends StatefulWidget {
 }
 
 class _UserDataCardState extends State<UserDataCard> {
-  final _unitNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

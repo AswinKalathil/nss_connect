@@ -46,7 +46,6 @@ class ConfirmCard extends StatefulWidget {
 }
 
 class _ConfirmCardState extends State<ConfirmCard> {
-  final _unitNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

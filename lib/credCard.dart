@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/widgetStyles.dart';
-import 'package:nss_connect/pageTrasitions.dart';
 import 'register.dart';
 import 'otpDialog.dart';
 
@@ -20,7 +19,6 @@ class _credCardState extends State<credCard> {
   void _submitData() {
     final enterdUsername = _userNameController.text;
     final enterdPassword = _passwordController.text;
-    String nextPageId;
     if (enterdUsername.isEmpty || enterdPassword.isEmpty) {
       return;
     }
