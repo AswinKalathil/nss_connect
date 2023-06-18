@@ -18,12 +18,15 @@ class HomeDashboard extends StatelessWidget {
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top * 0.75,
-              // bottom: MediaQuery.of(context).padding.bottom,
-              ),
+            top: MediaQuery.of(context).padding.top *
+                0.2, //========================height  adjest
+            // bottom: MediaQuery.of(context).padding.bottom,
+          ),
           height: MediaQuery.of(context).size.height -
               MediaQuery.of(context).padding.top -
-              MediaQuery.of(context).padding.bottom,
+              MediaQuery.of(context)
+                  .padding
+                  .bottom, //========================height  adjest
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
             // color: Colors.black,
@@ -38,14 +41,16 @@ class HomeDashboard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                height: height25 * 1.25,
+                height:
+                    height25 * 1.25, //========================height  adjest
                 width: width90,
                 child: Row(children: [
                   Container(
                     // color: Colors.red,
                     padding: EdgeInsets.all(0),
                     width: width90,
-                    height: height25 * 1.25,
+                    height: height25 *
+                        1.25, //========================height  adjest
                     child: CarouselSlider(
                       options: CarouselOptions(
                         // height: MediaQuery.of(context).size.height * 0.25,
@@ -100,9 +105,10 @@ class HomeDashboard extends StatelessWidget {
                                               topRight: Radius.circular(5),
                                               bottomRight: Radius.circular(5)),
                                         ),
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.25,
+                                        height: MediaQuery.of(context)
+                                                .size
+                                                .height *
+                                            0.25, //========================height  adjest
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceEvenly,
@@ -147,14 +153,16 @@ class HomeDashboard extends StatelessWidget {
                 height: (MediaQuery.of(context).size.height -
                         MediaQuery.of(context).padding.top -
                         MediaQuery.of(context).padding.bottom) *
-                    0.15,
+                    0.15, //========================height  adjest
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(
-                          right: 10, bottom: 10, left: 10,
+                        right: 10,
+                        bottom: 10,
+                        left: 10,
                       ),
                       child: Container(
                         decoration:
@@ -174,10 +182,11 @@ class HomeDashboard extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      height: 120,
+                      height: 120, //========================height  adjest
                       padding: EdgeInsets.symmetric(
                           vertical: MediaQuery.of(context).size.width * 0.02,
-                          horizontal: MediaQuery.of(context).size.width * 0.02),
+                          horizontal: MediaQuery.of(context).size.width *
+                              0.02), //========================height  adjest
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -185,20 +194,19 @@ class HomeDashboard extends StatelessWidget {
                           Text.rich(
                             TextSpan(
                               style: TextStyle(
-                                fontFamily: 'Nexa',
-                                fontSize: width25 * .15,
-                                fontWeight: FontWeight.w500
-                              ),
+                                  fontFamily: 'Nexa',
+                                  fontSize: width25 * .15,
+                                  fontWeight: FontWeight.w500),
                               children: [
                                 TextSpan(
                                   text: 'WELCOME ',
                                 ),
                                 TextSpan(
                                   text: 'TO',
-                                  ),
+                                ),
                               ],
                             ),
-                            textAlign: TextAlign.left,                            
+                            textAlign: TextAlign.left,
                           ),
                           Text.rich(
                             TextSpan(
@@ -223,31 +231,32 @@ class HomeDashboard extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            textAlign: TextAlign.left,                            
+                            textAlign: TextAlign.left,
                           ),
                         ],
                       ),
                     ),
-                    
                   ],
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.25,
+                height: MediaQuery.of(context).size.height *
+                    0.25, //========================height  adjest
               ),
               Container(
-
                 alignment: Alignment.bottomRight,
                 padding: EdgeInsets.symmetric(
-                    vertical: MediaQuery.of(context).size.height * 0.03,
-                    horizontal: MediaQuery.of(context).size.width * 0.05,
-                    ),
+                  vertical: MediaQuery.of(context).size.height * 0.03,
+                  horizontal: MediaQuery.of(context).size.width *
+                      0.05, //========================height  adjest
+                ),
                 height: MediaQuery.of(context).size.height * 0.175,
                 child: TextButton(
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.symmetric(
                         vertical: MediaQuery.of(context).size.height * 0.012,
-                        horizontal: MediaQuery.of(context).size.width * 0.05),
+                        horizontal: MediaQuery.of(context).size.width *
+                            0.05), //========================height  adjest
                     backgroundColor: primaryColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -263,13 +272,13 @@ class HomeDashboard extends StatelessWidget {
                       fontFamily: 'Poppins',
                       fontSize: width25 * .15,
                       fontWeight: FontWeight.bold,
-                    //   shadows: [
-                    //   Shadow(
-                    //     blurRadius: 13.0,
-                    //     color: Color.fromARGB(255, 120, 121, 109),
-                    //     offset: Offset(3.0, 8.0),
-                    //   ),
-                    // ],
+                      //   shadows: [
+                      //   Shadow(
+                      //     blurRadius: 13.0,
+                      //     color: Color.fromARGB(255, 120, 121, 109),
+                      //     offset: Offset(3.0, 8.0),
+                      //   ),
+                      // ],
                     ),
                   ),
                 ),
