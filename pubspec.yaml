@@ -88,6 +88,10 @@ flutter:
     - assets/images/NSS-symbol.jpeg
     - assets/images/homeBackground.png
     - assets/images/nss.png
+    - assets/images/1.png
+    - assets/images/2.png
+    - assets/images/3.png
+    - assets/images/4.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -118,6 +122,19 @@ flutter:
     - family: Ysabeau
       fonts:
         - asset: assets/fonts/Ysabeau-Variable.ttf
+          weight: 600
+
+    - family: Source Code Pro
+      fonts:
+        - asset: assets/fonts/SourceCodePro-Black.ttf
+        - asset: assets/fonts/SourceCodePro-Bold.ttf
+        - asset: assets/fonts/SourceCodePro-ExtraBold.ttf
+        - asset: assets/fonts/SourceCodePro-ExtraLight.ttf
+        - asset: assets/fonts/SourceCodePro-Light.ttf
+        - asset: assets/fonts/SourceCodePro-Medium.ttf
+        - asset: assets/fonts/SourceCodePro-Regular.ttf
+        - asset: assets/fonts/SourceCodePro-SemiBold.ttf
+        - asset: assets/fonts/SourceCodePro-VariableFont_wght.ttf
           weight: 600
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

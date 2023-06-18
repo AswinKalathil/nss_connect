@@ -4,14 +4,17 @@ import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
 import 'package:nss_connect/pageTrasitions.dart';
+import 'package:nss_connect/widgetStyles.dart';
+import 'package:nss_connect/models/events.dart';
 
 class HomeDashboard extends StatelessWidget {
   const HomeDashboard({super.key});
   static const String id = 'homeDashboard';
   @override
   Widget build(BuildContext context) {
-    double width80 = MediaQuery.of(context).size.width * 0.8;
+    double width90 = MediaQuery.of(context).size.width * 0.9;
     double width25 = MediaQuery.of(context).size.width * 0.25;
+    double height25 = MediaQuery.of(context).size.height * 0.25;
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -23,6 +26,7 @@ class HomeDashboard extends StatelessWidget {
               MediaQuery.of(context).padding.bottom,
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
+            // color: Colors.black,
             image: DecorationImage(
               image: AssetImage('assets/images/homeBackground.png'),
               fit: BoxFit.fitWidth,
@@ -31,60 +35,115 @@ class HomeDashboard extends StatelessWidget {
             ),
           ),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height * 0.25,
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: Card(
-                  elevation: 5,
-                  // child: Row(
-                  //   children: [Container(
-                  //     width: MediaQuery.of(context).size.width,
-                  //     child: CarouselSlider(
-                  //       options: CarouselOptions(
-                  //         // height: MediaQuery.of(context).size.height * 0.25,
-                  //         viewportFraction: 1,
-                  //         autoPlay: true,
-                  //         autoPlayInterval: Duration(seconds: 5),
-                  //         autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  //         autoPlayCurve: Curves.fastOutSlowIn,
-                  //         pauseAutoPlayOnTouch: true,
-                  //         aspectRatio: 2.0,
-                  //         onPageChanged: (index, reason) {
-                  //           // setState(() {
-                  //           //   _current = index;
-                  //           // });
-                  //         },
-                  //       ),
-                  //       items: [1, 2, 3, 4, 5].map((i) {
-                  //         return Builder(
-                  //           builder: (BuildContext context) {
-                  //             return Container(
-                  //               width: MediaQuery.of(context).size.width,
-                  //               margin: EdgeInsets.symmetric(horizontal: 5.0),
-                  //               decoration: BoxDecoration(
-                  //                 color: Colors.amber,
-                  //               ),
-                  //               child: Text(
-                  //                 'text $i',
-                  //                 style: TextStyle(fontSize: 16.0),
-                  //               ),
-                  //             );
-                  //           },
-                  //         );
-                  //       }).toList(),
-                  //     ),
-                  //   )]
-                  // ),
-                  // child: CarouselSlider.builder(
-                  //   itemCount: itemCount,
-                  //   itemBuilder: itemBuilder,
-                  //   options: options),
-                ),
+                height: height25 * 1.25,
+                width: width90,
+                child: Row(children: [
+                  Container(
+                    // color: Colors.red,
+                    padding: EdgeInsets.all(0),
+                    width: width90,
+                    height: height25 * 1.25,
+                    child: CarouselSlider(
+                      options: CarouselOptions(
+                        // height: MediaQuery.of(context).size.height * 0.25,
+                        viewportFraction: 1,
+                        autoPlay: true,
+                        autoPlayInterval: Duration(seconds: 5),
+                        autoPlayAnimationDuration: Duration(milliseconds: 800),
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        pauseAutoPlayOnTouch: true,
+                        // aspectRatio: 2.07,
+                        onPageChanged: (index, reason) {
+                          // setState(() {
+                          //   _current = index;
+                          // });
+                        },
+                      ),
+                      items: eventList.map((eventObject) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Container(
+                              width: width90,
+                              // margin: EdgeInsets.symmetric(horizontal: 4),
+
+                              child: Card(
+                                elevation: 5,
+                                shape: CardShape(),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      // child: Image.asset(
+                                      //   'assets/images/1.png'
+                                      // ),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.3,
+                                      decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image: AssetImage(
+                                            eventObject.eventImagepath),
+                                            ),
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(5),
+                                            bottomLeft: Radius.circular(5)),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Container(
+                                        padding: EdgeInsets.all(20),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.only(
+                                              topRight: Radius.circular(5),
+                                              bottomRight: Radius.circular(5)),
+                                        ),
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.25,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              '${eventObject.eventTitle}',
+                                              style: TextStyle(
+                                                fontFamily: 'Source Code Pro',
+                                                fontSize: width25 * .28,
+                                                fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                              '${eventObject.eventDescription}',
+                                              style: TextStyle(
+                                                fontFamily: 'Source Code Pro',
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: width25 * .15),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      }).toList(),
+                    ),
+                  )
+                ]),
+                // child: CarouselSlider.builder(
+                //   itemCount: itemCount,
+                //   itemBuilder: itemBuilder,
+                //   options: options),
               ),
               Container(
-                width: MediaQuery.of(context).size.width * 0.8,
+                width: width90,
                 height: (MediaQuery.of(context).size.height -
                         MediaQuery.of(context).padding.top -
                         MediaQuery.of(context).padding.bottom) *
@@ -106,7 +165,7 @@ class HomeDashboard extends StatelessWidget {
                             'WELCOME TO',
                             style: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: width80 * .09,
+                              fontSize: width90 * .07,
                               fontWeight: FontWeight.bold,
                               color: const Color.fromARGB(255, 0, 0, 0),
                             ),
@@ -115,7 +174,7 @@ class HomeDashboard extends StatelessWidget {
                             'NSS',
                             style: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: width80 * .09,
+                              fontSize: width90 * .07,
                               fontWeight: FontWeight.bold,
                               color: const Color.fromARGB(255, 0, 0, 0),
                             ),
@@ -125,17 +184,30 @@ class HomeDashboard extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(5.0),
-                      child: Image(
-                        image: AssetImage('assets/images/nss.png'),
-                        height: MediaQuery.of(context).size.width * 0.2,
-                        width: MediaQuery.of(context).size.width * 0.2,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                          BoxShadow(
+                            
+                            color: Colors.black.withOpacity(0.6),
+                            spreadRadius: -1,
+                            blurRadius: 7,
+                            offset: Offset(0, 7),
+                          )
+                        ]),
+                        child: Image(
+                          image: AssetImage('assets/images/nss.png'),
+                          height: MediaQuery.of(context).size.width * 0.15,
+                          width: MediaQuery.of(context).size.width * 0.15,
+                        ),
                       ),
                     )
                   ],
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.21,
+                height: MediaQuery.of(context).size.height * 0.3,
               ),
               Container(
                 alignment: Alignment.center,
@@ -144,10 +216,10 @@ class HomeDashboard extends StatelessWidget {
                 height: MediaQuery.of(context).size.height * 0.15,
                 child: Text.rich(
                   TextSpan(
-                    text: 'Are you a member?',
+                    text: 'Are you a member? ',
                     children: <TextSpan>[
                       TextSpan(
-                        text: ' Login',
+                        text: 'Login',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () => nextPagePush(context, Login()),
                         style: TextStyle(
