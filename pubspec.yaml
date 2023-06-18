@@ -136,5 +136,9 @@ flutter:
         - asset: assets/fonts/SourceCodePro-SemiBold.ttf
         - asset: assets/fonts/SourceCodePro-VariableFont_wght.ttf
           weight: 600
+
+    - family: Pacifico
+      fonts:
+        - asset: assets/fonts/Pacifico-Regular.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

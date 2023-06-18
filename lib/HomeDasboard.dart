@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/gestures.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
@@ -19,8 +18,9 @@ class HomeDashboard extends StatelessWidget {
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.only(
-              top: MediaQuery.of(context).padding.top,
-              bottom: MediaQuery.of(context).padding.bottom),
+              top: MediaQuery.of(context).padding.top * 0.75,
+              // bottom: MediaQuery.of(context).padding.bottom,
+              ),
           height: MediaQuery.of(context).size.height -
               MediaQuery.of(context).padding.top -
               MediaQuery.of(context).padding.bottom,
@@ -84,8 +84,8 @@ class HomeDashboard extends StatelessWidget {
                                         image: DecorationImage(
                                           fit: BoxFit.fill,
                                           image: AssetImage(
-                                            eventObject.eventImagepath),
-                                            ),
+                                              eventObject.eventImagepath),
+                                        ),
                                         borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(5),
                                             bottomLeft: Radius.circular(5)),
@@ -112,16 +112,16 @@ class HomeDashboard extends StatelessWidget {
                                             Text(
                                               '${eventObject.eventTitle}',
                                               style: TextStyle(
-                                                fontFamily: 'Source Code Pro',
-                                                fontSize: width25 * .28,
-                                                fontWeight: FontWeight.bold),
+                                                  fontFamily: 'Source Code Pro',
+                                                  fontSize: width25 * .28,
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                             Text(
                                               '${eventObject.eventDescription}',
                                               style: TextStyle(
-                                                fontFamily: 'Source Code Pro',
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: width25 * .15),
+                                                  fontFamily: 'Source Code Pro',
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: width25 * .15),
                                             )
                                           ],
                                         ),
@@ -161,35 +161,60 @@ class HomeDashboard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'WELCOME TO',
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: width90 * .07,
-                              fontWeight: FontWeight.bold,
-                              color: const Color.fromARGB(255, 0, 0, 0),
+                          Text.rich(
+                            TextSpan(
+                              style: TextStyle(
+                                fontFamily: 'Nexa',
+                                fontSize: width25 * .15,
+                                fontWeight: FontWeight.w500
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: 'WELCOME ',
+                                ),
+                                TextSpan(
+                                  text: 'TO',
+                                  ),
+                              ],
                             ),
+                            textAlign: TextAlign.left,                            
                           ),
-                          Text(
-                            'NSS',
-                            style: TextStyle(
-                              fontFamily: 'Poppins',
-                              fontSize: width90 * .07,
-                              fontWeight: FontWeight.bold,
-                              color: const Color.fromARGB(255, 0, 0, 0),
+                          Text.rich(
+                            TextSpan(
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: width90 * .079,
+                                color: const Color.fromARGB(255, 0, 0, 0),
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: 'NSS ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: 'CONNECT',
+                                  style: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontWeight: FontWeight.w300,
+                                  ),
+                                ),
+                              ],
                             ),
+                            textAlign: TextAlign.left,                            
                           ),
                         ],
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(5.0),
+                      padding: const EdgeInsets.only(
+                          right: 10, bottom: 10, left: 10,
+                      ),
                       child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          boxShadow: [
+                        decoration:
+                            BoxDecoration(shape: BoxShape.circle, boxShadow: [
                           BoxShadow(
-                            
                             color: Colors.black.withOpacity(0.6),
                             spreadRadius: -1,
                             blurRadius: 7,
@@ -198,8 +223,8 @@ class HomeDashboard extends StatelessWidget {
                         ]),
                         child: Image(
                           image: AssetImage('assets/images/nss.png'),
-                          height: MediaQuery.of(context).size.width * 0.15,
-                          width: MediaQuery.of(context).size.width * 0.15,
+                          height: MediaQuery.of(context).size.width * 0.14,
+                          width: MediaQuery.of(context).size.width * 0.14,
                         ),
                       ),
                     )
@@ -207,46 +232,79 @@ class HomeDashboard extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.3,
+                height: MediaQuery.of(context).size.height * 0.25,
               ),
               Container(
-                alignment: Alignment.center,
+
+                alignment: Alignment.bottomRight,
                 padding: EdgeInsets.symmetric(
-                    vertical: MediaQuery.of(context).size.height * 0.03),
-                height: MediaQuery.of(context).size.height * 0.15,
-                child: Text.rich(
-                  TextSpan(
-                    text: 'Are you a member? ',
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: 'Login',
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => nextPagePush(context, Login()),
-                        style: TextStyle(
-                          fontFamily: 'Nexa',
-                          fontWeight: FontWeight.bold,
-                          decoration: TextDecoration.underline,
-                          color: secondaryColor,
-                        ),
-                      ),
-                      TextSpan(
-                        text: ' here',
-                      ),
-                    ],
+                    vertical: MediaQuery.of(context).size.height * 0.03,
+                    horizontal: MediaQuery.of(context).size.width * 0.05,
+                    ),
+                height: MediaQuery.of(context).size.height * 0.175,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.symmetric(
+                        vertical: MediaQuery.of(context).size.height * 0.012,
+                        horizontal: MediaQuery.of(context).size.width * 0.05),
+                    backgroundColor: primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
                   ),
-                  style: TextStyle(
-                    fontFamily: 'Ysabeau',
-                    shadows: [
-                      Shadow(
-                        blurRadius: 13.0,
-                        color: Color.fromARGB(255, 120, 121, 109),
-                        offset: Offset(3.0, 8.0),
-                      ),
-                    ],
-                    fontSize: width25 * .17,
-                    color: primaryColor,
+                  onPressed: () {
+                    nextPagePush(context, Login());
+                  },
+                  child: Text(
+                    'Let\'s Connect ',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Poppins',
+                      fontSize: width25 * .15,
+                      fontWeight: FontWeight.bold,
+                    //   shadows: [
+                    //   Shadow(
+                    //     blurRadius: 13.0,
+                    //     color: Color.fromARGB(255, 120, 121, 109),
+                    //     offset: Offset(3.0, 8.0),
+                    //   ),
+                    // ],
+                    ),
                   ),
                 ),
+                // child: Text.rich(
+                //   TextSpan(
+                //     text: 'Are you a member? ',
+                //     children: <TextSpan>[
+                //       TextSpan(
+                //         text: 'Login',
+                //         recognizer: TapGestureRecognizer()
+                //           ..onTap = () => nextPagePush(context, Login()),
+                //         style: TextStyle(
+                //           fontFamily: 'Nexa',
+                //           fontWeight: FontWeight.bold,
+                //           decoration: TextDecoration.underline,
+                //           color: secondaryColor,
+                //         ),
+                //       ),
+                //       TextSpan(
+                //         text: ' here',
+                //       ),
+                //     ],
+                //   ),
+                //   style: TextStyle(
+                //     fontFamily: 'Ysabeau',
+                //     shadows: [
+                //       Shadow(
+                //         blurRadius: 13.0,
+                //         color: Color.fromARGB(255, 120, 121, 109),
+                //         offset: Offset(3.0, 8.0),
+                //       ),
+                //     ],
+                //     fontSize: width25 * .17,
+                //     color: primaryColor,
+                //   ),
+                // ),
               ),
             ],
           ),
