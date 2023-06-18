@@ -50,25 +50,38 @@ class _SlidingCardsState extends State<SlidingCards>
       // Add more card widgets as needed
     ];
 
-    return Column(
-      children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.width * .5,
-          child: Stack(
-            children: [
-              for (int i = 0; i < cards.length; i++)
-                if (i == selectedCardIndex)
-                  SlideTransition(
-                    position: _slideAnimation,
-                    child: FractionallySizedBox(
-                      widthFactor: 0.8,
-                      child: cards[i],
-                    ),
-                  ),
-            ],
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        children: [
+          Container(
+            color: Colors.green,
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.all(10),
+                  color: Colors.amber,
+                  height: 100,
+                  width: double.infinity,
+                ),
+                Container(
+                  margin: EdgeInsets.all(10),
+                  color: Colors.amber,
+                  height: 100,
+                  width: double.infinity,
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+          Expanded(child: Container()),
+          Container(
+            margin: EdgeInsets.all(10),
+            color: Colors.amber,
+            height: 100,
+            width: double.infinity,
+          ),
+        ],
+      ),
     );
   }
 

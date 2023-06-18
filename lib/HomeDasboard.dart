@@ -3,6 +3,7 @@ import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
 import 'package:nss_connect/pageTrasitions.dart';
+import 'package:nss_connect/slidingCards.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/models/events.dart';
 
@@ -174,10 +175,13 @@ class HomeDashboard extends StatelessWidget {
                             offset: Offset(0, 7),
                           )
                         ]),
-                        child: Image(
-                          image: AssetImage('assets/images/nss.png'),
-                          height: MediaQuery.of(context).size.width * 0.16,
-                          width: MediaQuery.of(context).size.width * 0.16,
+                        child: GestureDetector(
+                          onDoubleTap: () => nextPagePush(context,SlidingCards()),
+                          child: Image(
+                            image: AssetImage('assets/images/nss.png'),
+                            height: MediaQuery.of(context).size.width * 0.16,
+                            width: MediaQuery.of(context).size.width * 0.16,
+                          ),
                         ),
                       ),
                     ),
