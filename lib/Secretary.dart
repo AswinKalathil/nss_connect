@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/Sec_Pages/SeCert.dart';
+import 'package:nss_connect/Sec_Pages/SecEvent.dart';
 import 'package:nss_connect/Sec_Pages/SecHome.dart';
 
 class SecretaryDashboard extends StatefulWidget {
@@ -37,6 +39,8 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
         ),
         body: TabBarView(children: [
           SecHome(),
+          SecEvent(),
+          SecCert(),
         ]),
 
       ),
