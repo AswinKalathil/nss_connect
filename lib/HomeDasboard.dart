@@ -149,9 +149,30 @@ class HomeDashboard extends StatelessWidget {
                         MediaQuery.of(context).padding.bottom) *
                     0.15,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          right: 10, bottom: 10, left: 10,
+                      ),
+                      child: Container(
+                        decoration:
+                            BoxDecoration(shape: BoxShape.circle, boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.6),
+                            spreadRadius: -1,
+                            blurRadius: 7,
+                            offset: Offset(0, 7),
+                          )
+                        ]),
+                        child: Image(
+                          image: AssetImage('assets/images/nss.png'),
+                          height: MediaQuery.of(context).size.width * 0.16,
+                          width: MediaQuery.of(context).size.width * 0.16,
+                        ),
+                      ),
+                    ),
                     Container(
                       height: 120,
                       padding: EdgeInsets.symmetric(
@@ -207,27 +228,7 @@ class HomeDashboard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          right: 10, bottom: 10, left: 10,
-                      ),
-                      child: Container(
-                        decoration:
-                            BoxDecoration(shape: BoxShape.circle, boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.6),
-                            spreadRadius: -1,
-                            blurRadius: 7,
-                            offset: Offset(0, 7),
-                          )
-                        ]),
-                        child: Image(
-                          image: AssetImage('assets/images/nss.png'),
-                          height: MediaQuery.of(context).size.width * 0.14,
-                          width: MediaQuery.of(context).size.width * 0.14,
-                        ),
-                      ),
-                    )
+                    
                   ],
                 ),
               ),

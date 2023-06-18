@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class eventItem {
   final String eventTitle;
   final String eventImagepath;
