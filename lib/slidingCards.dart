@@ -1,4 +1,8 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:nss_connect/widgetStyles.dart';
+
+import 'models/events.dart';
 
 class SlidingCards extends StatefulWidget {
   @override
@@ -42,6 +46,10 @@ class _SlidingCardsState extends State<SlidingCards>
 
   @override
   Widget build(BuildContext context) {
+    double width100 = MediaQuery.of(context).size.width;
+    double height100 = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        MediaQuery.of(context).padding.bottom;
     List<Widget> cards = [
       // Replace with your card widgets
       _buildCard1(context, _changeCard),
@@ -58,11 +66,10 @@ class _SlidingCardsState extends State<SlidingCards>
             color: Colors.green,
             child: Column(
               children: [
-                Container(
-                  margin: EdgeInsets.all(10),
-                  color: Colors.amber,
-                  height: 100,
-                  width: double.infinity,
+                EventCarosel(
+                  width100: width100,
+                  height100: height100,
+                  cards: cards,
                 ),
                 Container(
                   margin: EdgeInsets.all(10),
@@ -124,6 +131,45 @@ class _SlidingCardsState extends State<SlidingCards>
           child: Text('Card 3'),
         ),
       ),
+    );
+  }
+}
+
+class EventCarosel extends StatelessWidget {
+  const EventCarosel({
+    super.key,
+    required this.cards,
+    required this.width100,
+    required this.height100,
+  });
+  final List<Widget> cards;
+  final double width100;
+  final double height100;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // color: Colors.red,
+      padding: EdgeInsets.all(0),
+      width: width100 * .9,
+      height: height100 * 0.3125, //========================height  adjest
+      child: CarouselSlider(
+          options: CarouselOptions(
+            // height: MediaQuery.of(context).size.height * 0.25,
+            viewportFraction: 1,
+            autoPlay: true,
+            autoPlayInterval: Duration(seconds: 5),
+            autoPlayAnimationDuration: Duration(milliseconds: 800),
+            autoPlayCurve: Curves.fastOutSlowIn,
+            pauseAutoPlayOnTouch: true,
+            // aspectRatio: 2.07,
+            onPageChanged: (index, reason) {
+              // setState(() {
+              //   _current = index;
+              // });
+            },
+          ),
+          items: cards),
     );
   }
 }
