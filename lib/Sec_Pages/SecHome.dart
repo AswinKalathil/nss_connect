@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 
 import '../colors.dart';
+
 //
 // class SecHome extends StatefulWidget{
 //   static const String id = 'secretaryHome';
@@ -81,50 +82,60 @@ import '../colors.dart';
 // }
 //
 // //
-class SecHome extends StatefulWidget{
+class SecHome extends StatefulWidget {
   const SecHome({super.key});
   static const String id = 'secretaryHome';
   @override
   State<SecHome> createState() => _SecHomeState();
-
 }
 
-class _SecHomeState extends State<SecHome>{
+class _SecHomeState extends State<SecHome> {
   @override
   int myCurrentIndex = 0;
   Widget build(BuildContext context) {
-    double displaywidth = MediaQuery.of(context).size.width;
-   return Scaffold(
-
-     bottomNavigationBar:
-
-     Container(
-       margin: EdgeInsets.all(displaywidth * .10),
-  height: displaywidth * .155,
-
-       decoration: BoxDecoration(
-           color: Colors.white,
-           borderRadius: BorderRadius.circular(100)
-       ),
-       child: BottomNavigationBar(
-       selectedItemColor: primaryColor,
-       unselectedItemColor: Colors.grey,
-       currentIndex: myCurrentIndex,
-       iconSize: 30,
-       items: [
-         BottomNavigationBarItem(
-             icon: Icon(Icons.dashboard_outlined), label: 'Panel'),
-         BottomNavigationBarItem(icon: Icon(Icons.domain_verification_outlined), label: 'Attendance'),
-
-       ],
-       elevation: 10,
-       onTap: (selectedIndex) {
-         setState(() {
-           myCurrentIndex = selectedIndex;
-         });
-       },
-   ),
-     ),
-   );
+    double displaywidth = MediaQuery.of(context).size.width * 0.9;
+    return Scaffold(
+      bottomNavigationBar: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          
+            // color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(.1),
+                blurRadius: 30,
+                offset: Offset(0, 10),
+              )
+            ],
+            // borderRadius: BorderRadius.circular(20)
+            ),
+        margin: EdgeInsets.all(displaywidth * .10),
+        height: MediaQuery.of(context).size.height * .08,
+        // color: Colors.white,
+        //     borderRadius: BorderRadius.circular(5)),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: BottomNavigationBar(
+            selectedItemColor: primaryColor,
+            unselectedItemColor: Colors.grey,
+            currentIndex: myCurrentIndex,
+            iconSize: 30,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.dashboard_outlined), label: 'Panel'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.domain_verification_outlined),
+                  label: 'Attendance'),
+            ],
+            elevation: 10,
+            onTap: (selectedIndex) {
+              setState(() {
+                myCurrentIndex = selectedIndex;
+              });
+            },
+          ),
+        ),
+      ),
+    );
   }
 }
