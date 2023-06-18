@@ -90,13 +90,15 @@ class SecHome extends StatefulWidget {
 }
 
 class _SecHomeState extends State<SecHome> {
-  @override
   int myCurrentIndex = 0;
   Widget build(BuildContext context) {
     double displaywidth = MediaQuery.of(context).size.width * 0.9;
+    double displayHeight =MediaQuery.of(context).size.height;
     return Scaffold(
       bottomNavigationBar: Container(
-        alignment: Alignment.center,
+        
+        // padding: EdgeInsets.all(displayHeight * .003 ),
+        // alignment: Alignment.bottomCenter,
         decoration: BoxDecoration(
           
             // color: Colors.white,
@@ -110,10 +112,11 @@ class _SecHomeState extends State<SecHome> {
             // borderRadius: BorderRadius.circular(20)
             ),
         margin: EdgeInsets.all(displaywidth * .10),
-        height: MediaQuery.of(context).size.height * .08,
+        height:displayHeight*.08,
         // color: Colors.white,
         //     borderRadius: BorderRadius.circular(5)),
         child: ClipRRect(
+          
           borderRadius: BorderRadius.circular(15),
           child: BottomNavigationBar(
             selectedItemColor: primaryColor,

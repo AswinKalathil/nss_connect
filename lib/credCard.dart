@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/Secretary.dart';
+import 'package:nss_connect/pageTrasitions.dart';
+import 'package:nss_connect/poDashboard.dart';
+import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'register.dart';
 import 'otpDialog.dart';
@@ -15,21 +19,34 @@ class _credCardState extends State<credCard> {
   final _passwordController = TextEditingController();
   String? _selectedOption = 'volunteerDashboard';
   String? poString = 'poDashboard';
-
+  String? volString ='volunteerDashboard';
+  String? secString='secretaryDashboard';
+  Widget? nextRoute ;
   void _submitData() {
     final enterdUsername = _userNameController.text;
     final enterdPassword = _passwordController.text;
     if (enterdUsername.isEmpty || enterdPassword.isEmpty) {
       return;
     }
+    if(_selectedOption==poString)
+    {
+      nextRoute =PoDashboardPage();
+    }
+    else if(_selectedOption == secString)
+    {
+      nextRoute = SecretaryDashboard();
+    }
+    else if(_selectedOption == volString)
+    {
+      nextRoute = VolunteerDashboardPage();
+    }
 
     print("user name: $enterdUsername\npassword: $enterdPassword");
-    Navigator.of(context).pop();
-    Navigator.of(context).pushNamed(_selectedOption as String);
-    // if (_selectedOption == 'SecretaryDashboard')
-    //   Navigator.of(context).pushReplacementNamed(id);
-    // else if (_selectedOption == 'VolunteerDashboard')
-    //   Navigator.of(context).pushReplacementNamed(VolunteerDashboard.id);
+    FocusScope.of(context).requestFocus(FocusNode());
+    // Navigator.of(context).pop();
+    nextPage(context,nextRoute as Widget );
+    // Navigator.of(context).pushNamed(_selectedOption as String);
+    
   }
 
   @override
@@ -225,8 +242,10 @@ class _credCardState extends State<credCard> {
             LongButton(
                 buttonText: 'Register Unit',
                 buttonAction: () {
-                  // nextPage(context, Register());
-                  Navigator.pushNamed(context, Register.id);
+                  FocusScope.of(context).requestFocus(FocusNode());
+                  nextPagePush(context, Register());
+
+                  // Navigator.pushNamed(context, Register.id);
                 })
         ]),
       ),

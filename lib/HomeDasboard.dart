@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
@@ -255,34 +256,32 @@ class HomeDashboard extends StatelessWidget {
                       0.05, //========================height  adjest
                 ),
                 height: MediaQuery.of(context).size.height * 0.175,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.symmetric(
-                        vertical: MediaQuery.of(context).size.height * 0.012,
-                        horizontal: MediaQuery.of(context).size.width *
-                            0.05), //========================height  adjest
-                    backgroundColor: primaryColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0),
+                child: AnimatedOpacity(
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.easeIn,
+                  opacity: 1.0,
+                  child: TextButton(
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.symmetric(
+                          vertical: MediaQuery.of(context).size.height * 0.012,
+                          horizontal: MediaQuery.of(context).size.width *
+                              0.05), //========================height  adjest
+                      backgroundColor: primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
                     ),
-                  ),
-                  onPressed: () {
-                    nextPagePush(context, Login());
-                  },
-                  child: Text(
-                    'Let\'s Connect ',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Poppins',
-                      fontSize: width25 * .15,
-                      fontWeight: FontWeight.bold,
-                      //   shadows: [
-                      //   Shadow(
-                      //     blurRadius: 13.0,
-                      //     color: Color.fromARGB(255, 120, 121, 109),
-                      //     offset: Offset(3.0, 8.0),
-                      //   ),
-                      // ],
+                    onPressed: () {
+                      nextPagePush(context, Login());
+                    },
+                    child: Text(
+                      'Let\'s Connect ',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Poppins',
+                        fontSize: width25 * .15,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
