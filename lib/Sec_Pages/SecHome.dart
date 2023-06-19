@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nss_connect/widgetStyles.dart';
 
 import '../colors.dart';
 
@@ -93,30 +94,27 @@ class _SecHomeState extends State<SecHome> {
   int myCurrentIndex = 0;
   Widget build(BuildContext context) {
     double displaywidth = MediaQuery.of(context).size.width * 0.9;
-    double displayHeight =MediaQuery.of(context).size.height;
+    double height100 = MediaQuery.of(context).size.height;
+    PageController _controller = PageController();
     return Scaffold(
+      body: secHomeBody(
+        controller: _controller,
+        height100: height100,
+      ),
       bottomNavigationBar: Container(
-        
-        // padding: EdgeInsets.all(displayHeight * .003 ),
-        // alignment: Alignment.bottomCenter,
         decoration: BoxDecoration(
-          
-            // color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(.1),
-                blurRadius: 30,
-                offset: Offset(0, 10),
-              )
-            ],
-            // borderRadius: BorderRadius.circular(20)
-            ),
-        margin: EdgeInsets.all(displaywidth * .10),
-        height:displayHeight*.08,
-        // color: Colors.white,
-        //     borderRadius: BorderRadius.circular(5)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(.1),
+              blurRadius: 30,
+              offset: Offset(0, 10),
+            )
+          ],
+        ),
+        margin: EdgeInsets.symmetric(
+            horizontal: displaywidth * .10, vertical: displaywidth * .05),
+        height: height100 * .08,
         child: ClipRRect(
-          
           borderRadius: BorderRadius.circular(15),
           child: BottomNavigationBar(
             selectedItemColor: primaryColor,
@@ -134,11 +132,170 @@ class _SecHomeState extends State<SecHome> {
             onTap: (selectedIndex) {
               setState(() {
                 myCurrentIndex = selectedIndex;
+                _controller.animateToPage(selectedIndex,
+                    duration: Duration(milliseconds: 200), curve: Curves.ease);
               });
             },
           ),
         ),
       ),
+    );
+  }
+}
+
+class secHomeBody extends StatelessWidget {
+  const secHomeBody({
+    super.key,
+    required this.height100,
+    required PageController controller,
+  }) : _controller = controller;
+
+  final PageController _controller;
+
+  final double height100;
+  @override
+  Widget build(BuildContext context) {
+    return PageView(
+      scrollDirection: Axis.vertical,
+      controller: _controller,
+      children: [
+        panelSection(
+          height100: height100,
+        ),
+        AttendenceSection(),
+      ],
+    );
+  }
+}
+
+class AttendenceSection extends StatefulWidget {
+  @override
+  _AttendenceSectionState createState() => _AttendenceSectionState();
+}
+
+class _AttendenceSectionState extends State<AttendenceSection> {
+  List<String> names = [
+    'John Doe',
+    'Jane Smith',
+    'Michael Johnson',
+    'Emily Davis',
+    'Robert Brown',
+    'John Doe',
+    'Jane Smith',
+    'Michael Johnson',
+    'Emily Davis',
+    'Robert Brown',
+    
+  ];
+  List<bool> attendance = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the attendance list with false values
+    attendance = List<bool>.generate(names.length, (index) => false);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: Text(
+            'Select Attendance',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Expanded(
+          child: ListView.builder(
+            itemCount: names.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(names[index]),
+                trailing: Checkbox(
+                  value: attendance[index],
+                  onChanged: (value) {
+                    setState(() {
+                      attendance[index] = value!;
+                    });
+                  },
+                ),
+              );
+            },
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: ElevatedButton(
+            onPressed: () {
+              // Process the attendance data
+              List<String> presentStudents = [];
+              for (int i = 0; i < names.length; i++) {
+                if (attendance[i]) {
+                  presentStudents.add(names[i]);
+                }
+              }
+              // Print the list of students present
+              print('Present Students: $presentStudents');
+            },
+            child: Text('Submit'),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class panelSection extends StatelessWidget {
+  const panelSection({
+    super.key,
+    required this.height100,
+  });
+
+  final double height100;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey.shade300,
+      ),
+      child: Column(
+        children: [
+          Container(
+
+            padding: EdgeInsets.all(10),
+              height: height100 * .34,
+              child: Card( shape: CardShape(), color:Colors.grey.shade100, child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: GridExample(),
+              ))),
+          Container(),
+        ],
+      ),
+    );
+  }
+}
+
+class GridExample extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      crossAxisCount: 3,
+      children: List.generate(6, (index) {
+        return Card(
+          color: Colors.yellow.shade100,
+          margin: EdgeInsets.all(10),
+          child: Center(
+            child: Text(
+              'Card ${index + 1}',
+              style: TextStyle(fontSize: 18),
+            ),
+          ),
+        );
+      }),
     );
   }
 }

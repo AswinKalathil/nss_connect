@@ -15,6 +15,7 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      
       length: 3,
       child: Scaffold(
         appBar: AppBar(

@@ -8,11 +8,15 @@ import 'package:nss_connect/slidingCards.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/models/events.dart';
 
+import 'Secretary.dart';
+
 class HomeDashboard extends StatelessWidget {
   const HomeDashboard({super.key});
   static const String id = 'homeDashboard';
   @override
   Widget build(BuildContext context) {
+
+    
     double width100 = MediaQuery.of(context).size.width;
     double height100 = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
@@ -244,7 +248,9 @@ class HeaderLogo extends StatelessWidget {
                 )
               ]),
               child: GestureDetector(
-                onDoubleTap: () => nextPagePush(context, SlidingCards()),
+                onDoubleTap: () => nextPagePush(context, SecretaryDashboard()),
+
+                // onDoubleTap: () => nextPagePush(context, SlidingCards()),
                 child: Image(
                   image: AssetImage('assets/images/nss.png'),
                   height: width100 * 0.16,
