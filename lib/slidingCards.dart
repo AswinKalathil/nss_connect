@@ -1,7 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:nss_connect/credCard.dart';
+import 'package:nss_connect/regcard.dart';
 import 'package:nss_connect/widgetStyles.dart';
 
+import 'accountDataCards.dart';
 import 'models/events.dart';
 
 class SlidingCards extends StatefulWidget {
@@ -51,58 +54,53 @@ class _SlidingCardsState extends State<SlidingCards>
         MediaQuery.of(context).padding.top -
         MediaQuery.of(context).padding.bottom;
     List<Widget> cards = [
-      // Replace with your card widgets
-      _buildCard1(context, _changeCard),
-      _buildCard2(context, _changeCard),
-      _buildCard3(context, _changeCard),
+      credCard(),
+      RegCard(),
+      UserDataCard(),
+      AccountDataCard()
+      
       // Add more card widgets as needed
     ];
 
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: [
+      body: 
           Container(
             color: Colors.green,
             child: Column(
               children: [
                 EventCarosel(
                   width100: width100,
-                  height100: height100,
+                  height100: height100 *.8,
                   cards: cards,
                 ),
-                Container(
-                  margin: EdgeInsets.all(10),
-                  color: Colors.amber,
-                  height: 100,
-                  width: double.infinity,
-                ),
+                
               ],
             ),
-          ),
-          Expanded(child: Container()),
-          Container(
-            margin: EdgeInsets.all(10),
-            color: Colors.amber,
-            height: 100,
-            width: double.infinity,
-          ),
-        ],
+          
+         
+      
       ),
     );
   }
 
   static Widget _buildCard1(BuildContext context, Function _changeCard) {
     return Container(
+      padding: EdgeInsets.all(15),
       height: double.infinity,
       width: double.infinity,
       color: Colors.blue,
-      child: ElevatedButton(
-        onPressed: () => _changeCard(0),
-        child: Center(
-          child: Text('Card 1'),
-        ),
+      child: Container(
+        height: 100,
+        width: 100,
+        color: Colors.red,
       ),
+      // child: ElevatedButton(
+      //   onPressed: () => _changeCard(0),
+      //   child: Center(
+      //     child: Text('Card 1'),
+      //   ),
+      // ),
     );
   }
 
@@ -149,13 +147,13 @@ class EventCarosel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.red,
+      color: Colors.red,
       padding: EdgeInsets.all(0),
-      width: width100 * .9,
-      height: height100 * 0.3125, //========================height  adjest
+      width: width100 ,
+      height: height100 , //========================height  adjest
       child: CarouselSlider(
           options: CarouselOptions(
-            // height: MediaQuery.of(context).size.height * 0.25,
+            height: height100 ,
             viewportFraction: 1,
             autoPlay: true,
             autoPlayInterval: Duration(seconds: 5),
