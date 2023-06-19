@@ -6,7 +6,7 @@ final primaryColor = const MaterialColor(
     50: Color(0xFFF3E5F9),
   },
 );
-
+const IconData person_add = IconData(0xe492, fontFamily: 'MaterialIcons');
 final secondaryColor = const MaterialColor(
   0xFFF15C5C,
   <int, Color>{

@@ -3,86 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nss_connect/widgetStyles.dart';
-
 import '../colors.dart';
 
-//
-// class SecHome extends StatefulWidget{
-//   static const String id = 'secretaryHome';
-//
-//   @override
-//   State<SecHome> createState() => _SecHomeState();
-//
-// }
-//
-// class _SecHomeState extends State<SecHome>{
-//   var currentIndex =0;
-//   @override
-//   Widget build(BuildContext context) {
-//     double displaywidth = MediaQuery.of(context).size.width;
-//     return Scaffold(
-// bottomNavigationBar: Container(
-//
-//   margin: EdgeInsets.all(displaywidth * .05),
-//   height: displaywidth * .155,
-//   decoration: BoxDecoration(
-//     color: Colors.white,
-//     boxShadow: [
-//       BoxShadow(
-//         color: Colors.black.withOpacity(.1),
-//         blurRadius: 30,
-//         offset: Offset(0,10),
-//       )
-//     ],
-//     borderRadius: BorderRadius.circular(30)
-//   ),
-//   child: ListView.builder(
-//     itemCount:4,
-//     scrollDirection: Axis.horizontal,
-//     padding: EdgeInsets.symmetric(horizontal: displaywidth * .02),
-//
-//      itemBuilder: (context, index)=>InkWell(
-//        onTap:(){
-//          setState(() {
-//            currentIndex = index;
-//            HapticFeedback.lightImpact();
-//          },);
-//
-//        },
-//        splashColor: Colors.transparent,
-//        highlightColor: Colors.transparent,
-//        child: Stack(
-//          children: [
-//            AnimatedContainer(duration: Duration(seconds: 1),
-//            curve: Curves.fastLinearToSlowEaseIn,
-//              width: index ==currentIndex ? displaywidth *.32:displaywidth * .18,
-//             alignment: Alignment.center,
-//              child: AnimatedContainer(
-//                duration: Duration(seconds: 1),
-//                curve: Curves.fastLinearToSlowEaseIn,
-//                height: index == currentIndex ? displaywidth * .12:0,
-//                width: index == currentIndex ? displaywidth * .32 : 0,
-//                decoration: BoxDecoration(
-//                  color: index==currentIndex ?primaryColor:Colors.transparent,
-//                  borderRadius: BorderRadius.circular(30)
-//                ),
-//              ),
-//            ),
-//            AnimatedContainer(duration: Duration(seconds: 1),
-//            curve: Curves.fastLinearToSlowEaseIn,
-//            )
-//          ],
-//        ),
-//      ),
-//
-//        ),
-//
-// ),
-//     );
-//   }
-// }
-//
-// //
 class SecHome extends StatefulWidget {
   const SecHome({super.key});
   static const String id = 'secretaryHome';
@@ -102,6 +24,7 @@ class _SecHomeState extends State<SecHome> {
         height100: height100,
       ),
       bottomNavigationBar: Container(
+        
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -133,7 +56,7 @@ class _SecHomeState extends State<SecHome> {
               setState(() {
                 myCurrentIndex = selectedIndex;
                 _controller.animateToPage(selectedIndex,
-                    duration: Duration(milliseconds: 200), curve: Curves.ease);
+                    duration: Duration(milliseconds: 250), curve: Curves.ease);
               });
             },
           ),
@@ -185,7 +108,6 @@ class _AttendenceSectionState extends State<AttendenceSection> {
     'Michael Johnson',
     'Emily Davis',
     'Robert Brown',
-    
   ];
   List<bool> attendance = [];
 
@@ -265,13 +187,15 @@ class panelSection extends StatelessWidget {
       child: Column(
         children: [
           Container(
-
-            padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(10),
               height: height100 * .34,
-              child: Card( shape: CardShape(), color:Colors.grey.shade100, child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridExample(),
-              ))),
+              child: Card(
+                  shape: CardShape(),
+                  color: Colors.grey.shade100,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GridExample(),
+                  ))),
           Container(),
         ],
       ),
@@ -286,11 +210,13 @@ class GridExample extends StatelessWidget {
       crossAxisCount: 3,
       children: List.generate(6, (index) {
         return Card(
+          elevation: 2,
           color: Colors.yellow.shade100,
           margin: EdgeInsets.all(10),
-          child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(10),
             child: Text(
-              'Card ${index + 1}',
+              'Panel ${index + 1}',
               style: TextStyle(fontSize: 18),
             ),
           ),
