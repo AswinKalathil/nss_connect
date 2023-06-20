@@ -205,7 +205,15 @@ class GridPanels extends StatelessWidget {
     Color(0xFFFDF5E6), // Old Lace
     Color(0xFFFFEFD5), // Papaya Whip
   ];
-
+  static const List<String> PanelTitle = [
+    'Blood',
+    'SIP',
+    'EEC',
+    'Education',
+    'program',
+    'Media',
+    // Papaya Whip
+  ];
   @override
   Widget build(BuildContext context) {
     return GridView.count(
@@ -223,8 +231,8 @@ class GridPanels extends StatelessWidget {
                 turns: AlwaysStoppedAnimation(5 / 360),
                 child: Stack(children: [
                   Text(
-                    'Panel ${index + 1}',
-                    style: TextStyle(fontSize: 18),
+                    PanelTitle[index],
+                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
                   ),
                 ]),
               ),
