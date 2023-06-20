@@ -4,20 +4,17 @@ import 'package:flutter/material.dart';
 
 import '../colors.dart';
 
-
-class SecCert extends StatefulWidget{
+class SecCert extends StatefulWidget {
   const SecCert({super.key});
   static const String id = 'secretaryHome';
   @override
   State<SecCert> createState() => _SecCertState();
-
 }
 
-class _SecCertState extends State<SecCert>{
+class _SecCertState extends State<SecCert> {
   @override
   int myCurrentIndex = 0;
   Widget build(BuildContext context) {
-    
     double width100 = MediaQuery.of(context).size.width * 0.9;
     double height100 = MediaQuery.of(context).size.height;
     PageController _controller = PageController();
@@ -27,7 +24,6 @@ class _SecCertState extends State<SecCert>{
         height100: height100,
       ),
       bottomNavigationBar: Container(
-
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -49,11 +45,16 @@ class _SecCertState extends State<SecCert>{
             iconSize: 30,
             items: [
               BottomNavigationBarItem(
-                  icon: ImageIcon(AssetImage('assets/images/request.png'),
-                  size: 24,), label: 'Requests'),
+                  icon: ImageIcon(
+                    AssetImage('assets/images/request.png'),
+                    size: 24,
+                  ),
+                  label: 'Requests'),
               BottomNavigationBarItem(
-                  icon: ImageIcon(AssetImage('assets/images/approve.png'),
-                    size: 24,),
+                  icon: ImageIcon(
+                    AssetImage('assets/images/approve.png'),
+                    size: 24,
+                  ),
                   label: 'Approvals'),
             ],
             elevation: 10,
@@ -67,12 +68,9 @@ class _SecCertState extends State<SecCert>{
           ),
         ),
       ),
-
     );
-
   }
 }
-
 
 class secCertBody extends StatelessWidget {
   const secCertBody({
@@ -100,6 +98,7 @@ class secCertBody extends StatelessWidget {
     );
   }
 }
+
 class Certificate {
   final String title;
   final String status;
@@ -117,7 +116,6 @@ class AdminPendingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: ListView.builder(
         itemCount: pendingCertificates.length,
         itemBuilder: (context, index) {
@@ -128,18 +126,18 @@ class AdminPendingPage extends StatelessWidget {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ElevatedButton(
-                  onPressed: () {
-                    // Handle view button press
-                  },
-                  child: Text('View'),
-                ),
+                // ElevatedButton(
+                //   onPressed: () {
+                //     // Handle view button press
+                //   },
+                //   child: Text('View'),
+                // ),
                 SizedBox(width: 10.0),
                 ElevatedButton(
                   onPressed: () {
                     // Handle verify button press
                   },
-                  child: Text('Verify'),
+                  child: Text('Proceed'),
                 ),
               ],
             ),
@@ -160,7 +158,6 @@ class AdminApprovedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: ListView.builder(
         itemCount: pendingCertificates.length,
         itemBuilder: (context, index) {
@@ -175,9 +172,8 @@ class AdminApprovedPage extends StatelessWidget {
                   onPressed: () {
                     // Handle view button press
                   },
-                  child: Text('Proceed'),
+                  child: Text('View'),
                 ),
-
               ],
             ),
           );

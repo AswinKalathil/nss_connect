@@ -66,3 +66,28 @@ class CardShape extends ShapeBorder {
   @override
   ShapeBorder scale(double t) => this;
 }
+
+class CardShapeX extends ShapeBorder {
+  const CardShapeX({required this.radius});
+  final double radius;
+  @override
+  EdgeInsetsGeometry get dimensions => EdgeInsets.all(0);
+
+  @override
+  Path getInnerPath(Rect rect, {TextDirection? textDirection}) => Path();
+  @override
+  Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
+    return Path()
+      ..addRRect(
+        
+        RRect.fromRectAndRadius(
+            rect, Radius.circular(radius)), // radius value change here
+      );
+  }
+
+  @override
+  void paint(Canvas canvas, Rect rect, {TextDirection? textDirection}) {}
+
+  @override
+  ShapeBorder scale(double t) => this;
+}

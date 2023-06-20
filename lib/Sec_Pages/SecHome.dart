@@ -24,7 +24,6 @@ class _SecHomeState extends State<SecHome> {
         height100: height100,
       ),
       bottomNavigationBar: Container(
-        
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -182,42 +181,53 @@ class panelSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.grey.shade300,
+        color: Colors.white,
       ),
       child: Column(
         children: [
           Container(
-              padding: EdgeInsets.all(10),
-              height: height100 * .35,
-              child: Card(
-                  shape: CardShape(),
-                  color: Colors.grey.shade100,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GridExample(),
-                  ))),
-          Container(),
+            padding: EdgeInsets.all(10),
+            height: height100 * .35,
+            child: GridPanels(),
+          ),
         ],
       ),
     );
   }
 }
 
-class GridExample extends StatelessWidget {
+class GridPanels extends StatelessWidget {
+  static const List<Color> lightColors = [
+    Color(0xFFF5F5DC), // Beige
+    Color(0xFFFAF0E6), // Linen
+    Color(0xFFFFF8DC), // Cornsilk
+    Color(0xFFFFFAF0), // Floral White
+    Color(0xFFFDF5E6), // Old Lace
+    Color(0xFFFFEFD5), // Papaya Whip
+  ];
+
   @override
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: 3,
       children: List.generate(6, (index) {
-        return Card(
-          elevation: 2,
-          color: Colors.yellow.shade100,
-          margin: EdgeInsets.all(10),
-          child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Text(
-              'Panel ${index + 1}',
-              style: TextStyle(fontSize: 18),
+        return RotationTransition(
+          turns: AlwaysStoppedAnimation(-5 / 360),
+          child: Card(
+            shape: CardShapeX(radius: 20),
+            elevation: 2,
+            color: lightColors[index],
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: RotationTransition(
+                turns: AlwaysStoppedAnimation(5 / 360),
+                child: Stack(children: [
+                  Text(
+                    'Panel ${index + 1}',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ]),
+              ),
             ),
           ),
         );
