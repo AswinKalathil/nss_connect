@@ -126,7 +126,7 @@ class _AttendenceSectionState extends State<AttendenceSection> {
         Padding(
           padding: EdgeInsets.all(16),
           child: Text(
-            'Select Attendance',
+            'Mark Attendance',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
@@ -188,7 +188,7 @@ class panelSection extends StatelessWidget {
         children: [
           Container(
               padding: EdgeInsets.all(10),
-              height: height100 * .34,
+              height: height100 * .35,
               child: Card(
                   shape: CardShape(),
                   color: Colors.grey.shade100,
