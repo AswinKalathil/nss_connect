@@ -52,7 +52,7 @@ class _AccountDataCardState extends State<AccountDataCard> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      height: MediaQuery.of(context).size.height * 0.65,
+      // height: MediaQuery.of(context).size.height * 0.65,
       width: MediaQuery.of(context).size.width,
       child: Card(
         shape: CardShape(padding: 50),
