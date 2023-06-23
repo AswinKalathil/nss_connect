@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:nss_connect/AddVolunteer.dart';
 import 'package:nss_connect/HomeDasboard.dart';
 import 'package:nss_connect/Sec_Pages/SecHome.dart';
 import 'package:nss_connect/login2.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         PoDashboardPage.id: (ctx) => PoDashboardPage(),
         Login2.id: (ctx) => Login2(),
         SecHome.id: (ctx) => SecHome(),
+        AddVolunteer.id: (ctx) =>AddVolunteer(),
       },
       home: WelcomeTour(),
     );

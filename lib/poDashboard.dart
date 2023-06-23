@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/AddVolunteer.dart';
+import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/widgetStyles.dart';
 
 import 'colors.dart';
@@ -26,7 +28,10 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('PO Dashboard'),
-        actions: [IconButton(onPressed: () {}, icon: Icon(person_add))],
+        actions: [IconButton(onPressed: () {
+          // nextPagePush(context,AddVolunteer());
+          Navigator.pushNamed(context,AddVolunteer.id);
+        }, icon: Icon(person_add))],
       ),
       body: poDashbody(
         controller: _controller,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/AddVolunteer.dart';
 import 'package:nss_connect/Sec_Pages/SeCert.dart';
 import 'package:nss_connect/Sec_Pages/SecEvent.dart';
 import 'package:nss_connect/Sec_Pages/SecHome.dart';
@@ -39,7 +40,9 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
               ),
             ],
           ),
-          actions: [IconButton(onPressed: () {}, icon: Icon(person_add))],
+          actions: [IconButton(onPressed: () {
+            Navigator.pushNamed(context,AddVolunteer.id);
+          }, icon: Icon(person_add))],
         ),
         body: TabBarView(children: [
           SecHome(),
