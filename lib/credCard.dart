@@ -19,45 +19,39 @@ class _credCardState extends State<credCard> {
   final _passwordController = TextEditingController();
   String? _selectedOption = 'volunteerDashboard';
   String? poString = 'poDashboard';
-  String? volString ='volunteerDashboard';
-  String? secString='secretaryDashboard';
-  Widget? nextRoute ;
+  String? volString = 'volunteerDashboard';
+  String? secString = 'secretaryDashboard';
+  Widget? nextRoute;
   void _submitData() {
     final enterdUsername = _userNameController.text;
     final enterdPassword = _passwordController.text;
     if (enterdUsername.isEmpty || enterdPassword.isEmpty) {
       return;
     }
-    if(_selectedOption==poString)
-    {
-      nextRoute =PoDashboardPage();
-    }
-    else if(_selectedOption == secString)
-    {
+    if (_selectedOption == poString) {
+      nextRoute = PoDashboardPage();
+    } else if (_selectedOption == secString) {
       nextRoute = SecretaryDashboard();
-    }
-    else if(_selectedOption == volString)
-    {
+    } else if (_selectedOption == volString) {
       nextRoute = VolunteerDashboardPage();
     }
 
     print("user name: $enterdUsername\npassword: $enterdPassword");
     FocusScope.of(context).requestFocus(FocusNode());
     // Navigator.of(context).pop();
-    nextPage(context,nextRoute as Widget );
+    nextPage(context, nextRoute as Widget);
     // Navigator.of(context).pushNamed(_selectedOption as String);
-    
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      height: MediaQuery.of(context).size.height *
-          (_selectedOption == poString ? 0.72 : .6),
-      width: MediaQuery.of(context).size.width,
+      // height: MediaQuery.of(context).size.height *
+      //     (_selectedOption == poString ? 0.72 : .65),
+      width: MediaQuery.of(context).size.width * 8,
       child: Card(
-        shape: CardShape(),
+        shape: CardShape(padding: 50),
         color: Colors.white,
         elevation: 10,
         child: Column(children: [

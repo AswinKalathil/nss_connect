@@ -14,16 +14,10 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
         title: Text('PO Dashboard'),
       ),
       body: GridView.count(
-        crossAxisCount: 2,
+        crossAxisCount: 4,
         children: [
           _buildCard('Users', Icons.person, () {
             // Handle users card tap
-          }),
-          _buildCard('Orders', Icons.shopping_cart, () {
-            // Handle orders card tap
-          }),
-          _buildCard('Products', Icons.shopping_bag, () {
-            // Handle products card tap
           }),
           _buildCard('Settings', Icons.settings, () {
             // Handle settings card tap
@@ -42,11 +36,11 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, size: 64),
+            Icon(icon, size: 34),
             SizedBox(height: 16),
             Text(
               title,
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
             ),
           ],
         ),

@@ -43,20 +43,29 @@ class LongButton extends StatelessWidget {
 }
 
 class CardShape extends ShapeBorder {
-  const CardShape();
+  final double padding;
 
+  const CardShape({this.padding = 0});
   @override
-  EdgeInsetsGeometry get dimensions => EdgeInsets.all(0);
+  EdgeInsetsGeometry get dimensions => EdgeInsets.all(padding);
 
   @override
   Path getInnerPath(Rect rect, {TextDirection? textDirection}) => Path();
 
   @override
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
+    final paddedRect = Rect.fromLTWH(
+      rect.left,
+      rect.top,
+      rect.width,
+      rect.height + padding,
+    );
     return Path()
       ..addRRect(
         RRect.fromRectAndRadius(
-            rect, Radius.circular(10)), // radius value change here
+          paddedRect,
+          Radius.circular(10), // radius value change here
+        ),
       );
   }
 
@@ -79,7 +88,6 @@ class CardShapeX extends ShapeBorder {
   Path getOuterPath(Rect rect, {TextDirection? textDirection}) {
     return Path()
       ..addRRect(
-        
         RRect.fromRectAndRadius(
             rect, Radius.circular(radius)), // radius value change here
       );

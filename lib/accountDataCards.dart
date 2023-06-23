@@ -55,7 +55,7 @@ class _AccountDataCardState extends State<AccountDataCard> {
       height: MediaQuery.of(context).size.height * 0.65,
       width: MediaQuery.of(context).size.width,
       child: Card(
-        shape: CardShape(),
+        shape: CardShape(padding: 50),
         color: Colors.white,
         elevation: 10,
         child: Column(
@@ -63,7 +63,7 @@ class _AccountDataCardState extends State<AccountDataCard> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 15),
                 child: Text(
                   'Create Account',
                   style: TextStyle(
@@ -227,15 +227,14 @@ class UserDataCard extends StatefulWidget {
 }
 
 class _UserDataCardState extends State<UserDataCard> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      height: MediaQuery.of(context).size.height * 0.65,
+      // height: MediaQuery.of(context).size.height * 0.65,
       width: MediaQuery.of(context).size.width,
       child: Card(
-        shape: CardShape(),
+        shape: CardShape(padding: 50),
         color: Colors.white,
         elevation: 10,
         child: Column(
@@ -243,7 +242,7 @@ class _UserDataCardState extends State<UserDataCard> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 15),
                 child: Text(
                   'Reset Password',
                   style: TextStyle(

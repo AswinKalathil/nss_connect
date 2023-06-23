@@ -46,14 +46,14 @@ class ConfirmCard extends StatefulWidget {
 }
 
 class _ConfirmCardState extends State<ConfirmCard> {
-
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      height: MediaQuery.of(context).size.height * 0.65,
+      // height: MediaQuery.of(context).size.height * 0.65,
       width: MediaQuery.of(context).size.width,
       child: Card(
+        shape: CardShape(padding: 50),
         color: Colors.white,
         elevation: 10,
         child: Column(
