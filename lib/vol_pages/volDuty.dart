@@ -11,8 +11,6 @@ class VolDuty extends StatefulWidget {
 class _VolDutyState extends State<VolDuty> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.green,
-    );
+    return Container();
   }
 }

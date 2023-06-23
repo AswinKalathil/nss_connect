@@ -198,29 +198,31 @@ class panelSection extends StatelessWidget {
 
 class GridPanels extends StatelessWidget {
   static const List<Color> lightColors = [
-    Color(0xFFF5F5DC), // Beige
-    Color(0xFFFAF0E6), // Linen
-    Color(0xFFFFF8DC), // Cornsilk
-    Color(0xFFFFFAF0), // Floral White
-    Color(0xFFFDF5E6), // Old Lace
-    Color(0xFFFFEFD5), // Papaya Whip
+    Color(0xFFFFEFD5),
+    Color(0xFFFAF0E6),
+    Color(0xFFF5F5DC),
+    Color(0xFFFFF8DC),
+    Color(0xFFFFFAF0),
+    Color(0xFFFDF5E6),
+    // Papaya Whip
   ];
   static const List<String> PanelTitle = [
     'Blood',
     'SIP',
     'EEC',
     'Education',
-    'program',
+    'Program',
     'Media',
     // Papaya Whip
   ];
   @override
   Widget build(BuildContext context) {
+    double tiltValue = 0 / 360;
     return GridView.count(
       crossAxisCount: 3,
       children: List.generate(6, (index) {
         return RotationTransition(
-          turns: AlwaysStoppedAnimation(-5 / 360),
+          turns: AlwaysStoppedAnimation(-tiltValue),
           child: Card(
             shape: CardShapeX(radius: 20),
             elevation: 2,
@@ -228,11 +230,11 @@ class GridPanels extends StatelessWidget {
             child: Padding(
               padding: EdgeInsets.all(10),
               child: RotationTransition(
-                turns: AlwaysStoppedAnimation(5 / 360),
+                turns: AlwaysStoppedAnimation(tiltValue),
                 child: Stack(children: [
                   Text(
                     PanelTitle[index],
-                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ]),
               ),

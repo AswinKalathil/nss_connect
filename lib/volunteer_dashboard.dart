@@ -34,7 +34,7 @@ class _VolunteerDashboardPageState extends State<VolunteerDashboardPage> {
         ),
         body: TabBarView(children: [
           VolHome(
-            AttendencePercent: .8,
+            AttendencePercent: .80,
           ),
           VolDuty(),
         ]),
