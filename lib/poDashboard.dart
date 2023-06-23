@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/widgetStyles.dart';
+
+import 'colors.dart';
 
 class PoDashboardPage extends StatefulWidget {
   static const String id = 'poDashboard';
@@ -7,43 +10,230 @@ class PoDashboardPage extends StatefulWidget {
 }
 
 class _PoDashboardPageState extends State<PoDashboardPage> {
+  int myCurrentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    double displaywidth = MediaQuery
+        .of(context)
+        .size
+        .width * 0.9;
+    double height100 = MediaQuery
+        .of(context)
+        .size
+        .height;
+    PageController _controller = PageController();
     return Scaffold(
       appBar: AppBar(
         title: Text('PO Dashboard'),
+        actions: [IconButton(onPressed: () {}, icon: Icon(person_add))],
       ),
-      body: GridView.count(
-        crossAxisCount: 4,
+      body: poDashbody(
+        controller: _controller,
+        height100: height100,
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(.1),
+              blurRadius: 30,
+              offset: Offset(0, 10),
+            )
+          ],
+        ),
+        margin: EdgeInsets.symmetric(
+            horizontal: displaywidth * .10, vertical: displaywidth * .05),
+        height: height100 * .08,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(15),
+          child: BottomNavigationBar(
+            selectedItemColor: primaryColor,
+            unselectedItemColor: Colors.grey,
+            currentIndex: myCurrentIndex,
+            iconSize: 30,
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.event_note_outlined), label: 'Events'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.description_outlined),
+                  label: 'Certificates'),
+            ],
+            elevation: 10,
+            onTap: (selectedIndex) {
+              setState(() {
+                myCurrentIndex = selectedIndex;
+                _controller.animateToPage(selectedIndex,
+                    duration: Duration(milliseconds: 250), curve: Curves.ease);
+              });
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+  
+
+  class poDashbody extends StatelessWidget {
+  const poDashbody({
+  super.key,
+  required this.height100,
+  required PageController controller,
+  }) : _controller = controller;
+
+  final PageController _controller;
+
+  final double height100;
+  @override
+  Widget build(BuildContext context) {
+  return PageView(
+  scrollDirection: Axis.vertical,
+  controller: _controller,
+  children: [
+    EventSection(
+      height100: height100,
+    ),
+    POrequestPage(
+
+    ),
+  ],
+  );
+  }
+  }
+
+class EventSection extends StatelessWidget {
+  const EventSection({
+    super.key,
+    required this.height100,
+  });
+
+  final double height100;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
+      child: Column(
         children: [
-          _buildCard('Users', Icons.person, () {
-            // Handle users card tap
-          }),
-          _buildCard('Settings', Icons.settings, () {
-            // Handle settings card tap
-          }),
+          Container(
+            padding: EdgeInsets.all(10),
+            height: height100 *.5 ,
+            child: GridPanels(),
+          ),
         ],
       ),
     );
   }
+}
+class Events {
+  final String title;
+  final String status;
+  final String Dates;
 
-  Widget _buildCard(String title, IconData icon, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Card(
-        elevation: 4,
-        margin: EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: 34),
-            SizedBox(height: 16),
-            Text(
-              title,
-              style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+  Events({required this.title, required this.status, required this.Dates});
+}
+class GridPanels extends StatelessWidget {
+  // static const List<Color> lightColors = [
+  //   Color(0xFFF5F5DC), // Beige
+  //   Color(0xFFFAF0E6), // Linen
+  //   Color(0xFFFFF8DC), // Cornsilk
+  //   Color(0xFFFFFAF0), // Floral White
+  //   Color(0xFFFDF5E6), // Old Lace
+  //   Color(0xFFFFEFD5), // Papaya Whip
+  // ];
+  // final List<Events> PanelTitle = [
+  //   Events(title: 'Dakshatha 6.O', status: 'Blood Donation Camp',Dates: '26-6-23 '),
+  //   Events(title: 'KTUCare Annual Meet', status: 'Annual Volunteer Meet',Dates: '06-7-23 '),
+  //   Events(title: 'Project Prithvi', status: 'Clean CET Initiative',Dates: '12-7-23 '),
+  //
+  // ];
+   List<String> PanelTitle = [
+    'Dakshatha 6.O',
+    'KTUCare Annual Meet',
+    'Project Prithvi',
+    'Bhaala Bhavan',
+
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return GridView.count(
+      crossAxisCount: 2,
+      children: List.generate(4, (index) {
+        return RotationTransition(
+          turns: AlwaysStoppedAnimation(-5 / 360),
+          child: Card(
+            shape: CardShapeX(radius: 20),
+            elevation: 2,
+            // color: lightColors[index],
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: RotationTransition(
+                turns: AlwaysStoppedAnimation(5 / 360),
+                child: Stack(children: [
+                  Text(
+                    PanelTitle[index],
+                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+                  ),
+
+                ]),
+              ),
             ),
-          ],
-        ),
+          ),
+        );
+      }),
+    );
+  }
+}
+
+
+class Certificate {
+  final String title;
+  final String status;
+
+  Certificate({required this.title, required this.status});
+}
+
+class POrequestPage extends StatelessWidget {
+  final List<Certificate> pendingCertificates = [
+    Certificate(title: 'Certificate 1', status: 'Verified By VS'),
+    Certificate(title: 'Certificate 2', status: 'Verified By VS'),
+    Certificate(title: 'Certificate 3', status: 'Verified By VS'),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView.builder(
+        itemCount: pendingCertificates.length,
+        itemBuilder: (context, index) {
+          Certificate certificate = pendingCertificates[index];
+          return ListTile(
+            title: Text(certificate.title),
+            subtitle: Text(certificate.status),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // ElevatedButton(
+                //   onPressed: () {
+                //     // Handle view button press
+                //   },
+                //   child: Text('View'),
+                // ),
+                SizedBox(width: 10.0),
+                ElevatedButton(
+                  onPressed: () {
+                    // Handle verify button press
+                  },
+                  child: Text('Proceed'),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }

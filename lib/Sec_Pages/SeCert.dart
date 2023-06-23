@@ -46,8 +46,8 @@ class _SecCertState extends State<SecCert> {
             items: [
               BottomNavigationBarItem(
                   icon: ImageIcon(
-                    AssetImage('assets/images/request.png'),
-                    size: 24,
+                    AssetImage('assets/images/request2.png'),
+                    size: 20,
                   ),
                   label: 'Requests'),
               BottomNavigationBarItem(

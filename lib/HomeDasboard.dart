@@ -4,6 +4,7 @@ import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
 import 'package:nss_connect/pageTrasitions.dart';
+import 'package:nss_connect/poDashboard.dart';
 import 'package:nss_connect/slidingCards.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
@@ -245,7 +246,7 @@ class HeaderLogo extends StatelessWidget {
               ]),
               child: GestureDetector(
                 onTap: () => nextPagePush(context, VolunteerDashboardPage()),
-                onDoubleTap: () => nextPagePush(context, SecretaryDashboard()),
+                onDoubleTap: () => nextPagePush(context, PoDashboardPage()),
 
                 // onDoubleTap: () => nextPagePush(context, SlidingCards()),
                 child: Image(
