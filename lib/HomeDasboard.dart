@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/slidingCards.dart';
+import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/models/events.dart';
 
@@ -15,8 +16,6 @@ class HomeDashboard extends StatelessWidget {
   static const String id = 'homeDashboard';
   @override
   Widget build(BuildContext context) {
-
-    
     double width100 = MediaQuery.of(context).size.width;
     double height100 = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
@@ -148,15 +147,12 @@ class EventCarosel extends StatelessWidget {
             builder: (BuildContext context) {
               return Container(
                 width: width100 * .9,
-               
-
                 child: Card(
                   elevation: 5,
                   shape: CardShape(),
                   child: Row(
                     children: [
                       Container(
-                       
                         width: width100 * 0.3,
                         decoration: BoxDecoration(
                           image: DecorationImage(
@@ -248,6 +244,7 @@ class HeaderLogo extends StatelessWidget {
                 )
               ]),
               child: GestureDetector(
+                onTap: () => nextPagePush(context, VolunteerDashboardPage()),
                 onDoubleTap: () => nextPagePush(context, SecretaryDashboard()),
 
                 // onDoubleTap: () => nextPagePush(context, SlidingCards()),

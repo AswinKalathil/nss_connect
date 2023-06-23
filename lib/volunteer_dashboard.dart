@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nss_connect/Sec_Pages/SeCert.dart';
-import 'package:nss_connect/Sec_Pages/SecEvent.dart';
-import 'package:nss_connect/Sec_Pages/SecHome.dart';
+
 import 'colors.dart';
+import 'package:nss_connect/vol_pages/volHome.dart';
+import 'package:nss_connect/vol_pages/volDuty.dart';
+
 class VolunteerDashboardPage extends StatefulWidget {
   static const String id = 'volunteerDashboard';
   @override
@@ -13,32 +14,31 @@ class _VolunteerDashboardPageState extends State<VolunteerDashboardPage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-    length: 3, 
-    child: Scaffold(
-      appBar: AppBar(
-        title: Text('Volunteer Dashboard'),
-        bottom: TabBar(tabs: [
-          Tab(
-            text: 'Home',
-            icon: Icon(Icons.home_max_outlined),
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Volunteer Dashboard'),
+          bottom: TabBar(
+            tabs: [
+              Tab(
+                text: 'Home',
+                // icon: Icon(Icons.home_max_outlined),
+              ),
+              Tab(
+                text: 'Duties',
+                // icon: Icon(Icons.task_alt_rounded),
+              ),
+            ],
           ),
-          Tab(
-            text: 'Blood',
-            icon: Icon(Icons.event_note_outlined),
-          ),
-          Tab(
-            text: 'Certificate',
-            icon: Icon(Icons.description_outlined),
-          ),
-        ],
-        ),
+          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.bloodtype))],
         ),
         body: TabBarView(children: [
-          SecHome(),
-          SecEvent(),
-          SecCert(),
+          VolHome(
+            AttendencePercent: .8,
+          ),
+          VolDuty(),
         ]),
       ),
-      );
+    );
   }
 }
