@@ -22,11 +22,11 @@ class _VolunteerDashboardPageState extends State<VolunteerDashboardPage> {
             tabs: [
               Tab(
                 text: 'Home',
-                // icon: Icon(Icons.home_max_outlined),
+                icon: Icon(Icons.home_outlined),
               ),
               Tab(
                 text: 'Duties',
-                // icon: Icon(Icons.task_alt_rounded),
+                icon: Icon(Icons.task_alt_rounded),
               ),
             ],
           ),
