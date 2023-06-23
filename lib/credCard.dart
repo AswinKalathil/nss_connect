@@ -4,6 +4,7 @@ import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/poDashboard.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
+import 'models/dataModels.dart';
 import 'register.dart';
 import 'otpDialog.dart';
 
@@ -23,24 +24,58 @@ class _credCardState extends State<credCard> {
   String? secString = 'secretaryDashboard';
   Widget? nextRoute;
   void _submitData() {
-    final enterdUsername = _userNameController.text;
-    final enterdPassword = _passwordController.text;
-    if (enterdUsername.isEmpty || enterdPassword.isEmpty) {
+    final enteredUsername = _userNameController.text;
+    final enteredPassword = _passwordController.text;
+    if (enteredUsername.isEmpty || enteredPassword.isEmpty) {
       return;
     }
-    if (_selectedOption == poString) {
-      nextRoute = PoDashboardPage();
-    } else if (_selectedOption == secString) {
-      nextRoute = SecretaryDashboard();
-    } else if (_selectedOption == volString) {
-      nextRoute = VolunteerDashboardPage();
-    }
+    print("Username: $enteredUsername\nPassword: $enteredPassword");
 
-    print("user name: $enterdUsername\npassword: $enterdPassword");
-    FocusScope.of(context).requestFocus(FocusNode());
-    // Navigator.of(context).pop();
-    nextPage(context, nextRoute as Widget);
-    // Navigator.of(context).pushNamed(_selectedOption as String);
+    bool isCredentialsValid = false;
+    for (User user in UserData) {
+      print("Database------\n");
+      print(user.userName + " " + user.password);
+      if (user.userName == enteredUsername &&
+          user.password == enteredPassword) {
+        isCredentialsValid = true;
+        break;
+      }
+    }
+    print(isCredentialsValid);
+    if (isCredentialsValid) {
+      // Credentials are valid, navigate to the appropriate dashboard
+      if (_selectedOption == poString) {
+        nextRoute = PoDashboardPage();
+      } else if (_selectedOption == secString) {
+        nextRoute = SecretaryDashboard();
+      } else if (_selectedOption == volString) {
+        nextRoute = VolunteerDashboardPage();
+      }
+
+      print("Username: $enteredUsername\nPassword: $enteredPassword");
+      FocusScope.of(context).requestFocus(FocusNode());
+      nextPage(context, nextRoute as Widget);
+    } else {
+      // Credentials are invalid, display an error message or perform some action
+      // e.g., show a snackbar or dialog
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Invalid Credentials'),
+            content: Text('Please enter valid username and password.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
