@@ -7,6 +7,7 @@ import 'package:nss_connect/widgetStyles.dart';
 import 'models/dataModels.dart';
 import 'register.dart';
 import 'otpDialog.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 
 class credCard extends StatefulWidget {
   const credCard({super.key});
@@ -105,30 +106,60 @@ class _credCardState extends State<credCard> {
             ),
           ),
           DropdownButtonHideUnderline(
-            child: DropdownButton<String>(
-              value: _selectedOption,
-              onChanged: (String? newValue) {
-                setState(() {
-                  _selectedOption = newValue;
-                });
-              },
-              items: [
-                DropdownMenuItem<String>(
-                  value: 'volunteerDashboard',
-                  child: Text(
-                    'Volunteer',
+            child: DropdownButton2<String>(
+              buttonStyleData: ButtonStyleData(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                )
+              ),
+              iconStyleData: IconStyleData(
+                icon: Icon(
+                  Icons.arrow_drop_down_sharp,
+                  // color: Colors.black,
+                ),
+              ),
+              dropdownStyleData: DropdownStyleData(
+                elevation: 10,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(Radius.circular(7)),
+                  border: Border.all(
+                    color: Colors.grey.withOpacity(0.3),
                   ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.transparent,
+                      spreadRadius: 1,
+                      blurRadius: 1,
+                      offset: Offset(3, 3),
+                    ),
+                  ],
                 ),
-                DropdownMenuItem<String>(
-                  value: 'poDashboard',
-                  child: Text('Program officer'),
-                ),
-                DropdownMenuItem<String>(
-                  value: 'secretaryDashboard',
-                  child: Text('Secretary'),
-                ),
-              ],
-            ),
+              ),
+                alignment: AlignmentDirectional.centerStart,
+                isExpanded: false,
+                value: _selectedOption,
+                onChanged: (String? newValue) {
+                  setState(() {
+                    _selectedOption = newValue;
+                  });
+                },
+                items: [
+                  DropdownMenuItem<String>(
+                    value: 'volunteerDashboard',
+                    child: Text(
+                      'Volunteer',
+                    ),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: 'poDashboard',
+                    child: Text('Program Officer'),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: 'secretaryDashboard',
+                    child: Text('Secretary'),
+                  ),
+                ]),
           ),
 
           SizedBox(

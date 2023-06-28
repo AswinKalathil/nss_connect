@@ -32,6 +32,7 @@ dependencies:
   shared_preferences: ^2.1.2
   after_layout: ^1.2.0
   google_fonts: ^5.0.0 #google fonts
+  dropdown_button2: ^2.1.4 #dropdown button
   flutter:
     sdk: flutter
 
