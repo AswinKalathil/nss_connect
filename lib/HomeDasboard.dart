@@ -1,16 +1,16 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/poDashboard.dart';
-import 'package:nss_connect/slidingCards.dart';
+// import 'package:nss_connect/slidingCards.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/models/events.dart';
 
-import 'Secretary.dart';
+// import 'Secretary.dart';
 
 class HomeDashboard extends StatelessWidget {
   const HomeDashboard({super.key});
