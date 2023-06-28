@@ -88,16 +88,28 @@ class _WelcomeTourState extends State<WelcomeTour> {
                     Navigator.pushReplacement(
                       context,
                       PageRouteBuilder(
-                        transitionDuration: Duration(milliseconds: 300),
-                        pageBuilder: (_, __, ___) => HomeDashboard(),
-                        transitionsBuilder: (_, animation, __, child) {
-                          return FadeTransition(
-                            opacity: animation,
-                            child: child,
-                          );
-                        },
-                      ),
-                    );
+                    transitionDuration: Duration(milliseconds: 800),
+                    pageBuilder: (_, __, ___) => HomeDashboard(),
+                    transitionsBuilder: (_, animation, __, child) {
+                      final curvedAnimation = CurvedAnimation(
+                        parent: animation,
+                        curve: Curves.easeOut,
+                        reverseCurve: Curves.easeIn,
+                      );
+
+                      final slowCurve = CurvedAnimation(
+                        parent: curvedAnimation,
+                        curve: Interval(.2, .9, curve: Curves.easeOut),
+                      );
+
+                      return SlideTransition(
+                        position: Tween<Offset>(
+                          begin: const Offset(0, -1),
+                          end: const Offset(0, 0),
+                        ).animate(slowCurve),
+                        child: child,
+                      );
+                  },),);
                     // nextPage(context, HomeDashboard());
                   },
                  child: Icon(
