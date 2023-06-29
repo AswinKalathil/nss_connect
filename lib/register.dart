@@ -13,7 +13,7 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -21,10 +21,9 @@ class _RegisterState extends State<Register> {
           fit: BoxFit.cover,
         )),
         child: Column(children: [
-          SizedBox(
-            height: 200,
-          ),
-          RegCard()
+          Flexible(flex: 2, fit: FlexFit.tight, child: Container()),
+          RegCard(),
+          Flexible(flex: 3, fit: FlexFit.tight, child: Container()),
         ]),
       ),
     );

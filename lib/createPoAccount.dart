@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nss_connect/accountDataCards.dart';
 
 class CreatePoAccount extends StatefulWidget {
-  const CreatePoAccount({super.key,required this.unitNumber});
+  const CreatePoAccount({super.key, required this.unitNumber});
   final String unitNumber;
   static const String id = 'CreatePoAccountScreen';
 
@@ -15,7 +15,7 @@ class _CreatePoAccountState extends State<CreatePoAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -23,17 +23,9 @@ class _CreatePoAccountState extends State<CreatePoAccount> {
           fit: BoxFit.cover,
         )),
         child: Column(children: [
-          Container(
-            padding: const EdgeInsets.only(top: 500, right: 10),
-            height: MediaQuery.of(context).size.height * 0.2,
-            width: MediaQuery.of(context).size.width,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [],
-            ),
-          ),
-          AccountDataCard()
+          Flexible(flex: 2, fit: FlexFit.tight, child: Container()),
+          AccountDataCard(),
+          Flexible(flex: 3, fit: FlexFit.tight, child: Container()),
         ]),
       ),
     );
