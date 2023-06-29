@@ -15,7 +15,7 @@ class _LoginState extends State<Login> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        // resizeToAvoidBottomInset: false,
         body: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
@@ -23,9 +23,9 @@ class _LoginState extends State<Login> {
             fit: BoxFit.cover,
           )),
           child: Column(children: [
-            Expanded(child: Container()),
+            Flexible(flex: 1, fit: FlexFit.tight, child: Container()),
             credCard(),
-            Expanded(child: Container()),
+            Flexible(flex: 2, fit: FlexFit.tight, child: Container()),
           ]),
         ),
       ),
