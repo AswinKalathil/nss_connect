@@ -94,7 +94,7 @@ class ConnectButtonArea extends StatelessWidget {
             ),
           ),
           onPressed: () {
-            nextPage(context, Login());
+            nextPagePush(context, Login());
           },
           child: Text(
             'Let\'s Connect ',

@@ -55,7 +55,7 @@ class _credCardState extends State<credCard> {
 
       print("Username: $enteredUsername\nPassword: $enteredPassword");
       FocusScope.of(context).requestFocus(FocusNode());
-      nextPage(context, nextRoute as Widget);
+      nextPageReplace(context, nextRoute as Widget);
     } else {
       // Credentials are invalid, display an error message or perform some action
       // e.g., show a snackbar or dialog
@@ -107,35 +107,34 @@ class _credCardState extends State<credCard> {
           ),
           DropdownButtonHideUnderline(
             child: DropdownButton2<String>(
-              buttonStyleData: ButtonStyleData(
-                decoration: BoxDecoration(
+                buttonStyleData: ButtonStyleData(
+                    decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(5)),
-                )
-              ),
-              iconStyleData: IconStyleData(
-                icon: Icon(
-                  Icons.arrow_drop_down_sharp,
-                  // color: Colors.black,
-                ),
-              ),
-              dropdownStyleData: DropdownStyleData(
-                elevation: 10,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.all(Radius.circular(7)),
-                  border: Border.all(
-                    color: Colors.grey.withOpacity(0.3),
+                )),
+                iconStyleData: IconStyleData(
+                  icon: Icon(
+                    Icons.arrow_drop_down_sharp,
+                    // color: Colors.black,
                   ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.transparent,
-                      spreadRadius: 1,
-                      blurRadius: 1,
-                      offset: Offset(3, 3),
-                    ),
-                  ],
                 ),
-              ),
+                dropdownStyleData: DropdownStyleData(
+                  elevation: 10,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
+                    border: Border.all(
+                      color: Colors.grey.withOpacity(0.3),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.transparent,
+                        spreadRadius: 1,
+                        blurRadius: 1,
+                        offset: Offset(3, 3),
+                      ),
+                    ],
+                  ),
+                ),
                 alignment: AlignmentDirectional.centerStart,
                 isExpanded: false,
                 value: _selectedOption,
