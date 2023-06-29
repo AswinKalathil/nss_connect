@@ -21,7 +21,9 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+
           title: Text('secretary Dashboard'),
+
           bottom: TabBar(
             tabs: [
               Tab(

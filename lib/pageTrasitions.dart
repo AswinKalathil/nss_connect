@@ -14,6 +14,9 @@ void nextPage(BuildContext ctx, Widget pageTwo) {
 void nextPagePush(BuildContext ctx, Widget pageTwo) {
   Navigator.push(
     ctx,
-    CupertinoPageRoute(builder: (_) => pageTwo, fullscreenDialog: true),
+    CupertinoPageRoute(
+      builder: (_) => pageTwo,
+      fullscreenDialog: true,
+      ),
   );
 }
