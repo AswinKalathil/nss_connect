@@ -175,7 +175,7 @@ class TitledInputBox extends StatelessWidget {
   }
 }
 
-class PassInputBox extends StatelessWidget {
+class PassInputBox extends StatefulWidget {
   const PassInputBox(
       {super.key,
       required this.title,
@@ -188,6 +188,18 @@ class PassInputBox extends StatelessWidget {
   final VoidCallback submitFunction;
 
   @override
+  _PassInputBoxState createState() => _PassInputBoxState();
+}
+
+class _PassInputBoxState extends State<PassInputBox> {
+  bool _obscureText = false;
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(5),
@@ -205,7 +217,7 @@ class PassInputBox extends StatelessWidget {
               bottom: 10,
             ),
             child: Text(
-              title,
+              widget.title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.grey.shade600,
@@ -222,23 +234,28 @@ class PassInputBox extends StatelessWidget {
             ),
             width: MediaQuery.of(context).size.width * 0.8,
             child: TextField(
-              controller: textEditingController,
+              controller: widget.textEditingController,
               onSubmitted: (_) {
-                submitFunction();
+                widget.submitFunction();
               },
               textInputAction: TextInputAction.next,
-              obscureText: true,
+              obscureText: !_obscureText,
               enableSuggestions: false,
               autocorrect: false,
               style: TextStyle(),
               cursorColor: Colors.black,
               decoration: InputDecoration(
+                suffixIcon: IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility : Icons.visibility_off,
+                    ),
+                    onPressed: _toggle),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 contentPadding: EdgeInsets.only(left: 10),
-                hintText: placeholder,
+                hintText: widget.placeholder,
                 hintStyle: TextStyle(
                   color: Colors.black.withOpacity(0.4),
                 ),
