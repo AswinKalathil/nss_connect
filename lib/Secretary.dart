@@ -23,7 +23,7 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
         
         appBar: AppBar(
         
-          title: Text('secretary Dashboard'),
+          title: Text('Secretary Dashboard'),
           bottom: TabBar(
             tabs: [
               Tab(
