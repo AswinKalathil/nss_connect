@@ -8,6 +8,7 @@ import 'models/dataModels.dart';
 import 'register.dart';
 import 'otpDialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:nss_connect/widgetStyles.dart';
 
 class credCard extends StatefulWidget {
   const credCard({super.key});
@@ -205,51 +206,14 @@ class _credCardState extends State<credCard> {
               ),
             ),
           ),
-          Container(
-            alignment: AlignmentDirectional.topStart,
-            padding: EdgeInsets.only(bottom: 10, left: 30, top: 10),
-            child: Text(
-              'Password',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Colors.grey.shade600,
-              ),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              border: Border.all(
-                color:
-                    Colors.grey.withOpacity(.3), // Change the border color here
-              ),
-            ),
-            width: MediaQuery.of(context).size.width * 0.8,
-            child: TextField(
-              controller: _passwordController,
-              onSubmitted: (_) {
+          PassInputBox(
+            title: "Password",
+              placeholder: "Enter new Password",
+              textEditingController: _passwordController,
+              submitFunction: () {
                 _submitData();
-              },
-              textInputAction: TextInputAction.next,
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-              style: TextStyle(),
-              cursorColor: Colors.black,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                contentPadding: EdgeInsets.only(left: 10),
-                hintText: 'Enter your password',
-                hintStyle: TextStyle(
-                  color: Colors.black.withOpacity(0.4),
-                ),
-              ),
-            ),
+              }
           ),
-
           SizedBox(
             height: 15,
           ),

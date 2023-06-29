@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/pageTrasitions.dart';
+import 'package:nss_connect/poDashboard.dart';
 import 'widgetStyles.dart';
 
 class ConfirmData extends StatefulWidget {
@@ -201,7 +203,10 @@ class _ConfirmCardState extends State<ConfirmCard> {
                 height: 20,
               ),
 
-              LongButton(buttonText: 'SignUp', buttonAction: () {})
+              LongButton(buttonText: 'SignUp', buttonAction: () {
+                FocusScope.of(context).requestFocus(FocusNode());
+                  nextPagePush(context, PoDashboardPage());
+              })
             ]),
       ),
     );

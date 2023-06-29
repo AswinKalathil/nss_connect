@@ -7,6 +7,7 @@ void nextPageReplace(BuildContext ctx, Widget pageTwo) {
     ctx,
     CupertinoPageRoute(
       builder: (_) => pageTwo,
+      fullscreenDialog: true,
     ),
   );
 }
@@ -16,7 +17,6 @@ void nextPagePush(BuildContext ctx, Widget pageTwo) {
     ctx,
     CupertinoPageRoute(
       builder: (_) => pageTwo,
-      fullscreenDialog: true,
     ),
   );
 }
