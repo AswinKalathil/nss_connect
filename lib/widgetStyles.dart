@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/colors.dart';
 
 class LongButton extends StatelessWidget {
   final String buttonText;
@@ -247,6 +248,7 @@ class _PassInputBoxState extends State<PassInputBox> {
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                     icon: Icon(
+                      color: _obscureText ? primaryColor : Colors.grey,
                       _obscureText ? Icons.visibility : Icons.visibility_off,
                     ),
                     onPressed: _toggle),
