@@ -99,3 +99,154 @@ class CardShapeX extends ShapeBorder {
   @override
   ShapeBorder scale(double t) => this;
 }
+
+class TitledInputBox extends StatelessWidget {
+  const TitledInputBox(
+      {super.key,
+      required this.title,
+      required this.placeholder,
+      required this.textEditingController,
+      required this.submitFunction});
+  final String title;
+  final String placeholder;
+  final TextEditingController textEditingController;
+  final VoidCallback submitFunction;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(5),
+      width: MediaQuery.of(context).size.width * .8,
+      // color: Colors.amber,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          //Title------------
+          Container(
+            // color: Colors.blue,
+            alignment: AlignmentDirectional.topStart,
+            padding: EdgeInsets.only(
+              bottom: 10,
+            ),
+            child: Text(
+              title,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey.shade600,
+              ),
+            ),
+          ),
+          //input ----------------
+          Container(
+            decoration: BoxDecoration(
+              // color: Colors.blueGrey,
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              border: Border.all(
+                color: Colors.grey
+                    .withOpacity(0.3), // Change the border color here
+              ),
+            ),
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: TextField(
+              controller: textEditingController,
+              onSubmitted: (_) {
+                submitFunction();
+              },
+              textInputAction: TextInputAction.next,
+              style: TextStyle(),
+              cursorColor: Colors.black,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                contentPadding: EdgeInsets.only(left: 10),
+                hintText: placeholder,
+                hintStyle: TextStyle(
+                  color: Colors.black.withOpacity(0.4),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class PassInputBox extends StatelessWidget {
+  const PassInputBox(
+      {super.key,
+      required this.title,
+      required this.placeholder,
+      required this.textEditingController,
+      required this.submitFunction});
+  final String title;
+  final String placeholder;
+  final TextEditingController textEditingController;
+  final VoidCallback submitFunction;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(5),
+      width: MediaQuery.of(context).size.width * .8,
+      // color: Colors.amber,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          //Title------------
+          Container(
+            // color: Colors.blue,
+            alignment: AlignmentDirectional.topStart,
+            padding: EdgeInsets.only(
+              bottom: 10,
+            ),
+            child: Text(
+              title,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.grey.shade600,
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+              border: Border.all(
+                color:
+                    Colors.grey.withOpacity(.3), // Change the border color here
+              ),
+            ),
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: TextField(
+              controller: textEditingController,
+              onSubmitted: (_) {
+                submitFunction();
+              },
+              textInputAction: TextInputAction.next,
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
+              style: TextStyle(),
+              cursorColor: Colors.black,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                contentPadding: EdgeInsets.only(left: 10),
+                hintText: placeholder,
+                hintStyle: TextStyle(
+                  color: Colors.black.withOpacity(0.4),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

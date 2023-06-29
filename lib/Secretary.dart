@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nss_connect/AddVolunteer.dart';
+import 'package:nss_connect/NewVol.dart';
 import 'package:nss_connect/Sec_Pages/SeCert.dart';
 import 'package:nss_connect/Sec_Pages/SecEvent.dart';
 import 'package:nss_connect/Sec_Pages/SecHome.dart';
+import 'package:nss_connect/pageTrasitions.dart';
 import 'colors.dart';
 
 class SecretaryDashboard extends StatefulWidget {
@@ -17,12 +18,9 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      
       length: 3,
       child: Scaffold(
-        
         appBar: AppBar(
-        
           title: Text('secretary Dashboard'),
           bottom: TabBar(
             tabs: [
@@ -40,9 +38,13 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
               ),
             ],
           ),
-          actions: [IconButton(onPressed: () {
-            Navigator.pushNamed(context,AddVolunteer.id);
-          }, icon: Icon(person_add))],
+          actions: [
+            IconButton(
+                onPressed: () {
+                  nextPagePush(context, NewVol());
+                },
+                icon: Icon(person_add))
+          ],
         ),
         body: TabBarView(children: [
           SecHome(),

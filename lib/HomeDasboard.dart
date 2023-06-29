@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:nss_connect/Secretary.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
@@ -245,7 +246,7 @@ class HeaderLogo extends StatelessWidget {
                 )
               ]),
               child: GestureDetector(
-                onTap: () => nextPagePush(context, VolunteerDashboardPage()),
+                onTap: () => nextPagePush(context, SecretaryDashboard()),
                 onDoubleTap: () => nextPagePush(context, PoDashboardPage()),
 
                 // onDoubleTap: () => nextPagePush(context, SlidingCards()),
