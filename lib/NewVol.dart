@@ -124,7 +124,9 @@ class _AddNewBodyState extends State<AddNewBody> {
               title: "Password",
               placeholder: "Enter new Password",
               textEditingController: passController,
-              submitFunction:(){ widget.onNextPressed();}
+              submitFunction: () {
+                widget.onNextPressed();
+              })
         ],
       ),
     );
