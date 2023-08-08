@@ -75,8 +75,7 @@ class _EventScreenState extends State<EventScreen> {
       eventTitle: eventName,
     ));
 
-    print("==================${index}");
-    Navigator.pop(context,"refresh");
+    Navigator.pop(context, "refresh");
     // showDialog(
     //   context: context,
     //   builder: (context) {
@@ -180,7 +179,6 @@ class _EventScreenState extends State<EventScreen> {
                   child: Text('Flagship'),
                 ),
               ],
-
             ),
             SizedBox(height: 16.0),
             TextField(

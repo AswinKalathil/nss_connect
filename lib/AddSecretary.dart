@@ -106,7 +106,11 @@ class _DataCardState extends State<DataCard> {
             ),
             LongButton(
                 buttonText: 'Register',
+
+                
                 buttonAction: () {
+
+                  
                   if (!_validateInputs()) {
                     showDialog(
                       context: context,

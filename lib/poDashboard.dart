@@ -4,6 +4,7 @@ import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/widgetStyles.dart';
 
 import 'colors.dart';
+import 'models/events.dart';
 
 class PoDashboardPage extends StatefulWidget {
   static const String id = 'poDashboard';
@@ -16,22 +17,20 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    double displaywidth = MediaQuery
-        .of(context)
-        .size
-        .width * 0.9;
-    double height100 = MediaQuery
-        .of(context)
-        .size
-        .height;
+    double displaywidth = MediaQuery.of(context).size.width * 0.9;
+    double height100 = MediaQuery.of(context).size.height;
     PageController _controller = PageController();
     return Scaffold(
       appBar: AppBar(
         title: Text('PO Dashboard'),
-        actions: [IconButton(onPressed: () {
-          // nextPagePush(context,AddVolunteer());
-          Navigator.pushNamed(context,AddVolunteer.id);
-        }, icon: Icon(person_add))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                // nextPagePush(context,AddVolunteer());
+                Navigator.pushNamed(context, AddVolunteer.id);
+              },
+              icon: Icon(person_add))
+        ],
       ),
       body: poDashbody(
         controller: _controller,
@@ -78,13 +77,12 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
     );
   }
 }
-  
 
-  class poDashbody extends StatelessWidget {
+class poDashbody extends StatelessWidget {
   const poDashbody({
-  super.key,
-  required this.height100,
-  required PageController controller,
+    super.key,
+    required this.height100,
+    required PageController controller,
   }) : _controller = controller;
 
   final PageController _controller;
@@ -92,20 +90,18 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
   final double height100;
   @override
   Widget build(BuildContext context) {
-  return PageView(
-  scrollDirection: Axis.vertical,
-  controller: _controller,
-  children: [
-    EventSection(
-      height100: height100,
-    ),
-    POrequestPage(
-
-    ),
-  ],
-  );
+    return PageView(
+      scrollDirection: Axis.vertical,
+      controller: _controller,
+      children: [
+        EventSection(
+          height100: height100,
+        ),
+        POrequestPage(),
+      ],
+    );
   }
-  }
+}
 
 class EventSection extends StatelessWidget {
   const EventSection({
@@ -125,7 +121,7 @@ class EventSection extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.all(10),
-            height: height100 *.5 ,
+            height: height100 * .5,
             child: GridPanels(),
           ),
         ],
@@ -133,6 +129,7 @@ class EventSection extends StatelessWidget {
     );
   }
 }
+
 class Events {
   final String title;
   final String status;
@@ -140,60 +137,91 @@ class Events {
 
   Events({required this.title, required this.status, required this.Dates});
 }
+
+int index = 0;
+
 class GridPanels extends StatelessWidget {
-  // static const List<Color> lightColors = [
-  //   Color(0xFFF5F5DC), // Beige
-  //   Color(0xFFFAF0E6), // Linen
-  //   Color(0xFFFFF8DC), // Cornsilk
-  //   Color(0xFFFFFAF0), // Floral White
-  //   Color(0xFFFDF5E6), // Old Lace
-  //   Color(0xFFFFEFD5), // Papaya Whip
-  // ];
+  static const List<Color> lightColors = [
+    Color.fromARGB(255, 255, 255, 202), // Beige
+    Color.fromARGB(255, 255, 224, 192), // Linen
+    Color.fromARGB(255, 197, 255, 225), // Cornsilk
+    Color.fromARGB(255, 228, 255, 184), // Floral White
+    Color.fromARGB(255, 165, 203, 255), // Old Lace
+    Color.fromARGB(255, 255, 221, 233), // Papaya Whip
+  ];
   // final List<Events> PanelTitle = [
   //   Events(title: 'Dakshatha 6.O', status: 'Blood Donation Camp',Dates: '26-6-23 '),
   //   Events(title: 'KTUCare Annual Meet', status: 'Annual Volunteer Meet',Dates: '06-7-23 '),
   //   Events(title: 'Project Prithvi', status: 'Clean CET Initiative',Dates: '12-7-23 '),
   //
   // ];
-   List<String> PanelTitle = [
+  List<String> PanelTitle = [
     'Dakshatha 6.O',
     'KTUCare Annual Meet',
     'Project Prithvi',
     'Bhaala Bhavan',
-
   ];
 
   @override
   Widget build(BuildContext context) {
     return GridView.count(
       crossAxisCount: 2,
-      children: List.generate(4, (index) {
-        return RotationTransition(
-          turns: AlwaysStoppedAnimation(-5 / 360),
-          child: Card(
-            shape: CardShapeX(radius: 20),
-            elevation: 2,
-            // color: lightColors[index],
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: RotationTransition(
-                turns: AlwaysStoppedAnimation(5 / 360),
-                child: Stack(children: [
-                  Text(
-                    PanelTitle[index],
-                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+      children: eventList.map((e) {
+        return Builder(
+          builder: (BuildContext context) {
+            return RotationTransition(
+              turns: AlwaysStoppedAnimation(-5 / 360),
+              child: Card(
+                shape: CardShapeX(radius: 20),
+                elevation: 2,
+                color: lightColors[index++ % 5],
+                child: Padding(
+                  padding: EdgeInsets.all(10),
+                  child: RotationTransition(
+                    turns: AlwaysStoppedAnimation(5 / 360),
+                    child: Stack(
+                      children: [
+                        Text(
+                          e.eventTitle,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
                   ),
-
-                ]),
+                ),
               ),
-            ),
-          ),
+            );
+          },
         );
-      }),
+      }).toList(),
+
+      // List.generate(4, (index) {
+      //   return RotationTransition(
+      //     turns: AlwaysStoppedAnimation(-5 / 360),
+      //     child: Card(
+      //       shape: CardShapeX(radius: 20),
+      //       elevation: 2,
+      //       // color: lightColors[index],
+      //       child: Padding(
+      //         padding: EdgeInsets.all(10),
+      //         child: RotationTransition(
+      //           turns: AlwaysStoppedAnimation(5 / 360),
+      //           child: Stack(children: [
+      //             Text(
+      //               PanelTitle[index],
+      //               style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+      //             ),
+
+      //           ]),
+      //         ),
+      //       ),
+      //     ),
+      //   );
+      // }),
     );
   }
 }
-
 
 class Certificate {
   final String title;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nss_connect/NewVol.dart';
+import 'package:nss_connect/Sec_Pages/NewVol.dart';
 import 'package:nss_connect/Sec_Pages/SeCert.dart';
 import 'package:nss_connect/Sec_Pages/SecEvent.dart';
 import 'package:nss_connect/Sec_Pages/SecHome.dart';
