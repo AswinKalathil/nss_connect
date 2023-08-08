@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nss_connect/AddVolunteer.dart';
+import 'package:nss_connect/AddSecretary.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/widgetStyles.dart';
 

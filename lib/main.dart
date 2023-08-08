@@ -1,5 +1,5 @@
 import 'package:flutter/services.dart';
-import 'package:nss_connect/AddVolunteer.dart';
+import 'package:nss_connect/AddSecretary.dart';
 import 'package:nss_connect/HomeDasboard.dart';
 import 'package:nss_connect/Sec_Pages/SecHome.dart';
 import 'package:nss_connect/login2.dart';
