@@ -93,7 +93,7 @@ class _DataCardState extends State<DataCard> {
                   placeholder: "Auto Generated",
                   textEditingController: _setPassController,
                   submitFunction: () =>
-                      {_setPassController.text = generateRandomPassword(6)}),
+                      {}),
               SizedBox(
                 height: 15,
               ),
@@ -103,9 +103,7 @@ class _DataCardState extends State<DataCard> {
               LongButton(
                   buttonText: 'Register',
                   buttonAction: () {
-                    _setPassController.text = generateRandomPassword(6);
-
-                    Future.delayed(Duration(seconds: 1), () {
+                    Future.delayed(Duration(milliseconds: 200), () {
                       showDialog(
                         context: context,
                         builder: (context) {
@@ -114,6 +112,9 @@ class _DataCardState extends State<DataCard> {
                             actions: [
                               TextButton(
                                 onPressed: () {
+                                  _emailController = TextEditingController();
+                                  _nameController = TextEditingController();
+                                  _setPassController = TextEditingController();
                                   Navigator.of(context).pop();
                                 },
                                 child: Text('OK'),
@@ -122,15 +123,11 @@ class _DataCardState extends State<DataCard> {
                           );
                         },
                       );
-                      // _showPopup(context, 'Hello, this is a custom message!');
-                      _emailController = TextEditingController();
-                      _nameController = TextEditingController();
-                      _setPassController = TextEditingController();
                     });
+                    _setPassController.text = generateRandomPassword(6);
                   })
             ]),
       ),
     );
   }
 }
-
