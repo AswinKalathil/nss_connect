@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/Blood_portal/request.dart';
 import 'package:nss_connect/colors.dart';
+import '../pageTrasitions.dart';
 
 class blood_home extends StatelessWidget {
   const blood_home({super.key});
@@ -25,10 +27,8 @@ class blood_home extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10), // Adjust the border radius
               ),
               color: Color(0xFFBDE0FE),
-              child: InkWell(
-                onTap: () {
-                  // Action for Card 1
-                },
+              // child: GestureDetector(
+              //   onTap: () => nextPagePush(context, request()),
                 child: Container(
                   padding: const EdgeInsets.all(20),
                   width: 200,
