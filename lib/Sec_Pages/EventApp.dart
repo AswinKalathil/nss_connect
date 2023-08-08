@@ -109,19 +109,23 @@ class _EventScreenState extends State<EventScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            TitledInputBox(
-              title: "Event Name",
-              placeholder: "",
-              textEditingController: nameController,
-              submitFunction: widget.onNextPressed,
+            TextField(
+              decoration: InputDecoration(labelText: 'Event Name'),
+              onChanged: (value) {
+                setState(() {
+                  eventName = value;
+                });
+              },
             ),
 
             SizedBox(height: 16.0),
-            TitledInputBox(
-              title: "Event Description",
-              placeholder: "",
-              textEditingController: nameController,
-              submitFunction: widget.onNextPressed,
+            TextField(
+              decoration: InputDecoration(labelText: 'Event Description'),
+              onChanged: (value) {
+                setState(() {
+                  eventDescription = value;
+                });
+              },
             ),
 
             SizedBox(height: 16.0),
