@@ -227,7 +227,7 @@ class _DataCardState extends State<DataCard> {
                 submitFunction: () => {}),
             TitledInputBox(
                 title: "Email",
-                placeholder: "Enter Username",
+                placeholder: "Enter Email",
                 textEditingController: _emailController,
                 submitFunction: () => {}),
             PassInputBox(

@@ -12,13 +12,13 @@ class AttendenceSection extends StatefulWidget {
 }
 
 class _AttendenceSectionState extends State<AttendenceSection> {
-  DateTime selectedDate = DateTime.now();
+  DateTime selectedDate = DateTime.now().subtract(Duration(days: 14));
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate,
-      firstDate: DateTime.now(),
-      lastDate: DateTime(2101),
+      initialDate: DateTime.now(),
+      firstDate: selectedDate,
+      lastDate: DateTime.now(),
     );
     if (picked != null && picked != selectedDate)
       setState(() {
