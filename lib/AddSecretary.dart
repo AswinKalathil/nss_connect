@@ -59,61 +59,75 @@ class _DataCardState extends State<DataCard> {
       //   shape: CardShape(padding: 50),
       //   color: Colors.white,
       //   elevation: 10,
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Text(
-                  'Register Secretary',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'Nexa',
-                  ),
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Text(
+                'Register Secretary',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 30,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Nexa',
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
-              TitledInputBox(
-                  title: "Username",
-                  placeholder: "Enter Username",
-                  textEditingController: _nameController,
-                  submitFunction: () => {}),
-              TitledInputBox(
-                  title: "Email",
-                  placeholder: "Enter Username",
-                  textEditingController: _emailController,
-                  submitFunction: () => {}),
-              PassInputBox(
-                  title: "Set Password",
-                  placeholder: "Auto Generated",
-                  textEditingController: _setPassController,
-                  submitFunction: () =>
-                      {_setPassController.text = generateRandomPassword(6)}),
-              SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              LongButton(
-                  buttonText: 'Register',
-                  buttonAction: () {
-                    _setPassController.text = generateRandomPassword(6);
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            TitledInputBox(
+                title: "Username",
+                placeholder: "Enter Username",
+                textEditingController: _nameController,
+                submitFunction: () => {}),
+            TitledInputBox(
+                title: "Email",
+                placeholder: "Enter Username",
+                textEditingController: _emailController,
+                submitFunction: () => {}),
+            PassInputBox(
+                title: "Set Password",
+                placeholder: "Auto Generated",
+                textEditingController: _setPassController,
+                submitFunction: () =>
+                    {_setPassController.text = generateRandomPassword(6)}),
+            SizedBox(
+              height: 15,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            LongButton(
+                buttonText: 'Register',
+                buttonAction: () {
+                  _setPassController.text = generateRandomPassword(6);
 
-                    Future.delayed(Duration(seconds: 2), () {
-                      // _showPopup(context, 'Hello, this is a custom message!');
-                      _emailController = TextEditingController();
-                      _nameController = TextEditingController();
-                      _setPassController = TextEditingController();
-                    });
-                  })
-            ]),
-
+                  Future.delayed(Duration(milliseconds: 500), () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Secratary Added'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('OK'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                    _emailController = TextEditingController();
+                    _nameController = TextEditingController();
+                    _setPassController = TextEditingController();
+                  });
+                })
+          ]),
     );
   }
 }
