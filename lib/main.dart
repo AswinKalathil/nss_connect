@@ -7,6 +7,7 @@ import 'package:nss_connect/poDashboard.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/register.dart';
+import 'Sec_Pages/EventApp.dart';
 import 'login.dart';
 import 'createPoAccount.dart';
 import 'welcomeTour.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
         Login2.id: (ctx) => Login2(),
         SecHome.id: (ctx) => SecHome(),
         AddVolunteer.id: (ctx) =>AddVolunteer(),
+        EventApp.id: (ctx) =>EventApp(),
       },
       home: WelcomeTour(),
     );

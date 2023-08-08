@@ -22,7 +22,6 @@ class _NewVolState extends State<NewVol> {
     double height100 = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
         MediaQuery.of(context).padding.bottom;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('New Volunteer'),

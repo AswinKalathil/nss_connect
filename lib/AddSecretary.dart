@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/backEnd/supporters.dart';
-import 'package:nss_connect/backEnd/popup.dart';
 
 import 'package:nss_connect/widgetStyles.dart';
 
@@ -107,7 +106,7 @@ class _DataCardState extends State<DataCard> {
                     _setPassController.text = generateRandomPassword(6);
 
                     Future.delayed(Duration(seconds: 2), () {
-                      _showPopup(context, 'Hello, this is a custom message!');
+                      // _showPopup(context, 'Hello, this is a custom message!');
                       _emailController = TextEditingController();
                       _nameController = TextEditingController();
                       _setPassController = TextEditingController();
