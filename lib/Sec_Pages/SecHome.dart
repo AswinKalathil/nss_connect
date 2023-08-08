@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nss_connect/Sec_Pages/AttendenceSection.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import '../colors.dart';
 
@@ -85,85 +86,6 @@ class secHomeBody extends StatelessWidget {
           height100: height100,
         ),
         AttendenceSection(),
-      ],
-    );
-  }
-}
-
-class AttendenceSection extends StatefulWidget {
-  @override
-  _AttendenceSectionState createState() => _AttendenceSectionState();
-}
-
-class _AttendenceSectionState extends State<AttendenceSection> {
-  List<String> names = [
-    'John Doe',
-    'Jane Smith',
-    'Michael Johnson',
-    'Emily Davis',
-    'Robert Brown',
-    'John Doe',
-    'Jane Smith',
-    'Michael Johnson',
-    'Emily Davis',
-    'Robert Brown',
-  ];
-  List<bool> attendance = [];
-
-  @override
-  void initState() {
-    super.initState();
-    // Initialize the attendance list with false values
-    attendance = List<bool>.generate(names.length, (index) => false);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.all(16),
-          child: Text(
-            'Mark Attendance',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: names.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(names[index]),
-                trailing: Checkbox(
-                  value: attendance[index],
-                  onChanged: (value) {
-                    setState(() {
-                      attendance[index] = value!;
-                    });
-                  },
-                ),
-              );
-            },
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.all(16),
-          child: ElevatedButton(
-            onPressed: () {
-              // Process the attendance data
-              List<String> presentStudents = [];
-              for (int i = 0; i < names.length; i++) {
-                if (attendance[i]) {
-                  presentStudents.add(names[i]);
-                }
-              }
-              // Print the list of students present
-              print('Present Students: $presentStudents');
-            },
-            child: Text('Submit'),
-          ),
-        ),
       ],
     );
   }
