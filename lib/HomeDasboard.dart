@@ -10,6 +10,7 @@ import 'package:nss_connect/poDashboard.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/models/events.dart';
+import 'package:nss_connect/Blood_portal/blood_home.dart';
 
 // import 'Secretary.dart';
 
@@ -247,7 +248,7 @@ class HeaderLogo extends StatelessWidget {
               ]),
               child: GestureDetector(
                 onTap: () => nextPagePush(context, SecretaryDashboard()),
-                onDoubleTap: () => nextPagePush(context, PoDashboardPage()),
+                onDoubleTap: () => nextPagePush(context, blood_home()),
 
                 // onDoubleTap: () => nextPagePush(context, SlidingCards()),
                 child: Image(
