@@ -77,9 +77,9 @@ class _EventScreenState extends State<EventScreen> {
     eventList.add(eventItem(
       eventDate: DateFormat('yyyy-MM-dd').format(
           selectedDate), // Set your desired date here (year, month, day)
-      eventDescription: eventDescription,
+      eventDescription: 'State Annual NSS Meet',
       eventImagepath: 'assets/images/1.png',
-      eventTitle: eventName,
+      eventTitle: 'Annual Meet',
     ));
   }
 
@@ -127,7 +127,6 @@ class _EventScreenState extends State<EventScreen> {
                 });
               },
             ),
-
             SizedBox(height: 16.0),
             TextField(
               decoration: InputDecoration(labelText: 'Event Description'),
@@ -137,9 +136,6 @@ class _EventScreenState extends State<EventScreen> {
                 });
               },
             ),
-            // SizedBox(height: 16.0),
-            // ImageInputBox(),
-
             SizedBox(height: 16.0),
             DropdownButtonFormField<String>(
               value: widget.selectedOption,
