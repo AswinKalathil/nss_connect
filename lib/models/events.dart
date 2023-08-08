@@ -40,3 +40,32 @@ List<eventItem> eventList = [
     eventTitle: 'Dakshatha',
   ),
 ];
+
+
+
+// void kk(){
+
+// eventList.map((e) {
+
+// return Builder(
+//           builder: (BuildContext context) {
+//             return
+//   RotationTransition(
+//           turns: AlwaysStoppedAnimation(-5 / 360),
+//           child: Card(
+//             shape: CardShapeX(radius: 20),
+//             elevation: 2,
+//             // color: lightColors[index],
+//             child: Padding(
+//               padding: EdgeInsets.all(10),
+//               child: RotationTransition(
+//                 turns: AlwaysStoppedAnimation(5 / 360),
+//                 child: Stack(children: [
+//                   Text(
+//                    e.eventTitle,
+//                     style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
+//                   ),
+
+//                 ]),
+//               )}).toList();});
+// }

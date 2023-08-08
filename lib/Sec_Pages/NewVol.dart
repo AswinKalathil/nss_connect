@@ -145,6 +145,8 @@ import 'package:nss_connect/backEnd/supporters.dart';
 
 import 'package:nss_connect/widgetStyles.dart';
 
+import '../models/dataModels.dart';
+
 class NewVol extends StatefulWidget {
   const NewVol({super.key});
   static const String id = 'NewVol';
@@ -190,6 +192,9 @@ class _DataCardState extends State<DataCard> {
   TextEditingController _emailController = TextEditingController();
 
   TextEditingController _setPassController = TextEditingController();
+  bool _validateInputs() {
+    return _nameController.text.isNotEmpty && _emailController.text.isNotEmpty;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -235,7 +240,7 @@ class _DataCardState extends State<DataCard> {
                 placeholder: "Auto Generated",
                 textEditingController: _setPassController,
                 submitFunction: () =>
-                {_setPassController.text = generateRandomPassword(6)}),
+                    {_setPassController.text = generateRandomPassword(6)}),
             SizedBox(
               height: 15,
             ),
@@ -245,7 +250,36 @@ class _DataCardState extends State<DataCard> {
             LongButton(
                 buttonText: 'Register',
                 buttonAction: () {
-                  _setPassController.text = generateRandomPassword(6);
+                  if (!_validateInputs()) {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text("Fill Username and Password"),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('OK'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                    return;
+                  }
+
+                  if (!_setPassController.text.isNotEmpty)
+                    _setPassController.text = generateRandomPassword(6);
+
+                  VOLUserData.add(
+                      User(_nameController.text, _setPassController.text));
+                  print(
+                      "==============================================\nNew Volunteer Added Username: ${_nameController.text} \nPass: ${_setPassController.text}\n==============================================\n");
+
+                  if (!_setPassController.text.isNotEmpty)
+                    _setPassController.text = generateRandomPassword(6);
 
                   Future.delayed(Duration(milliseconds: 500), () {
                     showDialog(
@@ -273,4 +307,3 @@ class _DataCardState extends State<DataCard> {
     );
   }
 }
-

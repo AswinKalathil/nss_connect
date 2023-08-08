@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import '../colors.dart';
+import '../models/dataModels.dart';
 
 class AttendenceSection extends StatefulWidget {
   @override
@@ -25,6 +26,7 @@ class _AttendenceSectionState extends State<AttendenceSection> {
         selectedDate = picked;
       });
   }
+
   List<String> names = [
     'John Doe',
     'Jane Smith',
@@ -38,6 +40,17 @@ class _AttendenceSectionState extends State<AttendenceSection> {
     'Robert Brown',
   ];
   List<bool> attendance = [];
+  bool Attend = false;
+
+  bool? getAttendanceStatus(int index) {
+    return attendance[index];
+  }
+
+  void setAttendanceStatus(int index, bool? value) {
+    setState(() {
+      attendance[index] = value as bool;
+    });
+  }
 
   @override
   void initState() {
@@ -102,16 +115,17 @@ class _AttendenceSectionState extends State<AttendenceSection> {
         // ),
         Expanded(
           child: ListView.builder(
-            itemCount: names.length,
-            itemBuilder: (context, index) {
+            itemCount: VOLUserData.length,
+            itemBuilder: (BuildContext context, int index) {
+              User user = VOLUserData[index];
+              bool? isAttending = getAttendanceStatus(index);
+
               return ListTile(
-                title: Text(names[index]),
+                title: Text(user.userName),
                 trailing: Checkbox(
-                  value: attendance[index],
-                  onChanged: (value) {
-                    setState(() {
-                      attendance[index] = value!;
-                    });
+                  value: isAttending,
+                  onChanged: (bool? value) {
+                    setAttendanceStatus(index, value);
                   },
                 ),
               );
