@@ -24,6 +24,7 @@ class _credCardState extends State<credCard> {
   String? poString = 'poDashboard';
   String? volString = 'volunteerDashboard';
   String? secString = 'secretaryDashboard';
+  List<User> loginData = List.empty();
   Widget? nextRoute;
   void _submitData() {
     final enteredUsername = _userNameController.text;
@@ -32,9 +33,16 @@ class _credCardState extends State<credCard> {
       return;
     }
     print("Username: $enteredUsername\nPassword: $enteredPassword");
+    if (_selectedOption == volString) {
+      loginData = VOLUserData;
+    } else if (_selectedOption == poString) {
+      loginData = POUserData;
+    } else if (_selectedOption == secString) {
+      loginData = SECUserData;
+    }
 
     bool isCredentialsValid = false;
-    for (User user in UserData) {
+    for (User user in loginData) {
       print("Database------\n");
       print(user.userName + " " + user.password);
       if (user.userName == enteredUsername &&
@@ -207,13 +215,12 @@ class _credCardState extends State<credCard> {
             ),
           ),
           PassInputBox(
-            title: "Password",
+              title: "Password",
               placeholder: "Enter new Password",
               textEditingController: _passwordController,
               submitFunction: () {
                 _submitData();
-              }
-          ),
+              }),
           SizedBox(
             height: 15,
           ),
