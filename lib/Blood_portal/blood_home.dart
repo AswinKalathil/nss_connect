@@ -40,7 +40,6 @@ class blood_home extends StatelessWidget {
                 ),
               ),
             ),
-            ),
             SizedBox(height: 20),
             SizedBox(
                 width: MediaQuery.of(context).size.width*0.75, // Set width to screen width

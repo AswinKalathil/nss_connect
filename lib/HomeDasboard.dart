@@ -195,7 +195,14 @@ class EventCarosel extends StatelessWidget {
                                     fontFamily: 'Source Code Pro',
                                     fontWeight: FontWeight.w400,
                                     fontSize: width100 * 0.0375),
-                              )
+                              ),
+                              Text(
+                                '${eventObject.eventDate}',
+                                style: TextStyle(
+                                    fontFamily: 'Source Code Pro',
+                                    fontSize: width100 * 0.0375,
+                                    fontWeight: FontWeight.w400),
+                              ),
                             ],
                           ),
                         ),
