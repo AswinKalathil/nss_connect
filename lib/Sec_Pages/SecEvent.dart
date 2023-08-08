@@ -47,6 +47,7 @@ class secEventBody extends StatelessWidget {
           builder: (BuildContext context) {
             return Container(
               width: width100 * .9,
+              height: height100 * 0.2, //height adjust
               child: Card(
                 elevation: 5,
                 shape: CardShape(),
@@ -103,7 +104,7 @@ class secEventBody extends StatelessWidget {
             );
           },
         );
-      }).toList().,
+      }).toList(),
     );
   }
 }
