@@ -255,7 +255,7 @@ class HeaderLogo extends StatelessWidget {
               ]),
               child: GestureDetector(
                 onTap: () => nextPagePush(context, SecretaryDashboard()),
-                onDoubleTap: () => nextPagePush(context, blood_home()),
+                onDoubleTap: () => nextPagePush(context, PoDashboardPage()),
 
                 // onDoubleTap: () => nextPagePush(context, SlidingCards()),
                 child: Image(

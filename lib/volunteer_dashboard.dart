@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:nss_connect/vol_pages/volHome.dart';
 import 'package:nss_connect/vol_pages/volDuty.dart';
+import 'package:nss_connect/pageTrasitions.dart';
+
+import 'Blood_portal/blood_home.dart';
 
 class VolunteerDashboardPage extends StatefulWidget {
   static const String id = 'volunteerDashboard';
@@ -29,14 +31,20 @@ class _VolunteerDashboardPageState extends State<VolunteerDashboardPage> {
               ),
             ],
           ),
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.bloodtype))],
+          actions:[IconButton(
+                onPressed: () {
+                  nextPagePush(context, blood_home());
+                },
+        icon: Icon(Icons.bloodtype))
+        ],
         ),
         body: TabBarView(children: [
           VolHome(
             AttendencePercent: .80,
           ),
           VolDuty(),
-        ]),
+        ]
+        ),
       ),
     );
   }
