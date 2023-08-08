@@ -53,6 +53,8 @@ class _EventScreenState extends State<EventScreen> {
   Duration eventDuration = Duration(hours: 1);
 
   void addEvent() {
+  int index=0;
+
     // Implement your logic to add the event
     // For now, let's print the event details
     print('Event Name: $eventName');
@@ -63,14 +65,17 @@ class _EventScreenState extends State<EventScreen> {
     print('Time: ${selectedTime.format(context)}');
     print('Duration: ${eventDuration.inHours} hours');
 
+    index=participants%3;
+    
     eventList.add(eventItem(
       eventDate: DateFormat('yyyy-MM-dd').format(
           selectedDate), // Set your desired date here (year, month, day)
       eventDescription: eventDescription,
-      eventImagepath: 'assets/images/1.png',
+      eventImagepath: Def_pics[index],
       eventTitle: eventName,
     ));
 
+    print("==================${index}");
     Navigator.pop(context,"refresh");
     // showDialog(
     //   context: context,

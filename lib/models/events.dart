@@ -40,3 +40,8 @@ List<eventItem> eventList = [
     eventTitle: 'Dakshatha',
   ),
 ];
+
+
+List<String> Def_pics = [
+  "assets/images/def_1.jpg","assets/images/def_2.jpg","assets/images/def_3.jpg",
+];
