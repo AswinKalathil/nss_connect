@@ -30,18 +30,7 @@ class _VolDutyState extends State<VolDuty> {
                 shape: CardShape(),
                 child: Row(
                   children: [
-                    // Container(
-                    //   width: width100 * 0.3,
-                    //   decoration: BoxDecoration(
-                    //     image: DecorationImage(
-                    //       fit: BoxFit.fill,
-                    //       image: AssetImage(dutyObject.eventImagepath),
-                    //     ),
-                    //     borderRadius: BorderRadius.only(
-                    //         topLeft: Radius.circular(5),
-                    //         bottomLeft: Radius.circular(5)),
-                    //   ),
-                    // ),
+
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.all(20),
