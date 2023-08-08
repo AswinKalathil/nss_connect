@@ -19,11 +19,11 @@ class _AddVolunteerState extends State<AddVolunteer> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Container(
-          decoration: BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage('assets/images/doodleBack.png'),
-            fit: BoxFit.cover,
-          )),
+          // decoration: BoxDecoration(
+          //     image: DecorationImage(
+          //   image: AssetImage('assets/images/doodleBack.png'),
+          //   fit: BoxFit.cover,
+          // )),
           child: Column(children: [
             SizedBox(
               height: MediaQuery.of(context).size.height * .15,
@@ -55,10 +55,10 @@ class _DataCardState extends State<DataCard> {
       padding: EdgeInsets.all(10),
       // height: MediaQuery.of(context).size.height * 0.65,
       width: MediaQuery.of(context).size.width,
-      child: Card(
-        shape: CardShape(padding: 50),
-        color: Colors.white,
-        elevation: 10,
+      // child: Card(
+      //   shape: CardShape(padding: 50),
+      //   color: Colors.white,
+      //   elevation: 10,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,7 +113,7 @@ class _DataCardState extends State<DataCard> {
                     });
                   })
             ]),
-      ),
+
     );
   }
 }

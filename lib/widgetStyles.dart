@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/colors.dart';
-
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 class LongButton extends StatelessWidget {
   final String buttonText;
   final Function buttonAction;
@@ -100,7 +101,52 @@ class CardShapeX extends ShapeBorder {
   @override
   ShapeBorder scale(double t) => this;
 }
+class ImageInputBox extends StatefulWidget {
+  @override
+  _ImageInputBoxState createState() => _ImageInputBoxState();
+}
 
+class _ImageInputBoxState extends State<ImageInputBox> {
+  late File _image;
+
+  Future _getImage() async {
+    final imagePicker = ImagePicker();
+    final pickedImage = await imagePicker.getImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: _getImage,
+          child: Container(
+            width: 150,
+            height: 150,
+            decoration: BoxDecoration(
+              border: Border.all(width: 1, color: Colors.grey),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: _image == null
+                ? Icon(Icons.add_a_photo, size: 50, color: Colors.grey)
+                : Image.file(_image, fit: BoxFit.cover),
+          ),
+        ),
+        SizedBox(height: 10),
+        TextButton(
+          onPressed: _getImage,
+          child: Text('Choose Image'),
+        ),
+      ],
+    );
+  }
+}
 class TitledInputBox extends StatelessWidget {
   const TitledInputBox(
       {super.key,

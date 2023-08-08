@@ -7,7 +7,7 @@ import 'package:nss_connect/poDashboard.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/register.dart';
-import 'Sec_Pages/EventApp.dart';
+import 'Sec_Pages/EventCreate.dart';
 import 'login.dart';
 import 'createPoAccount.dart';
 import 'welcomeTour.dart';

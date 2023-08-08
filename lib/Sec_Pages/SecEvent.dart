@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:nss_connect/models/events.dart';
 
+<<<<<<< Updated upstream
 import '../widgetStyles.dart';
 import 'EventApp.dart';
+=======
+import 'EventCreate.dart';
+>>>>>>> Stashed changes
 
 class SecEvent extends StatelessWidget {
   const SecEvent({super.key});

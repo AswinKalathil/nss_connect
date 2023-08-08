@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:intl/intl.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import '../colors.dart';
 
@@ -11,6 +12,19 @@ class AttendenceSection extends StatefulWidget {
 }
 
 class _AttendenceSectionState extends State<AttendenceSection> {
+  DateTime selectedDate = DateTime.now();
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
   List<String> names = [
     'John Doe',
     'Jane Smith',
@@ -44,42 +58,48 @@ class _AttendenceSectionState extends State<AttendenceSection> {
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        Container(
-          alignment: AlignmentDirectional.topStart,
-          padding: EdgeInsets.only(bottom: 10, left: 30),
+        TextButton(
+          onPressed: () => _selectDate(context),
           child: Text(
-            'Date',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.grey.shade600,
-            ),
+            'Select Date: ${DateFormat('dd-MM-yyyy').format(selectedDate)}',
           ),
         ),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(5)),
-            border: Border.all(
-              color: Colors.grey
-                  .withOpacity(0.3), // Change the border color here
-            ),
-          ),
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: TextField(
-            style: TextStyle(),
-            cursorColor: Colors.black,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(8.0),
-              ),
-              contentPadding: EdgeInsets.only(left: 10),
-              hintText: 'Enter Date',
-              hintStyle: TextStyle(
-                color: Colors.black.withOpacity(0.4),
-              ),
-            ),
-          ),
-        ),
+        // Container(
+        //   alignment: AlignmentDirectional.topStart,
+        //   padding: EdgeInsets.only(bottom: 10, left: 30),
+        //   child: Text(
+        //     'Date',
+        //     style: TextStyle(
+        //       fontWeight: FontWeight.bold,
+        //       color: Colors.grey.shade600,
+        //     ),
+        //   ),
+        // ),
+        // Container(
+        //   decoration: BoxDecoration(
+        //     borderRadius: BorderRadius.all(Radius.circular(5)),
+        //     border: Border.all(
+        //       color: Colors.grey
+        //           .withOpacity(0.3), // Change the border color here
+        //     ),
+        //   ),
+        //   width: MediaQuery.of(context).size.width * 0.8,
+        //   child: TextField(
+        //     style: TextStyle(),
+        //     cursorColor: Colors.black,
+        //     decoration: InputDecoration(
+        //       border: OutlineInputBorder(
+        //         borderSide: BorderSide.none,
+        //         borderRadius: BorderRadius.circular(8.0),
+        //       ),
+        //       contentPadding: EdgeInsets.only(left: 10),
+        //       hintText: 'Enter Date',
+        //       hintStyle: TextStyle(
+        //         color: Colors.black.withOpacity(0.4),
+        //       ),
+        //     ),
+        //   ),
+        // ),
         Expanded(
           child: ListView.builder(
             itemCount: names.length,

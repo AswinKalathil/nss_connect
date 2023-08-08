@@ -127,6 +127,8 @@ class _EventScreenState extends State<EventScreen> {
                 });
               },
             ),
+            // SizedBox(height: 16.0),
+            // ImageInputBox(),
 
             SizedBox(height: 16.0),
             DropdownButtonFormField<String>(
