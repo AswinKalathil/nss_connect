@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/backEnd/supporters.dart';
-import 'package:nss_connect/backEnd/popup.dart';
 
 import 'package:nss_connect/widgetStyles.dart';
 
@@ -106,8 +105,24 @@ class _DataCardState extends State<DataCard> {
                   buttonAction: () {
                     _setPassController.text = generateRandomPassword(6);
 
-                    Future.delayed(Duration(seconds: 2), () {
-                      _showPopup(context, 'Hello, this is a custom message!');
+                    Future.delayed(Duration(seconds: 1), () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Secratary Added'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('OK'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      // _showPopup(context, 'Hello, this is a custom message!');
                       _emailController = TextEditingController();
                       _nameController = TextEditingController();
                       _setPassController = TextEditingController();
@@ -119,69 +134,3 @@ class _DataCardState extends State<DataCard> {
   }
 }
 
-//
-//
-// class VolunteerCard extends StatefulWidget {
-//   static const String id = 'VolunteerCard';
-//   @override
-//   _VolunteerCardState createState() => _VolunteerCardState();
-// }
-//
-// class _VolunteerCardState extends State<VolunteerCard> {
-//   TextEditingController _usernameController = TextEditingController();
-//   TextEditingController _emailController = TextEditingController();
-//   TextEditingController _phoneController = TextEditingController();
-//   TextEditingController _passwordController = TextEditingController();
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Padding(
-//         padding: EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             TextField(
-//               controller: _usernameController,
-//               decoration: InputDecoration(
-//                 labelText: 'Username',
-//               ),
-//             ),
-//             TextField(
-//               controller: _emailController,
-//               decoration: InputDecoration(
-//                 labelText: 'Email',
-//               ),
-//             ),
-//             TextField(
-//               controller: _phoneController,
-//               decoration: InputDecoration(
-//                 labelText: 'Phone Number',
-//               ),
-//             ),
-//             TextField(
-//               controller: _passwordController,
-//               decoration: InputDecoration(
-//                 labelText: 'Password',
-//               ),
-//             ),
-//             SizedBox(height: 16.0),
-//             ElevatedButton(
-//               onPressed: () {
-//                 // Perform registration logic here
-//                 String username = _usernameController.text;
-//                 String email = _emailController.text;
-//                 String phone = _phoneController.text;
-//                 String password = _passwordController.text;
-//
-//                 // Validate and process the registration details
-//                 // ...
-//               },
-//               child: Text('Register'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
