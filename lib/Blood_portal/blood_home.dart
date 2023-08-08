@@ -10,6 +10,7 @@ class blood_home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: secondaryColor,
         title: Text('Blood Portal'),
       ),
       body: Align(

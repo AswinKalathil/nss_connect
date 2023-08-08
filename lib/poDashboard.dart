@@ -121,7 +121,7 @@ class EventSection extends StatelessWidget {
         children: [
           Container(
             padding: EdgeInsets.all(10),
-            height: height100 * .5,
+            height: height100 * .7,
             child: GridPanels(),
           ),
         ],
@@ -165,7 +165,7 @@ class GridPanels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      crossAxisCount: 2,
+      crossAxisCount: 4,
       children: eventList.map((e) {
         return Builder(
           builder: (BuildContext context) {
