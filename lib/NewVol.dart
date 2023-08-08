@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nss_connect/AddVolunteer.dart';
+import 'package:nss_connect/AddSecretary.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/widgetStyles.dart';
 
@@ -22,7 +22,6 @@ class _NewVolState extends State<NewVol> {
     double height100 = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
         MediaQuery.of(context).padding.bottom;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('New Volunteer'),
