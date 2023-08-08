@@ -24,27 +24,16 @@ class EventApp extends StatelessWidget {
               secondary: secondaryColor,
             ),
       ),
-      home: EventScreen(
-        height100: height100,
-        onNextPressed: () {
-          // _controller.nextPage(
-          //   duration: Duration(milliseconds: 300),
-          //   curve: Curves.easeInOut,
-          // );
-        },
-      ),
+      home: EventScreen(),
     );
   }
 }
 
 class EventScreen extends StatefulWidget {
   final String? selectedOption;
-  EventScreen(
-      {this.selectedOption,
-      required this.height100,
-      required this.onNextPressed});
-  final double height100;
-  final VoidCallback onNextPressed;
+  EventScreen({
+    this.selectedOption,
+  });
 
   @override
   _EventScreenState createState() => _EventScreenState();
@@ -81,6 +70,25 @@ class _EventScreenState extends State<EventScreen> {
       eventImagepath: 'assets/images/1.png',
       eventTitle: eventName,
     ));
+
+    Navigator.pop(context,"refresh");
+    // showDialog(
+    //   context: context,
+    //   builder: (context) {
+    //     return AlertDialog(
+    //       title: Text('Event Added'),
+    //       actions: [
+    //         TextButton(
+    //           onPressed: () {
+    //
+    //           },
+    //           child: Text('OK'),
+    //         ),
+    //       ],
+    //     );
+    //   },
+    // );
+    // Navigator.of(context).pop();
   }
 
   Future<void> _selectDate(BuildContext context) async {

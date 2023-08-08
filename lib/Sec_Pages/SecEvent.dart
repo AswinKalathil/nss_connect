@@ -5,8 +5,34 @@ import 'package:nss_connect/models/events.dart';
 import '../widgetStyles.dart';
 import 'EventCreate.dart';
 
-class SecEvent extends StatelessWidget {
+class SecEvent extends StatefulWidget {
   const SecEvent({super.key});
+
+  @override
+  State<SecEvent> createState() => _SecEventState();
+}
+
+class _SecEventState extends State<SecEvent> {
+  void addNewEvent(BuildContext ctx) async {
+    var result = await showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return GestureDetector(
+          onTap: () {},
+          child: EventScreen(),
+          behavior: HitTestBehavior.opaque,
+        );
+      },
+    );
+
+    if (result == 'refresh') {
+      // Handle refresh action here
+      // For example, you can setState to trigger a rebuild
+      setState(() {
+        // Perform refresh action
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +48,8 @@ class SecEvent extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           // Add your action here
-          Navigator.pushNamed(context, EventApp.id);
+          // Navigator.pushNamed(context, EventApp.id);
+          addNewEvent(context);
         },
         child: Icon(Icons.add),
         backgroundColor: primaryButton, // Customize FAB color
@@ -42,6 +69,7 @@ class secEventBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    eventList.sort((a, b) => a.eventDate.compareTo(b.eventDate));
     return ListView(
       children: eventList.map((eventObject) {
         return Builder(
@@ -98,10 +126,10 @@ class secEventBody extends StatelessWidget {
                             Text(
                               '${eventObject.eventDate}',
                               style: TextStyle(
-                                fontFamily: 'Source Code Pro',
-                                fontWeight: FontWeight.w400,
-                                fontSize: width100 * 0.0375),
-                              ),
+                                  fontFamily: 'Source Code Pro',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: width100 * 0.0375),
+                            ),
                           ],
                         ),
                       ),
