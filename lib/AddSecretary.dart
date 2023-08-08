@@ -132,7 +132,7 @@ class _DataCardState extends State<DataCard> {
                   SECUserData.add(
                       User(_nameController.text, _setPassController.text));
                   print(
-                      "==============================================\nNew Secretary Added Username: ${_nameController.text} \nSPass: ${_setPassController.text}\n==============================================\n");
+                      "==============================================\nNew Secretary Added Username: ${_nameController.text} \nPass: ${_setPassController.text}\n==============================================\n");
                   Future.delayed(Duration(seconds: 1), () {
                     showDialog(
                       context: context,
