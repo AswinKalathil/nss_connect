@@ -11,7 +11,7 @@ List<User> VOLUserData = [
 ];
 List<User> SECUserData = [
   User("username", "123456"),
-  User("thoukeer", "password")
+  User("thoukheer", "password")
 ];
 
 class User {

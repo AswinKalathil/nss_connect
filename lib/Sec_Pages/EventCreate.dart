@@ -175,15 +175,7 @@ class _EventScreenState extends State<EventScreen> {
                   child: Text('Flagship'),
                 ),
               ],
-              // items: <String>['Conference', 'Workshop', 'Seminar', 'Party']
-              //     .map<DropdownMenuItem<String>>(
-              //       (String value) {
-              //     return DropdownMenuItem<String>(
-              //       value: value,
-              //       child: Text(value),
-              //     );
-              //   },
-              // ).toList(),
+
             ),
             SizedBox(height: 16.0),
             TextField(
