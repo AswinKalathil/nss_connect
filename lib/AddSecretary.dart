@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/backEnd/supporters.dart';
+import 'package:nss_connect/models/dataModels.dart';
 
 import 'package:nss_connect/widgetStyles.dart';
 
@@ -28,7 +29,7 @@ class _AddVolunteerState extends State<AddVolunteer> {
             SizedBox(
               height: MediaQuery.of(context).size.height * .15,
             ),
-            DataCard()
+            DataCard(),
           ]),
         ),
       ),
@@ -46,8 +47,11 @@ class DataCard extends StatefulWidget {
 class _DataCardState extends State<DataCard> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _emailController = TextEditingController();
-
   TextEditingController _setPassController = TextEditingController();
+
+  bool _validateInputs() {
+    return _nameController.text.isNotEmpty && _emailController.text.isNotEmpty;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +89,7 @@ class _DataCardState extends State<DataCard> {
                 submitFunction: () => {}),
             TitledInputBox(
                 title: "Email",
-                placeholder: "Enter Username",
+                placeholder: "Enter Email",
                 textEditingController: _emailController,
                 submitFunction: () => {}),
             PassInputBox(
@@ -103,14 +107,12 @@ class _DataCardState extends State<DataCard> {
             LongButton(
                 buttonText: 'Register',
                 buttonAction: () {
-                  _setPassController.text = generateRandomPassword(6);
-
-                  Future.delayed(Duration(milliseconds: 500), () {
+                  if (!_validateInputs()) {
                     showDialog(
                       context: context,
                       builder: (context) {
                         return AlertDialog(
-                          title: Text('Secratary Added'),
+                          title: Text("Fill Username and Password"),
                           actions: [
                             TextButton(
                               onPressed: () {
@@ -122,79 +124,38 @@ class _DataCardState extends State<DataCard> {
                         );
                       },
                     );
-                    _emailController = TextEditingController();
-                    _nameController = TextEditingController();
-                    _setPassController = TextEditingController();
+                    return;
+                  }
+                  if (!_setPassController.text.isNotEmpty)
+                    _setPassController.text = generateRandomPassword(6);
+
+                  SECUserData.add(
+                      User(_nameController.text, _setPassController.text));
+                  print(
+                      "==============================================\nNew Secretary Added Username: ${_nameController.text} \nSPass: ${_setPassController.text}\n==============================================\n");
+                  Future.delayed(Duration(seconds: 1), () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text('Secretary Added'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text('OK'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                    _emailController.text = '';
+                    _nameController.text = '';
+                    _setPassController.text = '';
                   });
-                })
+                }),
           ]),
     );
   }
 }
-
-//
-//
-// class VolunteerCard extends StatefulWidget {
-//   static const String id = 'VolunteerCard';
-//   @override
-//   _VolunteerCardState createState() => _VolunteerCardState();
-// }
-//
-// class _VolunteerCardState extends State<VolunteerCard> {
-//   TextEditingController _usernameController = TextEditingController();
-//   TextEditingController _emailController = TextEditingController();
-//   TextEditingController _phoneController = TextEditingController();
-//   TextEditingController _passwordController = TextEditingController();
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Padding(
-//         padding: EdgeInsets.all(16.0),
-//         child: Column(
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           children: [
-//             TextField(
-//               controller: _usernameController,
-//               decoration: InputDecoration(
-//                 labelText: 'Username',
-//               ),
-//             ),
-//             TextField(
-//               controller: _emailController,
-//               decoration: InputDecoration(
-//                 labelText: 'Email',
-//               ),
-//             ),
-//             TextField(
-//               controller: _phoneController,
-//               decoration: InputDecoration(
-//                 labelText: 'Phone Number',
-//               ),
-//             ),
-//             TextField(
-//               controller: _passwordController,
-//               decoration: InputDecoration(
-//                 labelText: 'Password',
-//               ),
-//             ),
-//             SizedBox(height: 16.0),
-//             ElevatedButton(
-//               onPressed: () {
-//                 // Perform registration logic here
-//                 String username = _usernameController.text;
-//                 String email = _emailController.text;
-//                 String phone = _phoneController.text;
-//                 String password = _passwordController.text;
-//
-//                 // Validate and process the registration details
-//                 // ...
-//               },
-//               child: Text('Register'),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

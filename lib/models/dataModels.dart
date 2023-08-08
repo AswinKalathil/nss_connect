@@ -10,6 +10,7 @@ List<User> VOLUserData = [
   User("bazed", "password"),
 ];
 List<User> SECUserData = [
+  User("u", "1"),
   User("username", "123456"),
   User("thoukheer", "password")
 ];
