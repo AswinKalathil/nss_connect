@@ -89,7 +89,7 @@ class ConnectButtonArea extends StatelessWidget {
                 vertical: height100 * 0.012,
                 horizontal: MediaQuery.of(context).size.width *
                     0.05), //========================height  adjest
-            backgroundColor: primaryColor,
+            backgroundColor: Theme.of(context).primaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5.0),
             ),

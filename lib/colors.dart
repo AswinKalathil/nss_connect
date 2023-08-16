@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final primaryColor = const MaterialColor(
+final primaryViolet = const MaterialColor(
   0xFF5F5FA8,
   <int, Color>{
     50: Color(0xFFF3E5F9),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+
 class LongButton extends StatelessWidget {
   final String buttonText;
   final Function buttonAction;
@@ -101,6 +102,7 @@ class CardShapeX extends ShapeBorder {
   @override
   ShapeBorder scale(double t) => this;
 }
+
 class ImageInputBox extends StatefulWidget {
   @override
   _ImageInputBoxState createState() => _ImageInputBoxState();
@@ -147,6 +149,7 @@ class _ImageInputBoxState extends State<ImageInputBox> {
     );
   }
 }
+
 class TitledInputBox extends StatelessWidget {
   const TitledInputBox(
       {super.key,
@@ -294,7 +297,9 @@ class _PassInputBoxState extends State<PassInputBox> {
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                     icon: Icon(
-                      color: _obscureText ? primaryColor : Colors.grey,
+                      color: _obscureText
+                          ? Theme.of(context).primaryColor
+                          : Colors.grey,
                       _obscureText ? Icons.visibility : Icons.visibility_off,
                     ),
                     onPressed: _toggle),

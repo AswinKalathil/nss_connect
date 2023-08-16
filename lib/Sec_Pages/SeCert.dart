@@ -39,7 +39,7 @@ class _SecCertState extends State<SecCert> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15),
           child: BottomNavigationBar(
-            selectedItemColor: primaryColor,
+            selectedItemColor: Theme.of(context).primaryColor,
             unselectedItemColor: Colors.grey,
             currentIndex: myCurrentIndex,
             iconSize: 30,

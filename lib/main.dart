@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         buttonTheme:
             ThemeData().buttonTheme.copyWith(buttonColor: primaryButton),
         colorScheme: ThemeData().colorScheme.copyWith(
-              primary: primaryColor,
+              primary: primaryViolet,
               secondary: secondaryColor,
             ),
       ),
@@ -49,8 +49,8 @@ class MyApp extends StatelessWidget {
         PoDashboardPage.id: (ctx) => PoDashboardPage(),
         Login2.id: (ctx) => Login2(),
         SecHome.id: (ctx) => SecHome(),
-        AddVolunteer.id: (ctx) =>AddVolunteer(),
-        EventApp.id: (ctx) =>EventApp(),
+        AddVolunteer.id: (ctx) => AddVolunteer(),
+        EventApp.id: (ctx) => EventApp(),
       },
       home: WelcomeTour(),
     );
