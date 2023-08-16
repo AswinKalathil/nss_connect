@@ -4,6 +4,7 @@ import 'package:nss_connect/HomeDasboard.dart';
 import 'package:nss_connect/Sec_Pages/SecHome.dart';
 import 'package:nss_connect/login2.dart';
 import 'package:nss_connect/poDashboard.dart';
+import 'package:nss_connect/themes.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/register.dart';
@@ -27,14 +28,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData().copyWith(
-        buttonTheme:
-            ThemeData().buttonTheme.copyWith(buttonColor: primaryButton),
-        colorScheme: ThemeData().colorScheme.copyWith(
-              primary: primaryViolet,
-              secondary: secondaryColor,
-            ),
-      ),
+      theme: ThemeClass.lightTheme,
+      darkTheme: ThemeClass.darkTheme,
+      themeMode: ThemeMode.system,
+      
       // initialRoute: Home.id,
       routes: {
         WelcomeTour.id: (ctx) => WelcomeTour(),
