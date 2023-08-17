@@ -141,14 +141,14 @@ class Events {
 int index = 0;
 
 class GridPanels extends StatelessWidget {
-  static const List<Color> lightColors = [
-    Color.fromARGB(255, 255, 255, 202), // Beige
-    Color.fromARGB(255, 255, 224, 192), // Linen
-    Color.fromARGB(255, 197, 255, 225), // Cornsilk
-    Color.fromARGB(255, 228, 255, 184), // Floral White
-    Color.fromARGB(255, 165, 203, 255), // Old Lace
-    Color.fromARGB(255, 255, 221, 233), // Papaya Whip
-  ];
+  // static const List<Color> lightColors = [
+  //   Color.fromARGB(255, 255, 255, 202), // Beige
+  //   Color.fromARGB(255, 255, 224, 192), // Linen
+  //   Color.fromARGB(255, 197, 255, 225), // Cornsilk
+  //   Color.fromARGB(255, 228, 255, 184), // Floral White
+  //   Color.fromARGB(255, 165, 203, 255), // Old Lace
+  //   Color.fromARGB(255, 255, 221, 233), // Papaya Whip
+  // ];
   // final List<Events> PanelTitle = [
   //   Events(title: 'Dakshatha 6.O', status: 'Blood Donation Camp',Dates: '26-6-23 '),
   //   Events(title: 'KTUCare Annual Meet', status: 'Annual Volunteer Meet',Dates: '06-7-23 '),
@@ -165,20 +165,20 @@ class GridPanels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
-      crossAxisCount: 4,
+      crossAxisCount: 3,
       children: eventList.map((e) {
         return Builder(
           builder: (BuildContext context) {
             return RotationTransition(
-              turns: AlwaysStoppedAnimation(-5 / 360),
+              turns: AlwaysStoppedAnimation(1),
               child: Card(
                 shape: CardShapeX(radius: 20),
                 elevation: 2,
-                color: lightColors[index++ % 5],
+                color: lightColors[index++ % eventList.length],
                 child: Padding(
                   padding: EdgeInsets.all(10),
                   child: RotationTransition(
-                    turns: AlwaysStoppedAnimation(5 / 360),
+                    turns: AlwaysStoppedAnimation(1),
                     child: Stack(
                       children: [
                         Text(

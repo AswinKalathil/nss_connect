@@ -7,7 +7,10 @@ class LongButton extends StatelessWidget {
   final String buttonText;
   final Function buttonAction;
 
-  const LongButton({required this.buttonText, required this.buttonAction});
+  const LongButton(
+      {required this.buttonText,
+      required this.buttonAction,
+      buttonWidth = 100});
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +25,52 @@ class LongButton extends StatelessWidget {
         ),
         child: Container(
           width: MediaQuery.of(context).size.width * 0.72,
+          height: MediaQuery.of(context).size.height * 0.06,
+          padding: EdgeInsets.symmetric(
+            vertical: 5,
+            horizontal: 12,
+          ),
+          // decoration: BoxDecoration(
+          //   color: primaryButton,
+          //   borderRadius: BorderRadius.all(Radius.circular(5)),
+          // ),
+          child: Center(
+            child: Text(
+              buttonText,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                letterSpacing: 1.25,
+              ),
+            ),
+          ),
+        ));
+  }
+}
+
+class SmallButton extends StatelessWidget {
+  final String buttonText;
+  final Function buttonAction;
+  final double buttonWidth;
+
+  const SmallButton(
+      {required this.buttonText,
+      required this.buttonAction,
+      required this.buttonWidth});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {
+          buttonAction();
+        },
+        style: ElevatedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(9),
+          ),
+        ),
+        child: Container(
+          width: buttonWidth,
           height: MediaQuery.of(context).size.height * 0.06,
           padding: EdgeInsets.symmetric(
             vertical: 5,

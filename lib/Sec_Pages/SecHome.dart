@@ -119,15 +119,7 @@ class panelSection extends StatelessWidget {
 }
 
 class GridPanels extends StatelessWidget {
-  static const List<Color> lightColors = [
-    Color(0xFFFFAFCC),
-    Color(0xFFCDB4DB),
-    Color(0xFFFFC8DD),
-    Color(0xFFBDE0FE),
-    Color(0xFFA2D2FF),
-    Color(0xFFCDB4DB),
-    // Papaya Whip
-  ];
+ 
   static const List<String> PanelTitle = [
     'Blood',
     'SIP',

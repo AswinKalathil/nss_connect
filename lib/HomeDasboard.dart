@@ -23,6 +23,7 @@ class HomeDashboard extends StatelessWidget {
     double height100 = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
         MediaQuery.of(context).padding.bottom;
+    Brightness currentBrightness = Theme.of(context).brightness;
 
     return Scaffold(
       body: SafeArea(
@@ -35,12 +36,14 @@ class HomeDashboard extends StatelessWidget {
           width: width100,
           decoration: BoxDecoration(
             // color: Colors.black,
-            image: DecorationImage(
-              image: AssetImage('assets/images/homeBackground.png'),
-              fit: BoxFit.fitWidth,
-              alignment: Alignment.bottomLeft,
-              opacity: 0.3,
-            ),
+            image: currentBrightness == Brightness.light
+                ? DecorationImage(
+                    image: AssetImage('assets/images/homeBackground.png'),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.bottomLeft,
+                    opacity: 0.3,
+                  )
+                : null, // No background image for dark theme
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -83,30 +86,38 @@ class ConnectButtonArea extends StatelessWidget {
         duration: Duration(milliseconds: 500),
         curve: Curves.easeIn,
         opacity: 1.0,
-        child: TextButton(
-          style: TextButton.styleFrom(
-            padding: EdgeInsets.symmetric(
-                vertical: height100 * 0.012,
-                horizontal: MediaQuery.of(context).size.width *
-                    0.05), //========================height  adjest
-            backgroundColor: Theme.of(context).primaryColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0),
-            ),
-          ),
-          onPressed: () {
-            nextPagePush(context, Login());
-          },
-          child: Text(
-            'Let\'s Connect ',
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'Poppins',
-              fontSize: width100 * 0.0375,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
+
+        child: SmallButton(
+            buttonText: 'Let\'s Connect ',
+            buttonAction: () {
+              nextPagePush(context, Login());
+            },
+            buttonWidth: MediaQuery.of(context).size.width * 0.32),
+
+        // child: TextButton(
+        //   style: TextButton.styleFrom(
+        //     padding: EdgeInsets.symmetric(
+        //         vertical: height100 * 0.012,
+        //         horizontal: MediaQuery.of(context).size.width *
+        //             0.05), //========================height  adjest
+        //     backgroundColor: Theme.of(context).primaryColor,
+        //     shape: RoundedRectangleBorder(
+        //       borderRadius: BorderRadius.circular(5.0),
+        //     ),
+        //   ),
+        //   onPressed: () {
+        //     nextPagePush(context, Login());
+        //   },
+        //   child: Text(
+        //     'Let\'s Connect ',
+        //     style: TextStyle(
+        //       color: Colors.white,
+        //       fontFamily: 'Poppins',
+        //       fontSize: width100 * 0.0375,
+        //       fontWeight: FontWeight.bold,
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }
@@ -171,7 +182,7 @@ class EventCarosel extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            // color: Colors.white,
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(5),
                                 bottomRight: Radius.circular(5)),
