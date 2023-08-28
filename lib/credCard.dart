@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/Secretary.dart';
 import 'package:nss_connect/pageTrasitions.dart';
@@ -6,6 +7,7 @@ import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'models/dataModels.dart';
 import 'register.dart';
+import 'dart:async';
 import 'otpDialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:nss_connect/widgetStyles.dart';
@@ -20,6 +22,10 @@ class credCard extends StatefulWidget {
 class _credCardState extends State<credCard> {
   final _userNameController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isUsernameEmpty = true;
+  bool _isPasswordEmpty = true;
+  bool _errorMessageVisible = true;
+  bool _isNotValid = false;
   String? _selectedOption = 'volunteerDashboard';
   String? poString = 'poDashboard';
   String? volString = 'volunteerDashboard';
@@ -30,7 +36,22 @@ class _credCardState extends State<credCard> {
     final enteredUsername = _userNameController.text;
     final enteredPassword = _passwordController.text;
     if (enteredUsername.isEmpty || enteredPassword.isEmpty) {
-      return;
+      setState(() {
+        _isUsernameEmpty = enteredUsername.isNotEmpty;
+        _isPasswordEmpty = enteredPassword.isNotEmpty;
+        _errorMessageVisible = _isUsernameEmpty || _isPasswordEmpty;
+      });
+      if (!_isUsernameEmpty || !_isPasswordEmpty) {
+        print("Setting error flags to true and starting timer");
+        Timer(Duration(seconds: 10), () {
+          setState(() {
+            _errorMessageVisible = true;
+            _isUsernameEmpty = true;
+            _isPasswordEmpty = true;
+          });
+        });
+        return;
+      }
     }
     print("Username: $enteredUsername\nPassword: $enteredPassword");
     if (_selectedOption == volString) {
@@ -48,6 +69,9 @@ class _credCardState extends State<credCard> {
       if (user.userName == enteredUsername &&
           user.password == enteredPassword) {
         isCredentialsValid = true;
+        setState(() {
+          _isNotValid = false;
+        });
         break;
       }
     }
@@ -68,23 +92,38 @@ class _credCardState extends State<credCard> {
     } else {
       // Credentials are invalid, display an error message or perform some action
       // e.g., show a snackbar or dialog
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Invalid Credentials'),
-            content: Text('Please enter valid username and password.'),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('OK'),
-              ),
-            ],
-          );
-        },
-      );
+      setState(() {
+        _isNotValid = true;
+      });
+      // showDialog(
+      //   context: context,
+      //   builder: (context) {
+      //     return AlertDialog(
+      //       title: Text('Invalid Credentials'),
+      //       content: Text('Please enter valid username and password.'),
+      //       actions: [
+      //         TextButton(
+      //           onPressed: () {
+      //             Navigator.of(context).pop();
+      //           },
+      //           child: Text('OK'),
+      //         ),
+      //       ],
+      //     );
+      //   },
+      // );
+    }
+  }
+
+  void _credValid() {
+    if (_isNotValid) {
+      setState(() {
+        Timer(Duration(seconds: 10), () {
+          setState(() {
+            _isNotValid = false;
+          });
+        });
+      });
     }
   }
 
@@ -173,6 +212,48 @@ class _credCardState extends State<credCard> {
           SizedBox(
             height: 10,
           ),
+          if (!_errorMessageVisible)
+            Container(
+              alignment: AlignmentDirectional.topStart,
+              padding: EdgeInsets.only(bottom: 10,left: 5, top: 3),
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: RichText(
+                  text: TextSpan(
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 16,
+                        // fontWeight: FontWeight.w400,
+                      ),
+                      children: [
+                    WidgetSpan(
+                        child: Icon(CupertinoIcons.exclamationmark_circle_fill,
+                            size: 19.5, color: Colors.red)),
+                    TextSpan(text: " Please enter a value")
+                  ])),
+            ),
+          if (_isNotValid)
+            Container(
+              alignment: AlignmentDirectional.topStart,
+              padding: EdgeInsets.only(bottom: 10, left: 30),
+              child: RichText(
+                text: TextSpan(
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 16,
+                  ),
+                  children: [
+                    WidgetSpan(
+                      child: Icon(CupertinoIcons.exclamationmark_circle_fill,
+                          size: 19.5, color: Colors.red),
+                    ),
+                    TextSpan(text: " Invalid Username or Password")
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+            height: 10,
+          ),
           Container(
             alignment: AlignmentDirectional.topStart,
             padding: EdgeInsets.only(bottom: 10, left: 30),
@@ -188,8 +269,9 @@ class _credCardState extends State<credCard> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               border: Border.all(
-                color: Colors.grey
-                    .withOpacity(0.3), // Change the border color here
+                color: _isUsernameEmpty
+                    ? Colors.grey.withOpacity(0.3)
+                    : Colors.red, // Change the border color here
               ),
             ),
             width: MediaQuery.of(context).size.width * 0.8,
@@ -218,6 +300,7 @@ class _credCardState extends State<credCard> {
               title: "Password",
               placeholder: "Enter new Password",
               textEditingController: _passwordController,
+              isPasswordEmpty: _isPasswordEmpty,
               submitFunction: () {
                 _submitData();
               }),
@@ -259,6 +342,7 @@ class _credCardState extends State<credCard> {
                 print('Pressed login');
 
                 _submitData();
+                _credValid();
               }),
           if (_selectedOption == poString)
             Padding(

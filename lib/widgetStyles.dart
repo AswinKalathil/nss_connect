@@ -280,11 +280,13 @@ class PassInputBox extends StatefulWidget {
       required this.title,
       required this.placeholder,
       required this.textEditingController,
-      required this.submitFunction});
+      required this.submitFunction,
+      required this.isPasswordEmpty});
   final String title;
   final String placeholder;
   final TextEditingController textEditingController;
   final VoidCallback submitFunction;
+  final bool isPasswordEmpty;
 
   @override
   _PassInputBoxState createState() => _PassInputBoxState();
@@ -292,7 +294,6 @@ class PassInputBox extends StatefulWidget {
 
 class _PassInputBoxState extends State<PassInputBox> {
   bool _obscureText = false;
-
   void _toggle() {
     setState(() {
       _obscureText = !_obscureText;
@@ -328,7 +329,7 @@ class _PassInputBoxState extends State<PassInputBox> {
               borderRadius: BorderRadius.all(Radius.circular(5)),
               border: Border.all(
                 color:
-                    Colors.grey.withOpacity(.3), // Change the border color here
+                    widget.isPasswordEmpty?Colors.grey.withOpacity(.3) : Colors.red, // Change the border color here
               ),
             ),
             width: MediaQuery.of(context).size.width * 0.8,
