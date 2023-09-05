@@ -240,7 +240,7 @@ class _credCardState extends State<credCard> {
                 child: RichText(
                     text: TextSpan(
                         style: TextStyle(
-                          color: Colors.red,
+                          color: ThemeData().colorScheme.error,
                           fontSize: 16,
                           // fontWeight: FontWeight.w400,
                         ),
@@ -249,7 +249,7 @@ class _credCardState extends State<credCard> {
                           child: Icon(
                               CupertinoIcons.exclamationmark_circle_fill,
                               size: 19.5,
-                              color: Colors.red)),
+                              color: ThemeData().colorScheme.error)),
                       TextSpan(text: " Please enter a value")
                     ])),
               ),
@@ -261,13 +261,13 @@ class _credCardState extends State<credCard> {
               child: RichText(
                 text: TextSpan(
                   style: TextStyle(
-                    color: Colors.red,
+                    color: ThemeData().colorScheme.error,
                     fontSize: 16,
                   ),
                   children: [
                     WidgetSpan(
                       child: Icon(CupertinoIcons.exclamationmark_circle_fill,
-                          size: 19.5, color: Colors.red),
+                          size: 19.5, color: ThemeData().colorScheme.error),
                     ),
                     TextSpan(text: " Invalid Username or Password")
                   ],
