@@ -11,6 +11,7 @@ import 'dart:async';
 import 'otpDialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:nss_connect/widgetStyles.dart';
+import 'package:nss_connect/animation.dart';
 
 class credCard extends StatefulWidget {
   const credCard({super.key});
@@ -22,16 +23,25 @@ class credCard extends StatefulWidget {
 class _credCardState extends State<credCard> {
   final _userNameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final textFieldErrorShakeKey = GlobalKey<ShakeWidgetState>();
   bool _isUsernameEmpty = true;
   bool _isPasswordEmpty = true;
   bool _errorMessageVisible = true;
   bool _isNotValid = false;
+  Timer? _errorTimer;
   String? _selectedOption = 'volunteerDashboard';
   String? poString = 'poDashboard';
   String? volString = 'volunteerDashboard';
   String? secString = 'secretaryDashboard';
   List<User> loginData = List.empty();
   Widget? nextRoute;
+
+  // void _onTextFieldChange() {
+  //   setState(() {
+  //     _errorMessageVisible = true;
+  //   });
+  // }
+
   void _submitData() {
     final enteredUsername = _userNameController.text;
     final enteredPassword = _passwordController.text;
@@ -43,7 +53,13 @@ class _credCardState extends State<credCard> {
       });
       if (!_isUsernameEmpty || !_isPasswordEmpty) {
         print("Setting error flags to true and starting timer");
-        Timer(Duration(seconds: 10), () {
+        setState(() {
+          textFieldErrorShakeKey.currentState?.shakeWidget();
+        });
+
+        _errorTimer?.cancel();
+
+        _errorTimer = Timer(Duration(seconds: 10), () {
           setState(() {
             _errorMessageVisible = true;
             _isUsernameEmpty = true;
@@ -213,23 +229,30 @@ class _credCardState extends State<credCard> {
             height: 10,
           ),
           if (!_errorMessageVisible)
-            Container(
-              alignment: AlignmentDirectional.topStart,
-              padding: EdgeInsets.only(bottom: 10,left: 5, top: 3),
-              width: MediaQuery.of(context).size.width * 0.8,
-              child: RichText(
-                  text: TextSpan(
-                      style: TextStyle(
-                        color: Colors.red,
-                        fontSize: 16,
-                        // fontWeight: FontWeight.w400,
-                      ),
-                      children: [
-                    WidgetSpan(
-                        child: Icon(CupertinoIcons.exclamationmark_circle_fill,
-                            size: 19.5, color: Colors.red)),
-                    TextSpan(text: " Please enter a value")
-                  ])),
+            ShakeWidget(
+              key: textFieldErrorShakeKey,
+              shakeOffset: 5.0,
+              shakeDuration: Duration(milliseconds: 500),
+              child: Container(
+                alignment: AlignmentDirectional.topStart,
+                padding: EdgeInsets.only(bottom: 10, left: 5, top: 3),
+                width: MediaQuery.of(context).size.width * 0.8,
+                child: RichText(
+                    text: TextSpan(
+                        style: TextStyle(
+                          color: Colors.red,
+                          fontSize: 16,
+                          // fontWeight: FontWeight.w400,
+                        ),
+                        children: [
+                      WidgetSpan(
+                          child: Icon(
+                              CupertinoIcons.exclamationmark_circle_fill,
+                              size: 19.5,
+                              color: Colors.red)),
+                      TextSpan(text: " Please enter a value")
+                    ])),
+              ),
             ),
           if (_isNotValid)
             Container(
@@ -251,7 +274,7 @@ class _credCardState extends State<credCard> {
                 ),
               ),
             ),
-            SizedBox(
+          SizedBox(
             height: 10,
           ),
           Container(
@@ -276,6 +299,7 @@ class _credCardState extends State<credCard> {
             ),
             width: MediaQuery.of(context).size.width * 0.8,
             child: TextField(
+              // onChanged: (_){_onTextFieldChange;},
               controller: _userNameController,
               onSubmitted: (_) {
                 _submitData();
@@ -340,7 +364,6 @@ class _credCardState extends State<credCard> {
               buttonText: 'Login',
               buttonAction: () {
                 print('Pressed login');
-
                 _submitData();
                 _credValid();
               }),
