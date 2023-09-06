@@ -16,7 +16,7 @@ class introscreen3 extends StatelessWidget {
             style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
-                color: Theme.of(context).primaryColor),
+                color: Theme.of(context).colorScheme.secondary),
           ),
         ),
       ]),

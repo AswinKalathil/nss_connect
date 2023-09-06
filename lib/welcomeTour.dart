@@ -114,7 +114,7 @@ class _WelcomeTourState extends State<WelcomeTour> {
                   },
                  child: Icon(
                   Icons.close_rounded,
-                  color: const Color.fromARGB(255, 40, 40, 40),
+                  color: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
                   size: 30,
                   ))),
         ],

@@ -46,7 +46,7 @@ class HomeDashboard extends StatelessWidget {
                     opacity: 0.3,
                   )
                 : DecorationImage(
-                    image: AssetImage('assets/images/homeBackground2.png'),
+                    image: AssetImage('assets/images/homeBackground_dark.png'),
                     fit: BoxFit.fitWidth,
                     alignment: Alignment.bottomLeft,
                     opacity: 0.3,
