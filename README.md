@@ -1,16 +1,20 @@
-# nss_connect
+# Nss connect
 
-A new Flutter project.
+Android application for automation of Nss activities including blood donor identification, Task
+allocation, Event managment
 
 ## Getting Started
+This is an app for our NSS Volunteers of our college,
+The full functionality of the app canot be experienced if you are not a an Nss member
 
-This project is a starting point for a Flutter application.
+You can Install it By cloning the Repository
 
-A few resources to get you started if this is your first Flutter project:
+## Usage
+You will need Creditials to login and View the functionalities,
+sample Username: "username", Password : "123456"
+## Future Improvements
+We plan to enhance the app by adding Backend using Firebase as cloud platform
+Features pending to implement:Blood portal,Task Allocation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
