@@ -4,7 +4,7 @@ Android application for automation of Nss activities including blood donor ident
 allocation, Event managment
 
 ## Getting Started
-This is an app for our NSS Volunteers of out college,
+This is an app for our NSS Volunteers of our college,
 You can Install it By cloning the Repository
 
 ## Usage
