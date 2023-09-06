@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/poDashboard.dart';
+import 'package:nss_connect/themes.dart';
 // import 'package:nss_connect/slidingCards.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
@@ -19,6 +20,7 @@ class HomeDashboard extends StatelessWidget {
   static const String id = 'homeDashboard';
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     double width100 = MediaQuery.of(context).size.width;
     double height100 = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
@@ -43,7 +45,12 @@ class HomeDashboard extends StatelessWidget {
                     alignment: Alignment.bottomLeft,
                     opacity: 0.3,
                   )
-                : null, // No background image for dark theme
+                : DecorationImage(
+                    image: AssetImage('assets/images/homeBackground2.png'),
+                    fit: BoxFit.fitWidth,
+                    alignment: Alignment.bottomLeft,
+                    opacity: 0.3,
+                  ), // No background image for dark theme
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -307,7 +314,8 @@ class HeaderLogo extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: width100 * .0711,
-                      color: const Color.fromARGB(255, 0, 0, 0),
+                      // color: const Color.fromARGB(255, 0, 0, 0),
+                      // color: ThemeClass().accentColor,
                     ),
                     children: [
                       TextSpan(

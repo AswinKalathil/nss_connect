@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nss_connect/Secretary.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/poDashboard.dart';
+import 'package:nss_connect/themes.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'models/dataModels.dart';
@@ -26,7 +27,6 @@ class _credCardState extends State<credCard> {
   final textFieldErrorShakeKey = GlobalKey<ShakeWidgetState>();
   bool _isUsernameEmpty = true;
   bool _isPasswordEmpty = true;
-  bool _errorMessageVisible = true;
   bool _isNotValid = false;
   Timer? _errorTimer;
   String? _selectedOption = 'volunteerDashboard';
@@ -42,6 +42,15 @@ class _credCardState extends State<credCard> {
   //   });
   // }
 
+  void _onTextFieldChange() {
+    setState(() {
+      print("Setting both to true");
+      _isUsernameEmpty = true;
+      _isPasswordEmpty = true;
+      _isNotValid = false;
+    });
+  }
+
   void _submitData() {
     final enteredUsername = _userNameController.text;
     final enteredPassword = _passwordController.text;
@@ -49,7 +58,7 @@ class _credCardState extends State<credCard> {
       setState(() {
         _isUsernameEmpty = enteredUsername.isNotEmpty;
         _isPasswordEmpty = enteredPassword.isNotEmpty;
-        _errorMessageVisible = _isUsernameEmpty || _isPasswordEmpty;
+        // _errorMessageVisible = _isUsernameEmpty || _isPasswordEmpty;
       });
       if (!_isUsernameEmpty || !_isPasswordEmpty) {
         print("Setting error flags to true and starting timer");
@@ -61,7 +70,7 @@ class _credCardState extends State<credCard> {
 
         _errorTimer = Timer(Duration(seconds: 10), () {
           setState(() {
-            _errorMessageVisible = true;
+            // _errorMessageVisible = true;
             _isUsernameEmpty = true;
             _isPasswordEmpty = true;
           });
@@ -145,6 +154,7 @@ class _credCardState extends State<credCard> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return Container(
       padding: EdgeInsets.all(10),
       // height: MediaQuery.of(context).size.height *
@@ -152,7 +162,7 @@ class _credCardState extends State<credCard> {
       width: MediaQuery.of(context).size.width * 8,
       child: Card(
         shape: CardShape(padding: 50),
-        color: Colors.white,
+        color: themeData.primaryColor,
         elevation: 10,
         child: Column(children: [
           Padding(
@@ -162,7 +172,7 @@ class _credCardState extends State<credCard> {
             child: Text(
               'Login as',
               style: TextStyle(
-                color: Colors.black,
+                // color: isDarkTheme? ThemeClass().darkTextColor : ThemeClass().lightTextColor,
                 fontSize: 30,
                 fontWeight: FontWeight.w600,
                 fontFamily: 'Nexa',
@@ -184,19 +194,20 @@ class _credCardState extends State<credCard> {
                 dropdownStyleData: DropdownStyleData(
                   elevation: 10,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    // color: isDarkTheme? Colors.black.withOpacity(0.7):Colors.grey.withOpacity(0.3),
                     borderRadius: BorderRadius.all(Radius.circular(7)),
                     border: Border.all(
-                      color: Colors.grey.withOpacity(0.3),
+                      color: themeData.colorScheme.secondary.withOpacity(0.3),
+                      // color: isDarkTheme? Colors.white.withOpacity(0.3):Colors.grey.withOpacity(0.3),
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.transparent,
-                        spreadRadius: 1,
-                        blurRadius: 1,
-                        offset: Offset(3, 3),
-                      ),
-                    ],
+                    // boxShadow: [
+                    //   BoxShadow(
+                    //     color: ThemeClass().accentColor,
+                    //     spreadRadius: 1,
+                    //     blurRadius: 1,
+                    //     offset: Offset(3, 3),
+                    //   ),
+                    // ],
                   ),
                 ),
                 alignment: AlignmentDirectional.centerStart,
@@ -228,7 +239,7 @@ class _credCardState extends State<credCard> {
           SizedBox(
             height: 10,
           ),
-          if (!_errorMessageVisible)
+          if (!_isUsernameEmpty || !_isPasswordEmpty)
             ShakeWidget(
               key: textFieldErrorShakeKey,
               shakeOffset: 5.0,
@@ -284,7 +295,7 @@ class _credCardState extends State<credCard> {
               'Username',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.grey.shade600,
+                color: themeData.colorScheme.secondary.withOpacity(0.5),
               ),
             ),
           ),
@@ -294,19 +305,19 @@ class _credCardState extends State<credCard> {
               border: Border.all(
                 color: _isUsernameEmpty
                     ? Colors.grey.withOpacity(0.3)
-                    : Colors.red, // Change the border color here
+                    : ThemeData().colorScheme.error, // Change the border color here
               ),
             ),
             width: MediaQuery.of(context).size.width * 0.8,
             child: TextField(
-              // onChanged: (_){_onTextFieldChange;},
+              onChanged: (_){_onTextFieldChange();},
               controller: _userNameController,
               onSubmitted: (_) {
                 _submitData();
               },
               textInputAction: TextInputAction.next,
               style: TextStyle(),
-              cursorColor: Colors.black,
+              cursorColor: themeData.colorScheme.secondary,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
@@ -315,7 +326,7 @@ class _credCardState extends State<credCard> {
                 contentPadding: EdgeInsets.only(left: 10),
                 hintText: 'Enter your username',
                 hintStyle: TextStyle(
-                  color: Colors.black.withOpacity(0.4),
+                  color: themeData.colorScheme.secondary.withOpacity(0.4),
                 ),
               ),
             ),
@@ -325,6 +336,7 @@ class _credCardState extends State<credCard> {
               placeholder: "Enter new Password",
               textEditingController: _passwordController,
               isPasswordEmpty: _isPasswordEmpty,
+              onChanged: (_){_onTextFieldChange();},
               submitFunction: () {
                 _submitData();
               }),
@@ -344,8 +356,9 @@ class _credCardState extends State<credCard> {
                     otpPhone(context, 'ss');
                   },
                   child: Text(
-                    'Forgot Password',
+                    'Forgot Password?',
                     style: TextStyle(
+                      decoration: TextDecoration.underline,
                       color: Colors.grey.withOpacity(0.7),
                       fontSize: 15,
                       fontWeight: FontWeight.w500,

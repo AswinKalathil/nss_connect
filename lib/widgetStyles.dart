@@ -3,6 +3,8 @@ import 'package:nss_connect/colors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+import 'package:nss_connect/themes.dart';
+
 class LongButton extends StatelessWidget {
   final String buttonText;
   final Function buttonAction;
@@ -14,11 +16,13 @@ class LongButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return ElevatedButton(
         onPressed: () {
           buttonAction();
         },
         style: ElevatedButton.styleFrom(
+          backgroundColor: ThemeClass().darkPrimaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(9),
           ),
@@ -39,6 +43,7 @@ class LongButton extends StatelessWidget {
               buttonText,
               style: TextStyle(
                 color: Colors.white,
+                fontFamily: 'Nexa',
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.25,
               ),
@@ -60,11 +65,13 @@ class SmallButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return ElevatedButton(
         onPressed: () {
           buttonAction();
         },
         style: ElevatedButton.styleFrom(
+          backgroundColor: ThemeClass().darkPrimaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(9),
           ),
@@ -85,6 +92,7 @@ class SmallButton extends StatelessWidget {
               buttonText,
               style: TextStyle(
                 color: Colors.white,
+                fontFamily: 'Circular',
                 fontWeight: FontWeight.bold,
                 letterSpacing: 1.25,
               ),
@@ -213,6 +221,7 @@ class TitledInputBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return Container(
       margin: EdgeInsets.all(5),
       width: MediaQuery.of(context).size.width * .8,
@@ -232,7 +241,7 @@ class TitledInputBox extends StatelessWidget {
               title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.grey.shade600,
+                color: themeData.colorScheme.secondary.withOpacity(0.4),
               ),
             ),
           ),
@@ -281,12 +290,14 @@ class PassInputBox extends StatefulWidget {
       required this.placeholder,
       required this.textEditingController,
       required this.submitFunction,
-      required this.isPasswordEmpty});
+      required this.isPasswordEmpty,
+      this.onChanged});
   final String title;
   final String placeholder;
   final TextEditingController textEditingController;
   final VoidCallback submitFunction;
   final bool isPasswordEmpty;
+  final void Function(String)? onChanged;
 
   @override
   _PassInputBoxState createState() => _PassInputBoxState();
@@ -300,7 +311,25 @@ class _PassInputBoxState extends State<PassInputBox> {
     });
   }
 
+  @override
+  void initState() {
+    super.initState();
+    widget.textEditingController.addListener(() {
+      // Call the optional onChanged callback if provided
+      if (widget.onChanged != null) {
+        widget.onChanged!(widget.textEditingController.text);
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    widget.textEditingController.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return Container(
       margin: EdgeInsets.all(5),
       width: MediaQuery.of(context).size.width * .8,
@@ -320,7 +349,7 @@ class _PassInputBoxState extends State<PassInputBox> {
               widget.title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: Colors.grey.shade600,
+                color: themeData.colorScheme.secondary.withOpacity(0.5),
               ),
             ),
           ),
@@ -328,8 +357,9 @@ class _PassInputBoxState extends State<PassInputBox> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               border: Border.all(
-                color:
-                    widget.isPasswordEmpty?Colors.grey.withOpacity(.3) : Colors.red, // Change the border color here
+                color: widget.isPasswordEmpty
+                    ? Colors.grey.withOpacity(.3)
+                    : Colors.red, // Change the border color here
               ),
             ),
             width: MediaQuery.of(context).size.width * 0.8,
@@ -343,12 +373,12 @@ class _PassInputBoxState extends State<PassInputBox> {
               enableSuggestions: false,
               autocorrect: false,
               style: TextStyle(),
-              cursorColor: Colors.black,
+              cursorColor: themeData.colorScheme.secondary,
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                     icon: Icon(
                       color: _obscureText
-                          ? Theme.of(context).primaryColor
+                          ? themeData.colorScheme.secondary
                           : Colors.grey,
                       _obscureText ? Icons.visibility : Icons.visibility_off,
                     ),
@@ -360,7 +390,7 @@ class _PassInputBoxState extends State<PassInputBox> {
                 contentPadding: EdgeInsets.only(left: 10),
                 hintText: widget.placeholder,
                 hintStyle: TextStyle(
-                  color: Colors.black.withOpacity(0.4),
+                  color: themeData.colorScheme.secondary.withOpacity(0.4),
                 ),
               ),
             ),
