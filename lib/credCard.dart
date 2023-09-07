@@ -29,6 +29,7 @@ class _credCardState extends State<credCard> {
   bool _isPasswordEmpty = true;
   bool _isNotValid = false;
   Timer? _errorTimer;
+  Timer? _invalidTimer;
   String? _selectedOption = 'volunteerDashboard';
   String? poString = 'poDashboard';
   String? volString = 'volunteerDashboard';
@@ -41,6 +42,12 @@ class _credCardState extends State<credCard> {
   //     _errorMessageVisible = true;
   //   });
   // }
+  @override
+  void dispose(){
+    _errorTimer?.cancel();
+    _invalidTimer?.cancel();
+    super.dispose();
+  }
 
   void _onTextFieldChange() {
     setState(() {
@@ -143,7 +150,7 @@ class _credCardState extends State<credCard> {
   void _credValid() {
     if (_isNotValid) {
       setState(() {
-        Timer(Duration(seconds: 10), () {
+        _invalidTimer = Timer(Duration(seconds: 10), () {
           setState(() {
             _isNotValid = false;
           });
