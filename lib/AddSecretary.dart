@@ -4,15 +4,15 @@ import 'package:nss_connect/models/dataModels.dart';
 
 import 'package:nss_connect/widgetStyles.dart';
 
-class AddVolunteer extends StatefulWidget {
-  const AddVolunteer({super.key});
-  static const String id = 'AddVolunteer';
+class AddSecretary extends StatefulWidget {
+  const AddSecretary({super.key});
+  static const String id = 'AddSecretary';
 
   @override
-  State<AddVolunteer> createState() => _AddVolunteerState();
+  State<AddSecretary> createState() => _AddVolunteerState();
 }
 
-class _AddVolunteerState extends State<AddVolunteer> {
+class _AddVolunteerState extends State<AddSecretary> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -107,11 +107,7 @@ class _DataCardState extends State<DataCard> {
             ),
             LongButton(
                 buttonText: 'Register',
-
-                
                 buttonAction: () {
-
-                  
                   if (!_validateInputs()) {
                     showDialog(
                       context: context,

@@ -1,5 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:nss_connect/Secretary.dart';
+import 'package:nss_connect/SecretaryDashboard.dart';
 // import 'package:flutter/cupertino.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ import 'package:nss_connect/themes.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/models/events.dart';
-import 'package:nss_connect/Blood_portal/blood_home.dart';
+import 'package:nss_connect/Blood_portal/bloodPortalHome.dart';
 
 // import 'Secretary.dart';
 
@@ -97,7 +97,7 @@ class ConnectButtonArea extends StatelessWidget {
         child: SmallButton(
             buttonText: 'Let\'s Connect ',
             buttonAction: () {
-              nextPagePush(context, Login());
+              nextPagePushNamed(context, '/Login-page');
             },
             buttonWidth: MediaQuery.of(context).size.width * 0.32),
 
@@ -272,10 +272,9 @@ class HeaderLogo extends StatelessWidget {
                 )
               ]),
               child: GestureDetector(
-                onTap: () => nextPagePush(context, SecretaryDashboard()),
-                onDoubleTap: () => nextPagePush(context, PoDashboardPage()),
-
-                // onDoubleTap: () => nextPagePush(context, SlidingCards()),
+                onTap: () => nextPagePushNamed(context, "/Secretary-Dashboard"),
+                onDoubleTap: () => nextPagePushNamed(context, "/Po-Dashboard"),
+                // onDoubleTap: () => nextPagePushNamed(context, "/Volunteer-Dashboard"),
                 child: Image(
                   image: AssetImage('assets/images/nss.png'),
                   height: width100 * 0.16,

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nss_connect/Secretary.dart';
+import 'package:nss_connect/SecretaryDashboard.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/poDashboard.dart';
 import 'package:nss_connect/themes.dart';
@@ -29,10 +29,10 @@ class _credCardState extends State<credCard> {
   bool _isPasswordEmpty = true;
   bool _isNotValid = false;
   Timer? _errorTimer;
-  String? _selectedOption = 'volunteerDashboard';
-  String? poString = 'poDashboard';
-  String? volString = 'volunteerDashboard';
-  String? secString = 'secretaryDashboard';
+  String _selectedOption = "/Volunteer-Dashboard";
+  String? poString = "/Po-Dashboard";
+  String? volString = "/Volunteer-Dashboard";
+  String? secString = "/Secretary-Dashboard";
   List<User> loginData = List.empty();
   Widget? nextRoute;
 
@@ -103,17 +103,17 @@ class _credCardState extends State<credCard> {
     print(isCredentialsValid);
     if (isCredentialsValid) {
       // Credentials are valid, navigate to the appropriate dashboard
-      if (_selectedOption == poString) {
-        nextRoute = PoDashboardPage();
-      } else if (_selectedOption == secString) {
-        nextRoute = SecretaryDashboard();
-      } else if (_selectedOption == volString) {
-        nextRoute = VolunteerDashboardPage();
-      }
+      // if (_selectedOption == poString) {
+      //   nextRoute = PoDashboardPage();
+      // } else if (_selectedOption == secString) {
+      //   nextRoute = SecretaryDashboard();
+      // } else if (_selectedOption == volString) {
+      //   nextRoute = VolunteerDashboardPage();
+      // }
 
       print("Username: $enteredUsername\nPassword: $enteredPassword");
       FocusScope.of(context).requestFocus(FocusNode());
-      nextPageReplace(context, nextRoute as Widget);
+      nextPageReplaceNamed(context, _selectedOption);
     } else {
       // Credentials are invalid, display an error message or perform some action
       // e.g., show a snackbar or dialog
@@ -215,22 +215,22 @@ class _credCardState extends State<credCard> {
                 value: _selectedOption,
                 onChanged: (String? newValue) {
                   setState(() {
-                    _selectedOption = newValue;
+                    _selectedOption = newValue as String;
                   });
                 },
                 items: [
                   DropdownMenuItem<String>(
-                    value: 'volunteerDashboard',
+                    value: "/Volunteer-Dashboard",
                     child: Text(
                       'Volunteer',
                     ),
                   ),
                   DropdownMenuItem<String>(
-                    value: 'poDashboard',
+                    value: "/Po-Dashboard",
                     child: Text('Program Officer'),
                   ),
                   DropdownMenuItem<String>(
-                    value: 'secretaryDashboard',
+                    value: "/Secretary-Dashboard",
                     child: Text('Secretary'),
                   ),
                 ]),
@@ -305,12 +305,16 @@ class _credCardState extends State<credCard> {
               border: Border.all(
                 color: _isUsernameEmpty
                     ? Colors.grey.withOpacity(0.3)
-                    : ThemeData().colorScheme.error, // Change the border color here
+                    : ThemeData()
+                        .colorScheme
+                        .error, // Change the border color here
               ),
             ),
             width: MediaQuery.of(context).size.width * 0.8,
             child: TextField(
-              onChanged: (_){_onTextFieldChange();},
+              onChanged: (_) {
+                _onTextFieldChange();
+              },
               controller: _userNameController,
               onSubmitted: (_) {
                 _submitData();
@@ -336,7 +340,9 @@ class _credCardState extends State<credCard> {
               placeholder: "Enter new Password",
               textEditingController: _passwordController,
               isPasswordEmpty: _isPasswordEmpty,
-              onChanged: (_){_onTextFieldChange();},
+              onChanged: (_) {
+                _onTextFieldChange();
+              },
               submitFunction: () {
                 _submitData();
               }),
@@ -393,7 +399,7 @@ class _credCardState extends State<credCard> {
                 buttonText: 'Register Unit',
                 buttonAction: () {
                   FocusScope.of(context).requestFocus(FocusNode());
-                  nextPagePush(context, Register());
+                  nextPagePushNamed(context, "/Register");
 
                   // Navigator.pushNamed(context, Register.id);
                 })

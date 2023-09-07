@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:nss_connect/accountDataCards.dart';
 
 class CreatePoAccount extends StatefulWidget {
-  const CreatePoAccount({super.key, required this.unitNumber});
-  final String unitNumber;
+  const CreatePoAccount({super.key});
+
   static const String id = 'CreatePoAccountScreen';
 
   @override
@@ -14,6 +14,8 @@ class CreatePoAccount extends StatefulWidget {
 class _CreatePoAccountState extends State<CreatePoAccount> {
   @override
   Widget build(BuildContext context) {
+    final String unitNumber =
+        ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       // resizeToAvoidBottomInset: false,
       body: Container(

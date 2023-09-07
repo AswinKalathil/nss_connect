@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:nss_connect/accountDataCards.dart';
 
 class ResetPassword extends StatefulWidget {
-  const ResetPassword({super.key, required this.userId});
-  final String userId;
+  const ResetPassword({super.key});
   static const String id = 'ResetPasswordScreen';
 
   @override
@@ -14,6 +13,8 @@ class ResetPassword extends StatefulWidget {
 class _ResetPasswordState extends State<ResetPassword> {
   @override
   Widget build(BuildContext context) {
+  final String userId = ModalRoute.of(context)!.settings.arguments as String;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(

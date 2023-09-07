@@ -33,14 +33,17 @@ class Panel {
 }
 
 const List<Panel> Panels = [
-  Panel('Blood', Colors.red),
+  Panel(
+    'Blood',
+    Color(0xFFFFAFCC),
+  ),
   Panel(
     'SIP',
-    Colors.orange,
+    Color(0xFFCDB4DB),
   ),
   Panel(
     'EEC',
-    Colors.green,
+    Colors.lightGreen,
   ),
   Panel(
     'Education',
@@ -48,11 +51,11 @@ const List<Panel> Panels = [
   ),
   Panel(
     'Program',
-    Colors.yellow,
+    Color(0xFFFFC8DD),
   ),
   Panel(
     'Media',
-    Colors.purple,
+    Color(0xFFA2D2FF),
   ),
 ];
 void fff() {}

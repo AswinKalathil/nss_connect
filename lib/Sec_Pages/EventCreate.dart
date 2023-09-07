@@ -4,9 +4,9 @@ import 'package:nss_connect/colors.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/models/events.dart';
 
-class EventApp extends StatelessWidget {
-  const EventApp({super.key});
-  static const String id = 'EventApp';
+class EventCreate extends StatelessWidget {
+  const EventCreate({super.key});
+  static const String id = 'EventCreate';
   @override
   Widget build(BuildContext context) {
     double height100 = MediaQuery.of(context).size.height -
@@ -14,7 +14,7 @@ class EventApp extends StatelessWidget {
         MediaQuery.of(context).padding.bottom;
 
     return MaterialApp(
-      title: 'Event Creation App',
+      title: 'Event Creation',
       debugShowCheckedModeBanner: false,
       theme: ThemeData().copyWith(
         buttonTheme:

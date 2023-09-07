@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/colors.dart';
 import 'package:nss_connect/vol_pages/volHome.dart';
 import 'package:nss_connect/vol_pages/volDuty.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 
-import 'Blood_portal/blood_home.dart';
+import 'Blood_portal/bloodPortalHome.dart';
 
 class VolunteerDashboardPage extends StatefulWidget {
   static const String id = 'volunteerDashboard';
@@ -14,6 +15,9 @@ class VolunteerDashboardPage extends StatefulWidget {
 class _VolunteerDashboardPageState extends State<VolunteerDashboardPage> {
   @override
   Widget build(BuildContext context) {
+    final height100 = MediaQuery.of(context).size.height;
+    final width100 = MediaQuery.of(context).size.width;
+    bool isDarkMode = false;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -31,20 +35,41 @@ class _VolunteerDashboardPageState extends State<VolunteerDashboardPage> {
               ),
             ],
           ),
-          actions:[IconButton(
+          actions: [
+            IconButton(
                 onPressed: () {
-                  nextPagePush(context, blood_home());
+                  nextPagePushNamed(context, "/Blood-Portal");
                 },
-        icon: Icon(Icons.bloodtype))
-        ],
+                icon: Icon(Icons.bloodtype))
+          ],
         ),
+        drawer: Drawer(
+            child: Column(
+          children: [
+            Container(
+              color: Theme.of(context).colorScheme.primary,
+              height: height100 * .2,
+              child: Row(
+                children: [],
+              ),
+            ),
+            Switch(
+              value: isDarkMode,
+              onChanged: (bool value) {
+                // This is called when the user toggles the switch.
+                setState(() {
+                  isDarkMode = value;
+                });
+              },
+            )
+          ],
+        )),
         body: TabBarView(children: [
           VolHome(
             AttendencePercent: .80,
           ),
           VolDuty(),
-        ]
-        ),
+        ]),
       ),
     );
   }
