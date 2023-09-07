@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ThemeClass {
-  Color lightPrimaryColor = Color.fromARGB(255, 255, 255, 255);
+  Color lightPrimaryColor = Color(0xFF5F5FA8);
   // Color darkPrimaryColor = Color.fromARGB(255, 45, 131, 218);
 
   Color darkPrimaryColor = Color(0xFF5F5FA8);
@@ -13,11 +13,10 @@ class ThemeClass {
   static ThemeData lightTheme = ThemeData(
     primaryColor: ThemeData.light().scaffoldBackgroundColor,
     colorScheme: const ColorScheme.light().copyWith(
-        primary: _themeClass.lightPrimaryColor,
-        secondary: _themeClass.lightTextColor,
-        tertiary: _themeClass.darkPrimaryColor,
-
-        ),
+      primary: _themeClass.lightPrimaryColor,
+      secondary: _themeClass.lightTextColor,
+      tertiary: _themeClass.darkPrimaryColor,
+    ),
   );
 
   static ThemeData darkTheme = ThemeData(

@@ -4,6 +4,7 @@ import 'package:nss_connect/Sec_Pages/SeCert.dart';
 import 'package:nss_connect/Sec_Pages/SecEvent.dart';
 import 'package:nss_connect/Sec_Pages/SecHome.dart';
 import 'package:nss_connect/pageTrasitions.dart';
+import 'Sec_Pages/EventCreate.dart';
 import 'colors.dart';
 
 class SecretaryDashboard extends StatefulWidget {
@@ -17,13 +18,21 @@ class SecretaryDashboard extends StatefulWidget {
 class _SecretaryDashboardState extends State<SecretaryDashboard> {
   @override
   Widget build(BuildContext context) {
+    bool isDarkModeEnabled = false;
+
+    void toggleDarkMode() {
+      setState(() {
+        isDarkModeEnabled = !isDarkModeEnabled;
+      });
+    }
+
+    final height100 = MediaQuery.of(context).size.height;
+    final width100 = MediaQuery.of(context).size.width;
     return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-
           title: Text('Secretary Dashboard'),
-
           bottom: TabBar(
             tabs: [
               Tab(
@@ -43,11 +52,24 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
           actions: [
             IconButton(
                 onPressed: () {
-                  nextPagePush(context, NewVol());
+                  addVolunteerSheet(context);
+                  // nextPagePushNamed(context, "/Add-Volunteer");
                 },
                 icon: Icon(person_add))
           ],
         ),
+        drawer: Drawer(
+            child: Column(
+          children: [
+            Container(
+              color: Theme.of(context).colorScheme.primary,
+              height: height100 * .2,
+              child: Row(
+                children: [],
+              ),
+            ),
+          ],
+        )),
         body: TabBarView(children: [
           SecHome(),
           SecEvent(),
@@ -56,4 +78,29 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
       ),
     );
   }
+}
+
+// void addVolunteerSheet(BuildContext context) {
+//   showModalBottomSheet(
+//       context: context,
+//       builder: (context) {
+//         return AddVolunteer();
+//       });
+// }
+void addVolunteerSheet(BuildContext ctx) async {
+  var result = await showModalBottomSheet(
+    context: ctx,
+    isScrollControlled: true,
+    builder: (_) {
+      return SizedBox(
+        height: (MediaQuery.of(ctx).size.height * .6) +
+            MediaQuery.of(ctx).viewInsets.bottom,
+        child: GestureDetector(
+          onTap: () {},
+          child: DataCard(),
+          behavior: HitTestBehavior.opaque,
+        ),
+      );
+    },
+  );
 }

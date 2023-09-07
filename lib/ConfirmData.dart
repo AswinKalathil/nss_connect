@@ -205,7 +205,7 @@ class _ConfirmCardState extends State<ConfirmCard> {
 
               LongButton(buttonText: 'SignUp', buttonAction: () {
                 FocusScope.of(context).requestFocus(FocusNode());
-                  nextPagePush(context, PoDashboardPage());
+                  nextPagePushNamed(context, "/Po-Dashboard");
               })
             ]),
       ),

@@ -17,8 +17,8 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
 
   @override
   Widget build(BuildContext context) {
-    double displaywidth = MediaQuery.of(context).size.width * 0.9;
-    double height100 = MediaQuery.of(context).size.height;
+    final height100 = MediaQuery.of(context).size.height;
+    final width100 = MediaQuery.of(context).size.width;
     PageController _controller = PageController();
     return Scaffold(
       appBar: AppBar(
@@ -26,12 +26,20 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
         actions: [
           IconButton(
               onPressed: () {
-                // nextPagePush(context,AddVolunteer());
-                Navigator.pushNamed(context, AddVolunteer.id);
+                nextPagePushNamed(context, "/Add-Secretary");
               },
               icon: Icon(person_add))
         ],
       ),
+      drawer: Drawer(
+          child: Column(
+        children: [
+          Container(
+            color: Theme.of(context).colorScheme.primary,
+            height: height100 * .2,
+          ),
+        ],
+      )),
       body: poDashbody(
         controller: _controller,
         height100: height100,
@@ -47,7 +55,7 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
           ],
         ),
         margin: EdgeInsets.symmetric(
-            horizontal: displaywidth * .10, vertical: displaywidth * .05),
+            horizontal: width100 * .09, vertical: width100 * .045),
         height: height100 * .08,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15),

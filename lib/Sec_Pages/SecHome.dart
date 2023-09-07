@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:nss_connect/Sec_Pages/AttendenceSection.dart';
+import 'package:nss_connect/models/dataModels.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import '../colors.dart';
 
@@ -119,16 +120,6 @@ class panelSection extends StatelessWidget {
 }
 
 class GridPanels extends StatelessWidget {
- 
-  static const List<String> PanelTitle = [
-    'Blood',
-    'SIP',
-    'EEC',
-    'Education',
-    'Program',
-    'Media',
-    // Papaya Whip
-  ];
   @override
   Widget build(BuildContext context) {
     double tiltValue = 0 / 360;
@@ -137,23 +128,65 @@ class GridPanels extends StatelessWidget {
       children: List.generate(6, (index) {
         return RotationTransition(
           turns: AlwaysStoppedAnimation(-tiltValue),
-          child: Card(
-            shape: CardShapeX(radius: 20),
-            elevation: 2,
-            color: lightColors[index],
+          child: Container(
+            margin: EdgeInsets.all(5),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                // BoxShadow(
+                //   color: Colors.grey.withOpacity(0.5),
+                //   spreadRadius: 2,
+                //   blurRadius: 4,
+                //   offset: Offset(0, 2),
+                // ),
+              ],
+              gradient: LinearGradient(
+                colors: [
+                  Panels[index].color.withOpacity(0.2),
+                  Panels[index].color,
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              // color: SolidColors[index],
+            ),
             child: Padding(
               padding: EdgeInsets.all(10),
-              child: RotationTransition(
-                turns: AlwaysStoppedAnimation(tiltValue),
-                child: Stack(children: [
-                  Text(
-                    PanelTitle[index],
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                ]),
+              child: Transform.rotate(
+                angle: tiltValue *
+                    3.14159265359 /
+                    180, // Convert degrees to radians
+                child: Stack(
+                  children: [
+                    Text(
+                      Panels[index].title,
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
+
+          // child: Card(
+          //   shape: CardShapeX(radius: 20),
+          //   elevation: 2,
+
+          //   color: lightColors[index],
+          //   child: Padding(
+          //     padding: EdgeInsets.all(10),
+          //     child: RotationTransition(
+          //       turns: AlwaysStoppedAnimation(tiltValue),
+          //       child: Stack(children: [
+          //         Text(
+          //           PanelTitle[index],
+          //           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          //         ),
+          //       ]),
+          //     ),
+          //   ),
+          // ),
         );
       }),
     );

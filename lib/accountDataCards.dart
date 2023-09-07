@@ -42,7 +42,7 @@ class _AccountDataCardState extends State<AccountDataCard> {
       return;
     } else {
       Navigator.of(context).pop();
-      nextPageReplace(context, PoDashboardPage());
+      nextPageReplaceNamed(context, "/Po-Dashboard");
     }
     print(
         "====================================\nuser name: $enterdUsername\n password1: $enterdPassword1\n password reenterd: $enterdPassword2\n====================================");

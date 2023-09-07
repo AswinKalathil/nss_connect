@@ -5,14 +5,14 @@
 //
 // import 'colors.dart';
 //
-// class NewVol extends StatefulWidget {
+// class AddVolunteer extends StatefulWidget {
 //   static const String id = 'poDashboard';
 //
 //   @override
-//   State<NewVol> createState() => _NewVolState();
+//   State<AddVolunteer> createState() => _NewVolState();
 // }
 //
-// class _NewVolState extends State<NewVol> {
+// class _NewVolState extends State<AddVolunteer> {
 //   int myCurrentIndex = 0;
 //   final PageController _controller = PageController();
 //
@@ -28,8 +28,8 @@
 //         actions: [
 //           IconButton(
 //             onPressed: () {
-//               // nextPagePush(context,NewVol());
-//               Navigator.pushNamed(context, NewVol.id);
+//               // nextPagePush(context,AddVolunteer());
+//               Navigator.pushNamed(context, AddVolunteer.id);
 //             },
 //             icon: Icon(Icons.person_add),
 //           )
@@ -147,21 +147,21 @@ import 'package:nss_connect/widgetStyles.dart';
 
 import '../models/dataModels.dart';
 
-class NewVol extends StatefulWidget {
-  const NewVol({super.key});
-  static const String id = 'NewVol';
+class AddVolunteer extends StatefulWidget {
+  const AddVolunteer({super.key});
+  static const String id = 'AddVolunteer';
 
   @override
-  State<NewVol> createState() => _NewVolState();
+  State<AddVolunteer> createState() => _AddVolunteerState();
 }
 
-class _NewVolState extends State<NewVol> {
+class _AddVolunteerState extends State<AddVolunteer> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         body: Container(
           // decoration: BoxDecoration(
           //     image: DecorationImage(
@@ -198,113 +198,116 @@ class _DataCardState extends State<DataCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      // height: MediaQuery.of(context).size.height * 0.65,
-      width: MediaQuery.of(context).size.width,
-      // child: Card(
-      //   shape: CardShape(padding: 50),
-      //   color: Colors.white,
-      //   elevation: 10,
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Text(
-                'Register Volunteer',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 30,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Nexa',
+    return Scaffold(
+      body: Container(
+        // padding: EdgeInsets.all(10),
+        height: MediaQuery.of(context).size.height * 0.65,
+        width: MediaQuery.of(context).size.width,
+        // child: Card(
+        //   shape: CardShape(padding: 50),
+        //   color: Colors.white,
+        //   elevation: 10,
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  'Register Volunteer',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Nexa',
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            TitledInputBox(
-                title: "Username",
-                placeholder: "Enter Username",
-                textEditingController: _nameController,
-                submitFunction: () => {}),
-            TitledInputBox(
-                title: "Email",
-                placeholder: "Enter Email",
-                textEditingController: _emailController,
-                submitFunction: () => {}),
-            PassInputBox(
-                title: "Set Password",
-                placeholder: "Auto Generated",
-                textEditingController: _setPassController,
-                isPasswordEmpty: false,
-                submitFunction: () =>
-                    {_setPassController.text = generateRandomPassword(6)}),
-            SizedBox(
-              height: 15,
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            LongButton(
-                buttonText: 'Register',
-                buttonAction: () {
-                  if (!_validateInputs()) {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text("Fill Username and Password"),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text('OK'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                    return;
-                  }
+              SizedBox(
+                height: 10,
+              ),
+              TitledInputBox(
+                  title: "Username",
+                  placeholder: "Enter Username",
+                  textEditingController: _nameController,
+                  submitFunction: () => {}),
+              TitledInputBox(
+                  title: "Email",
+                  placeholder: "Enter Email",
+                  textEditingController: _emailController,
+                  submitFunction: () => {}),
+              PassInputBox(
+                  title: "Set Password",
+                  placeholder: "Auto Generated",
+                  textEditingController: _setPassController,
+                  isPasswordEmpty: false,
+                  submitFunction: () =>
+                      {_setPassController.text = generateRandomPassword(6)}),
+              SizedBox(
+                height: 15,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              LongButton(
+                  buttonText: 'Register',
+                  buttonAction: () {
+                    if (!_validateInputs()) {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text("Fill Username and Password"),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('OK'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      return;
+                    }
 
-                  if (!_setPassController.text.isNotEmpty)
-                    _setPassController.text = generateRandomPassword(6);
+                    if (!_setPassController.text.isNotEmpty)
+                      _setPassController.text = generateRandomPassword(6);
 
-                  VOLUserData.add(
-                      User(_nameController.text, _setPassController.text));
-                  print(
-                      "==============================================\nNew Volunteer Added Username: ${_nameController.text} \nPass: ${_setPassController.text}\n==============================================\n");
+                    VOLUserData.add(
+                        User(_nameController.text, _setPassController.text));
+                    print(
+                        "==============================================\nNew Volunteer Added Username: ${_nameController.text} \nPass: ${_setPassController.text}\n==============================================\n");
 
-                  if (!_setPassController.text.isNotEmpty)
-                    _setPassController.text = generateRandomPassword(6);
+                    if (!_setPassController.text.isNotEmpty)
+                      _setPassController.text = generateRandomPassword(6);
 
-                  Future.delayed(Duration(milliseconds: 500), () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text('Volunteer Added'),
-                          actions: [
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text('OK'),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                    _emailController = TextEditingController();
-                    _nameController = TextEditingController();
-                    _setPassController = TextEditingController();
-                  });
-                })
-          ]),
+                    Future.delayed(Duration(milliseconds: 500), () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            title: Text('Volunteer Added'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('OK'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                      _emailController = TextEditingController();
+                      _nameController = TextEditingController();
+                      _setPassController = TextEditingController();
+                    });
+                  }),
+              // SizedBox(height: MediaQuery.of(context).viewInsets.bottom )
+            ]),
+      ),
     );
   }
 }

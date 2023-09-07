@@ -28,7 +28,7 @@ void otpEmail(BuildContext context, String unitNum) {
         TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              displayBottomSheet(context, CreatePoAccount(unitNumber: unitNum,));
+              displayBottomSheet(context, "/Create-PoAccount",unitNum);
             },
             child: Text('OK'))
       ],
@@ -57,7 +57,7 @@ void otpPhone(BuildContext context, String userId) {
         TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              displayBottomSheet(context, ResetPassword(userId: userId,));
+              displayBottomSheet(context,"/Reset-Password",userId);
             },
             child: Text('OK'))
       ],
@@ -65,7 +65,7 @@ void otpPhone(BuildContext context, String userId) {
   );
 }
 
-void displayBottomSheet(BuildContext context, Widget nextPage) {
+void displayBottomSheet(BuildContext context, String nextPage,String userId) {
   double factor = 0.7;
   double otpBoxSize = MediaQuery.of(context).size.height * 0.05;
   double botomSheetSize = MediaQuery.of(context).size.height * factor;
@@ -180,7 +180,7 @@ void displayBottomSheet(BuildContext context, Widget nextPage) {
                   onPressed: () {
                     Navigator.pop(context);
                     // Navigator.pushNamed(context,RegData.id)
-                    nextPagePush(context, nextPage);
+                    nextPagePushNamed(context, nextPage, arguments: nextPage == "/Reset-Password" ? "userId" : userId );
                   },
                 ),
               ],

@@ -1,18 +1,21 @@
 import 'package:flutter/services.dart';
 import 'package:nss_connect/AddSecretary.dart';
 import 'package:nss_connect/HomeDasboard.dart';
+import 'package:nss_connect/Sec_Pages/NewVol.dart';
 import 'package:nss_connect/Sec_Pages/SecHome.dart';
-import 'package:nss_connect/login2.dart';
+
 import 'package:nss_connect/poDashboard.dart';
 import 'package:nss_connect/themes.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/register.dart';
+import 'Blood_portal/bloodPortalHome.dart';
+import 'ResetPassword.dart';
 import 'Sec_Pages/EventCreate.dart';
 import 'login.dart';
 import 'createPoAccount.dart';
 import 'welcomeTour.dart';
-import 'Secretary.dart';
+import 'SecretaryDashboard.dart';
 import 'colors.dart';
 
 void main() {
@@ -31,23 +34,23 @@ class MyApp extends StatelessWidget {
       theme: ThemeClass.lightTheme,
       darkTheme: ThemeClass.darkTheme,
       themeMode: ThemeMode.system,
-      
+
       // initialRoute: Home.id,
       routes: {
         WelcomeTour.id: (ctx) => WelcomeTour(),
-        HomeDashboard.id: (ctx) => HomeDashboard(),
-        Login.id: (ctx) => Login(),
-        Register.id: (ctx) => Register(),
-        CreatePoAccount.id: (ctx) => CreatePoAccount(
-              unitNumber: 'gg',
-            ),
-        SecretaryDashboard.id: (ctx) => SecretaryDashboard(),
-        VolunteerDashboardPage.id: (ctx) => VolunteerDashboardPage(),
-        PoDashboardPage.id: (ctx) => PoDashboardPage(),
-        Login2.id: (ctx) => Login2(),
-        SecHome.id: (ctx) => SecHome(),
-        AddVolunteer.id: (ctx) => AddVolunteer(),
-        EventApp.id: (ctx) => EventApp(),
+        "/Home-Dashboard": (ctx) => HomeDashboard(),
+        "/Login-page": (ctx) => Login(),
+        "/Register": (ctx) => Register(),
+        "/Create-PoAccount": (ctx) => CreatePoAccount(),
+        "/Secretary-Dashboard": (ctx) => SecretaryDashboard(),
+        "/Add-Volunteer": (ctx) => AddVolunteer(),
+        "/Volunteer-Dashboard": (ctx) => VolunteerDashboardPage(),
+        "/Blood-Portal": (ctx) => BloodPortal(),
+        "/Po-Dashboard": (ctx) => PoDashboardPage(),
+        "/Reset-Password": (ctx) => ResetPassword(),
+        "/SecHome": (ctx) => SecHome(),
+        "/Add-Secretary": (ctx) => AddSecretary(),
+        "/Event-Create": (ctx) => EventCreate(),
       },
       home: WelcomeTour(),
     );
