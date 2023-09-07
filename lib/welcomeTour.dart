@@ -1,11 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/HomeDasboard.dart';
+import 'package:nss_connect/pageTrasitions.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 // import 'package:smooth_page_indicator/src/effects/customizable_effect.dart';
 import 'intro_screens/intro_screen_1.dart';
 import 'intro_screens/intro_screen_2.dart';
 import 'intro_screens/intro_screen_3.dart';
+import 'package:nss_connect/sharedperfs.dart';
 
 class WelcomeTour extends StatefulWidget {
   const WelcomeTour({super.key});
@@ -24,12 +27,26 @@ class _WelcomeTourState extends State<WelcomeTour> {
   void initState() {
     super.initState();
     _startTimer();
+    _checkTourStatus();
   }
 
   @override
   void dispose() {
     _timer?.cancel();
     super.dispose();
+  }
+
+  void _checkTourStatus() async{
+    bool tourCompleted = await WelcomeTourHelper.getTourCompleted();
+
+    if(tourCompleted){
+      //If the tour has been completed earlier, the tour wont be shown again, and navigated to Home Dashboard
+      nextPageReplace(context, HomeDashboard());
+    }
+  }
+
+  void _marktourCompleted() async{
+    await WelcomeTourHelper.setTourCompleted();
   }
 
   void _startTimer() {
@@ -85,6 +102,7 @@ class _WelcomeTourState extends State<WelcomeTour> {
                   //   backgroundColor: Colors.grey.withOpacity(.3), // Set the background color
                   // ),
                   onPressed: () {
+                    _marktourCompleted();
                     Navigator.pushReplacement(
                       context,
                       PageRouteBuilder(
