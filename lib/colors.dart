@@ -27,6 +27,18 @@ final primaryButton = const MaterialColor(
     50: Color(0xFFECECFF),
   },
 );
+const List<Color> SolidColors = [
+  Colors.red,
+  Colors.orange,
+  Colors.amber,
+  Colors.blue,
+  Colors.green,
+  Colors.lightBlue,
+  Colors.lightGreen,
+  Colors.pink,
+  Colors.teal,
+];
+
 const List<Color> lightColors = [
   Color(0xFFFFAFCC),
   Color(0xFFCDB4DB),
