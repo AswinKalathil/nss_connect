@@ -5,7 +5,6 @@ import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
 import 'package:nss_connect/main.dart';
-import 'package:nss_connect/navbar.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/poDashboard.dart';
 import 'package:nss_connect/sharedperfs.dart';
