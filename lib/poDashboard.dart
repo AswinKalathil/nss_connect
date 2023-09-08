@@ -32,14 +32,94 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
         ],
       ),
       drawer: Drawer(
-          child: Column(
-        children: [
-          Container(
-            color: Theme.of(context).colorScheme.primary,
-            height: height100 * .2,
-          ),
-        ],
-      )),
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: [
+            Container(
+              color: Theme.of(context).colorScheme.primary,
+              height: height100 * .2,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.all(10),
+                        width: width100 * .2,
+                        height: width100 * .2,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(50))),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Name",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    alignment: Alignment.bottomRight,
+                    height: double.maxFinite,
+                    width: width100 * .4,
+
+                    // Child:       // ========place for darck mode button===========
+                  )
+                ],
+              ),
+            ),
+            ListTile(
+              leading: IconButton(
+                icon: Icon(Icons.help_outline_outlined),
+                onPressed: () {
+                  // Handle onPressed for IconButton
+                },
+              ),
+              title: Text('Help'),
+              onTap: () {
+                // Handle onTap for ListTile
+              },
+            ),
+            ListTile(
+              leading: IconButton(
+                icon: Icon(Icons.settings_outlined),
+                onPressed: () {
+                  // Handle onPressed for IconButton
+                },
+              ),
+              title: Text('Settings'),
+              onTap: () {
+                // Handle onTap for ListTile
+              },
+            ),
+            Expanded(
+                child: Container(
+              height: height100 * .55,
+            )),
+            ListTile(
+              leading: IconButton(
+                icon: Icon(Icons.logout),
+                onPressed: () {
+                  // Handle onPressed for IconButton
+                },
+              ),
+              title: Text('Logout'),
+              onTap: () {
+                // Handle onTap for ListTile
+              },
+            ),
+          ],
+        ),
+      ),
       body: poDashbody(
         controller: _controller,
         height100: height100,
