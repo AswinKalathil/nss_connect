@@ -9,15 +9,18 @@ class ThemeClass with ChangeNotifier {
   Color lightSecondaryColor = Color.fromARGB(255, 238, 238, 238);
   Color lightAccentColor = Color(0xFF5F5FA8);
 
-  Color darkPrimaryColor = Color.fromARGB(255, 26, 17, 37);
+  Color darkPrimaryColor = Color.fromARGB(255, 19, 12, 27);
   Color darkSecondaryColor = Color.fromARGB(255, 38, 29, 50);
-  Color darkAccentColor = Color.fromARGB(255, 90, 4, 188);
+  Color darkAccentColor = Color.fromARGB(255, 69, 4, 143);
 
   Color SecondaryColor = Color(0xFFF15C5C);
   Color darkTextColor = Color.fromARGB(255, 255, 255, 255);
   Color lightTextColor = Color.fromARGB(255, 0, 0, 0);
 
   static ThemeData lightTheme = ThemeData(
+    textSelectionTheme: TextSelectionThemeData(
+      selectionHandleColor: _themeClass.lightTextColor,
+    ),
     primaryColor: ThemeData.light().scaffoldBackgroundColor,
     colorScheme: const ColorScheme.light().copyWith(
       primary: _themeClass.lightPrimaryColor,
@@ -29,6 +32,9 @@ class ThemeClass with ChangeNotifier {
   );
 
   static ThemeData darkTheme = ThemeData(
+    textSelectionTheme: TextSelectionThemeData(
+      selectionHandleColor: _themeClass.darkTextColor,
+    ),
     primaryColor: ThemeData.dark().scaffoldBackgroundColor,
     colorScheme: const ColorScheme.dark().copyWith(
       primary: _themeClass.darkPrimaryColor,
@@ -43,8 +49,8 @@ class ThemeClass with ChangeNotifier {
     return isDark ? ThemeMode.dark : ThemeMode.light;
   }
 
-  void switchTheme(){
-    isDark =!isDark;
+  void switchTheme() {
+    isDark = !isDark;
     print(isDark);
     notifyListeners();
   }

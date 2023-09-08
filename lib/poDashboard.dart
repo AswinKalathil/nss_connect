@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/AddSecretary.dart';
+import 'package:nss_connect/globals.dart';
 import 'package:nss_connect/pageTrasitions.dart';
+import 'package:nss_connect/sharedperfs.dart';
+import 'package:nss_connect/themes.dart';
 import 'package:nss_connect/widgetStyles.dart';
 
 import 'colors.dart';
@@ -15,14 +18,38 @@ class PoDashboardPage extends StatefulWidget {
 class _PoDashboardPageState extends State<PoDashboardPage> {
   int myCurrentIndex = 0;
 
+  bool toggle = false;
+  void _setIcon() {
+    setState(() {
+      toggle = !toggle;
+    });
+  }
+
+  void setisDark() async {
+    await ThemePreferenceHelper.setisDark();
+  }
+
+  void setisNotDark() async {
+    await ThemePreferenceHelper.setisnotDark();
+  }
+
   @override
   Widget build(BuildContext context) {
+    bool isDark = darkNotifier.value;
+    ThemeData themeData = Theme.of(context);
+
     final height100 = MediaQuery.of(context).size.height;
     final width100 = MediaQuery.of(context).size.width;
     PageController _controller = PageController();
     return Scaffold(
+      backgroundColor: themeData.colorScheme.secondary,
       appBar: AppBar(
-        title: Text('PO Dashboard'),
+        title: Text('PO Dashboard',
+            style: TextStyle(color: ThemeClass().darkTextColor)),
+        backgroundColor: isDark
+            ? ThemeClass().darkAccentColor
+            : ThemeClass().lightAccentColor,
+        foregroundColor: ThemeClass().darkTextColor,
         actions: [
           IconButton(
               onPressed: () {
@@ -35,89 +62,108 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
         // Add a ListView to the drawer. This ensures the user can scroll
         // through the options in the drawer if there isn't enough vertical
         // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: [
-            Container(
-              color: Theme.of(context).colorScheme.primary,
-              height: height100 * .2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.all(10),
-                        width: width100 * .2,
-                        height: width100 * .2,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(50))),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "Name",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
+        child: Container(
+          color: themeData.colorScheme.secondary,
+          child: ListView(
+            // Important: Remove any padding from the ListView.
+            padding: EdgeInsets.zero,
+            children: [
+              Container(
+                color: Theme.of(context).colorScheme.tertiary,
+                height: height100 * .2,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.all(10),
+                          width: width100 * .2,
+                          height: width100 * .2,
+                          decoration: BoxDecoration(
+                              color: themeData.colorScheme.secondary,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(50))),
                         ),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    alignment: Alignment.bottomRight,
-                    height: double.maxFinite,
-                    width: width100 * .4,
-
-                    // Child:       // ========place for darck mode button===========
-                  )
-                ],
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "Name",
+                            style: TextStyle(
+                                color: ThemeClass().darkTextColor,
+                                fontSize: 20),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(
+                      alignment: Alignment.bottomRight,
+                      height: double.maxFinite,
+                      width: width100 * .4,
+                      // color: themeData.colorScheme.secondary,
+                      child: IconButton(
+                          onPressed: () {
+                            isDark = !isDark;
+                            darkNotifier.value = isDark;
+                            if (darkNotifier.value) {
+                              setisDark();
+                            } else {
+                              setisNotDark();
+                            }
+                            _setIcon();
+                          },
+                          icon: !isDark
+                              ? Icon(Icons.dark_mode)
+                              : Icon(Icons
+                                  .light_mode)), // ========place for darck mode button===========
+                    )
+                  ],
+                ),
               ),
-            ),
-            ListTile(
-              leading: IconButton(
-                icon: Icon(Icons.help_outline_outlined),
-                onPressed: () {
-                  // Handle onPressed for IconButton
+              ListTile(
+                leading: IconButton(
+                  icon: Icon(Icons.help_outline_outlined),
+                  onPressed: () {
+                    // Handle onPressed for IconButton
+                  },
+                ),
+                title: Text('Help'),
+                onTap: () {
+                  // Handle onTap for ListTile
                 },
               ),
-              title: Text('Help'),
-              onTap: () {
-                // Handle onTap for ListTile
-              },
-            ),
-            ListTile(
-              leading: IconButton(
-                icon: Icon(Icons.settings_outlined),
-                onPressed: () {
-                  // Handle onPressed for IconButton
+              ListTile(
+                leading: IconButton(
+                  icon: Icon(Icons.settings_outlined),
+                  onPressed: () {
+                    // Handle onPressed for IconButton
+                  },
+                ),
+                title: Text('Settings'),
+                onTap: () {
+                  // Handle onTap for ListTile
                 },
               ),
-              title: Text('Settings'),
-              onTap: () {
-                // Handle onTap for ListTile
-              },
-            ),
-            Expanded(
-                child: Container(
-              height: height100 * .55,
-            )),
-            ListTile(
-              leading: IconButton(
-                icon: Icon(Icons.logout),
-                onPressed: () {
-                  // Handle onPressed for IconButton
+              Expanded(
+                  child: Container(
+                height: height100 * .55,
+              )),
+              ListTile(
+                leading: IconButton(
+                  icon: Icon(Icons.logout),
+                  onPressed: () {
+                    // Handle onPressed for IconButton
+                  },
+                ),
+                title: Text('Logout'),
+                onTap: () {
+                  // Handle onTap for ListTile
                 },
               ),
-              title: Text('Logout'),
-              onTap: () {
-                // Handle onTap for ListTile
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       body: poDashbody(
@@ -126,9 +172,10 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
+          color: themeData.colorScheme.primary.withOpacity(0),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(.1),
+              color: themeData.colorScheme.secondary.withOpacity(0.5),
               blurRadius: 30,
               offset: Offset(0, 10),
             )
@@ -140,13 +187,17 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15),
           child: BottomNavigationBar(
-            selectedItemColor: Theme.of(context).primaryColor,
-            unselectedItemColor: Colors.grey,
+            backgroundColor: themeData.colorScheme.primary,
+            selectedItemColor: themeData.colorScheme.onPrimary.withOpacity(1),
+            unselectedItemColor:
+                themeData.colorScheme.onPrimary.withOpacity(0.3),
             currentIndex: myCurrentIndex,
             iconSize: 30,
             items: [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.event_note_outlined), label: 'Events'),
+                icon: Icon(Icons.event_note_outlined),
+                label: 'Events',
+              ),
               BottomNavigationBarItem(
                   icon: Icon(Icons.description_outlined),
                   label: 'Certificates'),
@@ -201,9 +252,10 @@ class EventSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: themeData.colorScheme.secondary,
       ),
       child: Column(
         children: [
@@ -252,6 +304,8 @@ class GridPanels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
+    bool isDark = darkNotifier.value;
     return GridView.count(
       crossAxisCount: 3,
       children: eventList.map((e) {
@@ -272,7 +326,9 @@ class GridPanels extends StatelessWidget {
                         Text(
                           e.eventTitle,
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: ThemeClass().lightTextColor),
                         ),
                       ],
                     ),
@@ -327,7 +383,10 @@ class POrequestPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
+    bool isDark = darkNotifier.value;
     return Scaffold(
+      backgroundColor: themeData.colorScheme.secondary,
       body: ListView.builder(
         itemCount: pendingCertificates.length,
         itemBuilder: (context, index) {
@@ -346,10 +405,17 @@ class POrequestPage extends StatelessWidget {
                 // ),
                 SizedBox(width: 10.0),
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        themeData.colorScheme.tertiary),
+                  ),
                   onPressed: () {
                     // Handle verify button press
                   },
-                  child: Text('Proceed'),
+                  child: Text(
+                    'Proceed',
+                    style: TextStyle(color: ThemeClass().darkTextColor),
+                  ),
                 ),
               ],
             ),

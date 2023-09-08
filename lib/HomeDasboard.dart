@@ -51,13 +51,13 @@ class HomeDashboard extends StatelessWidget {
                     image: AssetImage('assets/images/homeBackground.png'),
                     fit: BoxFit.fitWidth,
                     alignment: Alignment.bottomLeft,
-                    opacity: 0.3,
+                    opacity: 0.35,
                   )
                 : DecorationImage(
                     image: AssetImage('assets/images/homeBackground_dark.png'),
                     fit: BoxFit.fitWidth,
                     alignment: Alignment.bottomLeft,
-                    opacity: 0.3,
+                    opacity: 0.15,
                   ), // No background image for dark theme
           ),
           child: Column(
@@ -97,11 +97,11 @@ class _ConnectButtonAreaState extends State<ConnectButtonArea> {
     });
   }
 
-  void setisDark() async{
+  void setisDark() async {
     await ThemePreferenceHelper.setisDark();
   }
 
-  void setisNotDark() async{
+  void setisNotDark() async {
     await ThemePreferenceHelper.setisnotDark();
   }
 
@@ -125,9 +125,9 @@ class _ConnectButtonAreaState extends State<ConnectButtonArea> {
               onPressed: () {
                 isDark = !isDark;
                 darkNotifier.value = isDark;
-                if(darkNotifier.value){
+                if (darkNotifier.value) {
                   setisDark();
-                }else{
+                } else {
                   setisNotDark();
                 }
                 _setIcon();

@@ -45,7 +45,7 @@ class _credCardState extends State<credCard> {
   //   });
   // }
   @override
-  void dispose(){
+  void dispose() {
     _errorTimer?.cancel();
     _invalidTimer?.cancel();
     super.dispose();
@@ -173,7 +173,7 @@ class _credCardState extends State<credCard> {
       width: MediaQuery.of(context).size.width * 8,
       child: Card(
         shape: CardShape(padding: 50),
-        color: themeData.primaryColor,
+        color: themeData.colorScheme.secondary,
         elevation: 10,
         child: Column(children: [
           Padding(
@@ -208,7 +208,9 @@ class _credCardState extends State<credCard> {
                     // color: isDarkTheme? Colors.black.withOpacity(0.7):Colors.grey.withOpacity(0.3),
                     borderRadius: BorderRadius.all(Radius.circular(7)),
                     border: Border.all(
-                      color: isDark? ThemeClass().darkTextColor.withOpacity(0.3):ThemeClass().lightTextColor.withOpacity(0.3),
+                      color: isDark
+                          ? ThemeClass().darkTextColor.withOpacity(0.3)
+                          : ThemeClass().lightTextColor.withOpacity(0.3),
                       // color: isDarkTheme? Colors.white.withOpacity(0.3):Colors.grey.withOpacity(0.3),
                     ),
                     // boxShadow: [
@@ -306,7 +308,9 @@ class _credCardState extends State<credCard> {
               'Username',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: isDark? ThemeClass().darkTextColor.withOpacity(0.5):ThemeClass().lightTextColor.withOpacity(0.5),
+                color: isDark
+                    ? ThemeClass().darkTextColor.withOpacity(0.5)
+                    : ThemeClass().lightTextColor.withOpacity(0.5),
               ),
             ),
           ),
@@ -332,23 +336,27 @@ class _credCardState extends State<credCard> {
               },
               textInputAction: TextInputAction.next,
               style: TextStyle(),
-              cursorColor: isDark? ThemeClass().darkTextColor.withOpacity(0.5):ThemeClass().lightTextColor.withOpacity(0.5),
+              cursorColor: isDark
+                  ? ThemeClass().darkTextColor.withOpacity(0.5)
+                  : ThemeClass().lightTextColor.withOpacity(0.5),
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 contentPadding: EdgeInsets.only(left: 10),
-                hintText: 'Enter your username',
+                hintText: 'Enter your Username',
                 hintStyle: TextStyle(
-                  color: isDark? ThemeClass().darkTextColor.withOpacity(0.4):ThemeClass().lightTextColor.withOpacity(0.4),
+                  color: isDark
+                      ? ThemeClass().darkTextColor.withOpacity(0.4)
+                      : ThemeClass().lightTextColor.withOpacity(0.4),
                 ),
               ),
             ),
           ),
           PassInputBox(
               title: "Password",
-              placeholder: "Enter new Password",
+              placeholder: "Enter your Password",
               textEditingController: _passwordController,
               isPasswordEmpty: _isPasswordEmpty,
               onChanged: (_) {
@@ -376,7 +384,7 @@ class _credCardState extends State<credCard> {
                     'Forgot Password?',
                     style: TextStyle(
                       decoration: TextDecoration.underline,
-                      color: Colors.grey.withOpacity(0.7),
+                      color: themeData.colorScheme.onPrimary.withOpacity(0.5),
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
                     ),
