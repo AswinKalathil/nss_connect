@@ -41,7 +41,7 @@ class _WelcomeTourState extends State<WelcomeTour> {
 
     if(tourCompleted){
       //If the tour has been completed earlier, the tour wont be shown again, and navigated to Home Dashboard
-      nextPageReplace(context, HomeDashboard());
+      nextPageReplaceNamed(context, '/Home-Dashboard');
     }
   }
 

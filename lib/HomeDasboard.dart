@@ -4,14 +4,18 @@ import 'package:nss_connect/SecretaryDashboard.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/login.dart';
+import 'package:nss_connect/main.dart';
+import 'package:nss_connect/navbar.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/poDashboard.dart';
+import 'package:nss_connect/sharedperfs.dart';
 import 'package:nss_connect/themes.dart';
 // import 'package:nss_connect/slidingCards.dart';
 import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/models/events.dart';
 import 'package:nss_connect/Blood_portal/bloodPortalHome.dart';
+import 'package:nss_connect/globals.dart';
 
 // import 'Secretary.dart';
 
@@ -28,6 +32,11 @@ class HomeDashboard extends StatelessWidget {
     Brightness currentBrightness = Theme.of(context).brightness;
 
     return Scaffold(
+      // drawer: NavBar(),
+      // appBar: AppBar(
+      //   title: Text('Side Menu'),
+      // ),
+      backgroundColor: themeData.colorScheme.primary,
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.only(
@@ -67,7 +76,7 @@ class HomeDashboard extends StatelessWidget {
   }
 }
 
-class ConnectButtonArea extends StatelessWidget {
+class ConnectButtonArea extends StatefulWidget {
   const ConnectButtonArea({
     super.key,
     required this.height100,
@@ -78,53 +87,91 @@ class ConnectButtonArea extends StatelessWidget {
   final double width100;
 
   @override
+  State<ConnectButtonArea> createState() => _ConnectButtonAreaState();
+}
+
+class _ConnectButtonAreaState extends State<ConnectButtonArea> {
+  bool toggle = false;
+  void _setIcon() {
+    setState(() {
+      toggle = !toggle;
+    });
+  }
+
+  void setisDark() async{
+    await ThemePreferenceHelper.setisDark();
+  }
+
+  void setisNotDark() async{
+    await ThemePreferenceHelper.setisnotDark();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    bool isDark = darkNotifier.value;
     return Container(
       // color: Colors.red,
       alignment: Alignment.bottomRight,
-      margin: EdgeInsets.only(bottom: height100 * .02),
+      margin: EdgeInsets.only(bottom: widget.height100 * .02),
       padding: EdgeInsets.symmetric(
-        vertical: height100 * 0.03,
+        vertical: widget.height100 * 0.03,
         horizontal: MediaQuery.of(context).size.width *
             0.05, //========================height  adjest
       ),
-      height: height100 * 0.12,
-      child: AnimatedOpacity(
-        duration: Duration(milliseconds: 500),
-        curve: Curves.easeIn,
-        opacity: 1.0,
+      height: widget.height100 * 0.12,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+              onPressed: () {
+                isDark = !isDark;
+                darkNotifier.value = isDark;
+                if(darkNotifier.value){
+                  setisDark();
+                }else{
+                  setisNotDark();
+                }
+                _setIcon();
+              },
+              icon: !isDark ? Icon(Icons.dark_mode) : Icon(Icons.light_mode)),
+          AnimatedOpacity(
+            duration: Duration(milliseconds: 500),
+            curve: Curves.easeIn,
+            opacity: 1.0,
 
-        child: SmallButton(
-            buttonText: 'Let\'s Connect ',
-            buttonAction: () {
-              nextPagePushNamed(context, '/Login-page');
-            },
-            buttonWidth: MediaQuery.of(context).size.width * 0.32),
+            child: SmallButton(
+                buttonText: 'Let\'s Connect ',
+                buttonAction: () {
+                  nextPagePushNamed(context, '/Login-page');
+                },
+                buttonWidth: MediaQuery.of(context).size.width * 0.32),
 
-        // child: TextButton(
-        //   style: TextButton.styleFrom(
-        //     padding: EdgeInsets.symmetric(
-        //         vertical: height100 * 0.012,
-        //         horizontal: MediaQuery.of(context).size.width *
-        //             0.05), //========================height  adjest
-        //     backgroundColor: Theme.of(context).primaryColor,
-        //     shape: RoundedRectangleBorder(
-        //       borderRadius: BorderRadius.circular(5.0),
-        //     ),
-        //   ),
-        //   onPressed: () {
-        //     nextPagePush(context, Login());
-        //   },
-        //   child: Text(
-        //     'Let\'s Connect ',
-        //     style: TextStyle(
-        //       color: Colors.white,
-        //       fontFamily: 'Poppins',
-        //       fontSize: width100 * 0.0375,
-        //       fontWeight: FontWeight.bold,
-        //     ),
-        //   ),
-        // ),
+            // child: TextButton(
+            //   style: TextButton.styleFrom(
+            //     padding: EdgeInsets.symmetric(
+            //         vertical: height100 * 0.012,
+            //         horizontal: MediaQuery.of(context).size.width *
+            //             0.05), //========================height  adjest
+            //     backgroundColor: Theme.of(context).primaryColor,
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(5.0),
+            //     ),
+            //   ),
+            //   onPressed: () {
+            //     nextPagePush(context, Login());
+            //   },
+            //   child: Text(
+            //     'Let\'s Connect ',
+            //     style: TextStyle(
+            //       color: Colors.white,
+            //       fontFamily: 'Poppins',
+            //       fontSize: width100 * 0.0375,
+            //       fontWeight: FontWeight.bold,
+            //     ),
+            //   ),
+            // ),
+          ),
+        ],
       ),
     );
   }
@@ -142,6 +189,7 @@ class EventCarosel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return Container(
       // color: Colors.red,
       padding: EdgeInsets.all(0),
@@ -169,6 +217,7 @@ class EventCarosel extends StatelessWidget {
               return Container(
                 width: width100 * .9,
                 child: Card(
+                  color: themeData.colorScheme.secondary,
                   elevation: 5,
                   shape: CardShape(),
                   child: Row(
@@ -176,6 +225,7 @@ class EventCarosel extends StatelessWidget {
                       Container(
                         width: width100 * 0.3,
                         decoration: BoxDecoration(
+                          color: themeData.colorScheme.primary,
                           image: DecorationImage(
                             fit: BoxFit.fill,
                             image: AssetImage(eventObject.eventImagepath),
@@ -190,6 +240,7 @@ class EventCarosel extends StatelessWidget {
                           padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
                             // color: Colors.white,
+                            color: themeData.colorScheme.secondary,
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(5),
                                 bottomRight: Radius.circular(5)),

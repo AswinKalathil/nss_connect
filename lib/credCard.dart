@@ -28,6 +28,7 @@ class _credCardState extends State<credCard> {
   bool _isUsernameEmpty = true;
   bool _isPasswordEmpty = true;
   bool _isNotValid = false;
+  Timer? _invalidTimer;
   Timer? _errorTimer;
 
   String _selectedOption = "/Volunteer-Dashboard";
@@ -163,6 +164,8 @@ class _credCardState extends State<credCard> {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
+    Brightness currentBrightnessValue = themeData.brightness;
+    bool isDark = currentBrightnessValue == Brightness.dark;
     return Container(
       padding: EdgeInsets.all(10),
       // height: MediaQuery.of(context).size.height *
@@ -205,7 +208,7 @@ class _credCardState extends State<credCard> {
                     // color: isDarkTheme? Colors.black.withOpacity(0.7):Colors.grey.withOpacity(0.3),
                     borderRadius: BorderRadius.all(Radius.circular(7)),
                     border: Border.all(
-                      color: themeData.colorScheme.secondary.withOpacity(0.3),
+                      color: isDark? ThemeClass().darkTextColor.withOpacity(0.3):ThemeClass().lightTextColor.withOpacity(0.3),
                       // color: isDarkTheme? Colors.white.withOpacity(0.3):Colors.grey.withOpacity(0.3),
                     ),
                     // boxShadow: [
@@ -303,7 +306,7 @@ class _credCardState extends State<credCard> {
               'Username',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: themeData.colorScheme.secondary.withOpacity(0.5),
+                color: isDark? ThemeClass().darkTextColor.withOpacity(0.5):ThemeClass().lightTextColor.withOpacity(0.5),
               ),
             ),
           ),
@@ -329,7 +332,7 @@ class _credCardState extends State<credCard> {
               },
               textInputAction: TextInputAction.next,
               style: TextStyle(),
-              cursorColor: themeData.colorScheme.secondary,
+              cursorColor: isDark? ThemeClass().darkTextColor.withOpacity(0.5):ThemeClass().lightTextColor.withOpacity(0.5),
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
@@ -338,7 +341,7 @@ class _credCardState extends State<credCard> {
                 contentPadding: EdgeInsets.only(left: 10),
                 hintText: 'Enter your username',
                 hintStyle: TextStyle(
-                  color: themeData.colorScheme.secondary.withOpacity(0.4),
+                  color: isDark? ThemeClass().darkTextColor.withOpacity(0.4):ThemeClass().lightTextColor.withOpacity(0.4),
                 ),
               ),
             ),

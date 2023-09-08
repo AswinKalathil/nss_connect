@@ -22,7 +22,7 @@ class LongButton extends StatelessWidget {
           buttonAction();
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: ThemeClass().darkPrimaryColor,
+          backgroundColor: themeData.colorScheme.tertiary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(9),
           ),
@@ -71,7 +71,7 @@ class SmallButton extends StatelessWidget {
           buttonAction();
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: ThemeClass().darkPrimaryColor,
+          backgroundColor: themeData.colorScheme.tertiary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(9),
           ),
@@ -222,6 +222,8 @@ class TitledInputBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
+    Brightness currentBrightnessValue = themeData.brightness;
+    bool isDark = currentBrightnessValue == Brightness.dark;
     return Container(
       margin: EdgeInsets.all(5),
       width: MediaQuery.of(context).size.width * .8,
@@ -241,7 +243,8 @@ class TitledInputBox extends StatelessWidget {
               title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: themeData.colorScheme.secondary.withOpacity(0.4),
+                color: Colors.white.withOpacity(0.5),
+                //isDark? ThemeClass().darkTextColor:ThemeClass().lightTextColor,
               ),
             ),
           ),
@@ -330,6 +333,8 @@ class _PassInputBoxState extends State<PassInputBox> {
 
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
+    Brightness currentBrightnessValue = themeData.brightness;
+    bool isDark = currentBrightnessValue == Brightness.dark;
     return Container(
       margin: EdgeInsets.all(5),
       width: MediaQuery.of(context).size.width * .8,
@@ -349,7 +354,7 @@ class _PassInputBoxState extends State<PassInputBox> {
               widget.title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: themeData.colorScheme.secondary.withOpacity(0.5),
+                color: isDark? ThemeClass().darkTextColor.withOpacity(0.5):ThemeClass().lightTextColor.withOpacity(0.5),
               ),
             ),
           ),
@@ -373,12 +378,12 @@ class _PassInputBoxState extends State<PassInputBox> {
               enableSuggestions: false,
               autocorrect: false,
               style: TextStyle(),
-              cursorColor: themeData.colorScheme.secondary,
+              cursorColor: isDark? ThemeClass().darkTextColor:ThemeClass().lightTextColor,
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                     icon: Icon(
                       color: _obscureText
-                          ? themeData.colorScheme.secondary
+                          ? themeData.colorScheme.onPrimary
                           : Colors.grey,
                       _obscureText ? Icons.visibility : Icons.visibility_off,
                     ),
@@ -390,7 +395,8 @@ class _PassInputBoxState extends State<PassInputBox> {
                 contentPadding: EdgeInsets.only(left: 10),
                 hintText: widget.placeholder,
                 hintStyle: TextStyle(
-                  color: themeData.colorScheme.secondary.withOpacity(0.4),
+                  color: themeData.colorScheme.onPrimary.withOpacity(0.4),
+                  // isDark? ThemeClass().darkTextColor.withOpacity(0.4):ThemeClass().lightTextColor.withOpacity(0.4),
                 ),
               ),
             ),
