@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/HomeDasboard.dart';
+import 'package:nss_connect/sharedperfs.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'intro_screens/intro_screen_1.dart';
 import 'intro_screens/intro_screen_2.dart';
@@ -29,6 +30,10 @@ class _WelcomeTourState extends State<WelcomeTour> {
   void dispose() {
     _timer?.cancel();
     super.dispose();
+  }
+
+  void _marktourCompleted() async {
+    await WelcomeTourHelper.setTourCompleted();
   }
 
   void _startTimer() {
@@ -77,6 +82,7 @@ class _WelcomeTourState extends State<WelcomeTour> {
               alignment: const Alignment(.95, -.83),
               child: TextButton(
                   onPressed: () {
+                    _marktourCompleted();
                     Navigator.pushReplacement(
                       context,
                       PageRouteBuilder(

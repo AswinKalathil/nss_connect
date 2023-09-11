@@ -13,12 +13,14 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
+    Brightness currentBrightness = themeData.brightness;
+    bool isDark = currentBrightness == Brightness.dark;
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
       child: Scaffold(
         body: Container(
           decoration: BoxDecoration(
-            color: themeData.colorScheme.primary,
+            color: isDark? themeData.colorScheme.primary : themeData.colorScheme.secondary,
           ),
           child: Column(children: [
             Flexible(flex: 1, fit: FlexFit.tight, child: Container()),

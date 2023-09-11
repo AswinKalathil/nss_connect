@@ -131,7 +131,7 @@ class _credCardState extends State<credCard> {
       width: MediaQuery.of(context).size.width * 8,
       child: Card(
         shape: CardShape(padding: 50),
-        color: themeData.colorScheme.secondary,
+        color: isDark? themeData.colorScheme.secondary : themeData.colorScheme.primary,
         elevation: 10,
         child: Column(children: [
           Padding(
@@ -161,6 +161,7 @@ class _credCardState extends State<credCard> {
                 dropdownStyleData: DropdownStyleData(
                   elevation: 10,
                   decoration: BoxDecoration(
+                    color: isDark? themeData.colorScheme.secondary : themeData.colorScheme.primary,
                     borderRadius: BorderRadius.all(Radius.circular(7)),
                     border: Border.all(
                       color: isDark
