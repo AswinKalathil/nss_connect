@@ -43,7 +43,6 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
             IconButton(
                 onPressed: () {
                   addVolunteerSheet(context);
-                  // nextPagePushNamed(context, "/Add-Volunteer");
                 },
                 icon: Icon(person_add))
           ],
@@ -69,14 +68,6 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
     );
   }
 }
-
-// void addVolunteerSheet(BuildContext context) {
-//   showModalBottomSheet(
-//       context: context,
-//       builder: (context) {
-//         return AddVolunteer();
-//       });
-// }
 void addVolunteerSheet(BuildContext ctx) async {
   var result = await showModalBottomSheet(
     context: ctx,
