@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nss_connect/colors.dart';
-import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/models/events.dart';
 
 class EventCreate extends StatelessWidget {
@@ -9,9 +8,9 @@ class EventCreate extends StatelessWidget {
   static const String id = 'EventCreate';
   @override
   Widget build(BuildContext context) {
-    double height100 = MediaQuery.of(context).size.height -
-        MediaQuery.of(context).padding.top -
-        MediaQuery.of(context).padding.bottom;
+    // double height100 = MediaQuery.of(context).size.height -
+    //     MediaQuery.of(context).padding.top -
+    //     MediaQuery.of(context).padding.bottom;
 
     return MaterialApp(
       title: 'Event Creation',
@@ -54,8 +53,6 @@ class _EventScreenState extends State<EventScreen> {
 
   void addEvent() {
     int index = 0;
-
-    // Implement your logic to add the event
     // For now, let's print the event details
     print('Event Name: $eventName');
     print('Description: $eventDescription');
@@ -76,23 +73,6 @@ class _EventScreenState extends State<EventScreen> {
     ));
 
     Navigator.pop(context, "refresh");
-    // showDialog(
-    //   context: context,
-    //   builder: (context) {
-    //     return AlertDialog(
-    //       title: Text('Event Added'),
-    //       actions: [
-    //         TextButton(
-    //           onPressed: () {
-    //
-    //           },
-    //           child: Text('OK'),
-    //         ),
-    //       ],
-    //     );
-    //   },
-    // );
-    // Navigator.of(context).pop();
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -121,7 +101,6 @@ class _EventScreenState extends State<EventScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var selectedOption;
     return Scaffold(
       appBar: AppBar(
         title: Text('Event Creation'),
@@ -139,7 +118,6 @@ class _EventScreenState extends State<EventScreen> {
                 });
               },
             ),
-
             SizedBox(height: 16.0),
             TextField(
               decoration: InputDecoration(labelText: 'Event Description'),
@@ -149,9 +127,6 @@ class _EventScreenState extends State<EventScreen> {
                 });
               },
             ),
-            // SizedBox(height: 16.0),
-            // ImageInputBox(),
-
             SizedBox(height: 16.0),
             DropdownButtonFormField<String>(
               value: widget.selectedOption,
@@ -235,7 +210,6 @@ class _EventScreenState extends State<EventScreen> {
                       addEvent();
                     },
                     child: Text('Create Event'),
-                    // backgroundColor: primaryButton,
                   ),
                 ),
               ],

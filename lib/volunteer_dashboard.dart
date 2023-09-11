@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nss_connect/colors.dart';
 import 'package:nss_connect/vol_pages/volHome.dart';
 import 'package:nss_connect/vol_pages/volDuty.dart';
 import 'package:nss_connect/pageTrasitions.dart';
-
-import 'Blood_portal/bloodPortalHome.dart';
 
 class VolunteerDashboardPage extends StatefulWidget {
   static const String id = 'volunteerDashboard';
@@ -16,7 +13,6 @@ class _VolunteerDashboardPageState extends State<VolunteerDashboardPage> {
   @override
   Widget build(BuildContext context) {
     final height100 = MediaQuery.of(context).size.height;
-    final width100 = MediaQuery.of(context).size.width;
     bool isDarkMode = false;
     return DefaultTabController(
       length: 2,

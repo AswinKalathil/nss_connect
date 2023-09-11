@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nss_connect/colors.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-
 import 'package:nss_connect/themes.dart';
 
 class LongButton extends StatelessWidget {
@@ -34,10 +32,6 @@ class LongButton extends StatelessWidget {
             vertical: 5,
             horizontal: 12,
           ),
-          // decoration: BoxDecoration(
-          //   color: primaryButton,
-          //   borderRadius: BorderRadius.all(Radius.circular(5)),
-          // ),
           child: Center(
             child: Text(
               buttonText,
@@ -83,10 +77,6 @@ class SmallButton extends StatelessWidget {
             vertical: 5,
             horizontal: 12,
           ),
-          // decoration: BoxDecoration(
-          //   color: primaryButton,
-          //   borderRadius: BorderRadius.all(Radius.circular(5)),
-          // ),
           child: Center(
             child: Text(
               buttonText,
@@ -170,7 +160,8 @@ class _ImageInputBoxState extends State<ImageInputBox> {
 
   Future _getImage() async {
     final imagePicker = ImagePicker();
-    final pickedImage = await imagePicker.getImage(source: ImageSource.gallery);
+    final pickedImage =
+        await imagePicker.pickImage(source: ImageSource.gallery);
 
     if (pickedImage != null) {
       setState(() {
@@ -192,7 +183,7 @@ class _ImageInputBoxState extends State<ImageInputBox> {
               border: Border.all(width: 1, color: Colors.grey),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: _image == null
+            child: _image == true
                 ? Icon(Icons.add_a_photo, size: 50, color: Colors.grey)
                 : Image.file(_image, fit: BoxFit.cover),
           ),
@@ -221,20 +212,14 @@ class TitledInputBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
-    Brightness currentBrightnessValue = themeData.brightness;
-    bool isDark = currentBrightnessValue == Brightness.dark;
     return Container(
       margin: EdgeInsets.all(5),
       width: MediaQuery.of(context).size.width * .8,
-      // color: Colors.amber,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          //Title------------
           Container(
-            // color: Colors.blue,
             alignment: AlignmentDirectional.topStart,
             padding: EdgeInsets.only(
               bottom: 10,
@@ -244,14 +229,11 @@ class TitledInputBox extends StatelessWidget {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.white.withOpacity(0.5),
-                //isDark? ThemeClass().darkTextColor:ThemeClass().lightTextColor,
               ),
             ),
           ),
-          //input ----------------
           Container(
             decoration: BoxDecoration(
-              // color: Colors.blueGrey,
               borderRadius: BorderRadius.all(Radius.circular(5)),
               border: Border.all(
                 color: Colors.grey
@@ -318,7 +300,6 @@ class _PassInputBoxState extends State<PassInputBox> {
   void initState() {
     super.initState();
     widget.textEditingController.addListener(() {
-      // Call the optional onChanged callback if provided
       if (widget.onChanged != null) {
         widget.onChanged!(widget.textEditingController.text);
       }
@@ -338,14 +319,12 @@ class _PassInputBoxState extends State<PassInputBox> {
     return Container(
       margin: EdgeInsets.all(5),
       width: MediaQuery.of(context).size.width * .8,
-      // color: Colors.amber,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //Title------------
           Container(
-            // color: Colors.blue,
             alignment: AlignmentDirectional.topStart,
             padding: EdgeInsets.only(
               bottom: 10,
@@ -354,7 +333,9 @@ class _PassInputBoxState extends State<PassInputBox> {
               widget.title,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: isDark? ThemeClass().darkTextColor.withOpacity(0.5):ThemeClass().lightTextColor.withOpacity(0.5),
+                color: isDark
+                    ? ThemeClass().darkTextColor.withOpacity(0.5)
+                    : ThemeClass().lightTextColor.withOpacity(0.5),
               ),
             ),
           ),
@@ -378,7 +359,9 @@ class _PassInputBoxState extends State<PassInputBox> {
               enableSuggestions: false,
               autocorrect: false,
               style: TextStyle(),
-              cursorColor: isDark? ThemeClass().darkTextColor:ThemeClass().lightTextColor,
+              cursorColor: isDark
+                  ? ThemeClass().darkTextColor
+                  : ThemeClass().lightTextColor,
               decoration: InputDecoration(
                 suffixIcon: IconButton(
                     icon: Icon(
@@ -396,7 +379,6 @@ class _PassInputBoxState extends State<PassInputBox> {
                 hintText: widget.placeholder,
                 hintStyle: TextStyle(
                   color: themeData.colorScheme.onPrimary.withOpacity(0.4),
-                  // isDark? ThemeClass().darkTextColor.withOpacity(0.4):ThemeClass().lightTextColor.withOpacity(0.4),
                 ),
               ),
             ),

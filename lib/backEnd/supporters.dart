@@ -1,7 +1,4 @@
 import 'dart:math';
-import 'dart:async';
-
-import 'package:flutter/material.dart';
 
 String generateRandomPassword(int length) {
   final Random random = Random();
@@ -28,4 +25,3 @@ void main() {
   final String password = generateRandomPassword(passwordLength);
   print('Generated Password: $password');
 }
-

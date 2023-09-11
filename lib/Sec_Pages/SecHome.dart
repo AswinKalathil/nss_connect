@@ -1,11 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:nss_connect/Sec_Pages/AttendenceSection.dart';
 import 'package:nss_connect/models/dataModels.dart';
-import 'package:nss_connect/widgetStyles.dart';
-import '../colors.dart';
 
 class SecHome extends StatefulWidget {
   const SecHome({super.key});
@@ -132,14 +127,7 @@ class GridPanels extends StatelessWidget {
             margin: EdgeInsets.all(5),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                // BoxShadow(
-                //   color: Colors.grey.withOpacity(0.5),
-                //   spreadRadius: 2,
-                //   blurRadius: 4,
-                //   offset: Offset(0, 2),
-                // ),
-              ],
+              boxShadow: [],
               gradient: LinearGradient(
                 colors: [
                   Panels[index].color.withOpacity(0.2),
@@ -148,7 +136,6 @@ class GridPanels extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
-              // color: SolidColors[index],
             ),
             child: Padding(
               padding: EdgeInsets.all(10),
@@ -168,25 +155,6 @@ class GridPanels extends StatelessWidget {
               ),
             ),
           ),
-
-          // child: Card(
-          //   shape: CardShapeX(radius: 20),
-          //   elevation: 2,
-
-          //   color: lightColors[index],
-          //   child: Padding(
-          //     padding: EdgeInsets.all(10),
-          //     child: RotationTransition(
-          //       turns: AlwaysStoppedAnimation(tiltValue),
-          //       child: Stack(children: [
-          //         Text(
-          //           PanelTitle[index],
-          //           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          //         ),
-          //       ]),
-          //     ),
-          //   ),
-          // ),
         );
       }),
     );

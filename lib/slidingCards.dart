@@ -2,10 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/credCard.dart';
 import 'package:nss_connect/regcard.dart';
-import 'package:nss_connect/widgetStyles.dart';
-
 import 'accountDataCards.dart';
-import 'models/events.dart';
 
 class SlidingCards extends StatefulWidget {
   @override
@@ -58,28 +55,23 @@ class _SlidingCardsState extends State<SlidingCards>
       RegCard(),
       UserDataCard(),
       AccountDataCard()
-      
+
       // Add more card widgets as needed
     ];
 
     return Scaffold(
       appBar: AppBar(),
-      body: 
-          Container(
-            color: Colors.green,
-            child: Column(
-              children: [
-                EventCarosel(
-                  width100: width100,
-                  height100: height100 *.8,
-                  cards: cards,
-                ),
-                
-              ],
+      body: Container(
+        color: Colors.green,
+        child: Column(
+          children: [
+            EventCarosel(
+              width100: width100,
+              height100: height100 * .8,
+              cards: cards,
             ),
-          
-         
-      
+          ],
+        ),
       ),
     );
   }
@@ -95,12 +87,6 @@ class _SlidingCardsState extends State<SlidingCards>
         width: 100,
         color: Colors.red,
       ),
-      // child: ElevatedButton(
-      //   onPressed: () => _changeCard(0),
-      //   child: Center(
-      //     child: Text('Card 1'),
-      //   ),
-      // ),
     );
   }
 
@@ -149,23 +135,18 @@ class EventCarosel extends StatelessWidget {
     return Container(
       color: Colors.red,
       padding: EdgeInsets.all(0),
-      width: width100 ,
-      height: height100 , //========================height  adjest
+      width: width100,
+      height: height100, //height  adjust
       child: CarouselSlider(
           options: CarouselOptions(
-            height: height100 ,
+            height: height100,
             viewportFraction: 1,
             autoPlay: true,
             autoPlayInterval: Duration(seconds: 5),
             autoPlayAnimationDuration: Duration(milliseconds: 800),
             autoPlayCurve: Curves.fastOutSlowIn,
             pauseAutoPlayOnTouch: true,
-            // aspectRatio: 2.07,
-            onPageChanged: (index, reason) {
-              // setState(() {
-              //   _current = index;
-              // });
-            },
+            onPageChanged: (index, reason) {},
           ),
           items: cards),
     );

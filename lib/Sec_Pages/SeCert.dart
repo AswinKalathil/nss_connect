@@ -1,8 +1,4 @@
-// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/widgets.dart';
-
-import '../colors.dart';
 
 class SecCert extends StatefulWidget {
   const SecCert({super.key});
@@ -13,8 +9,8 @@ class SecCert extends StatefulWidget {
 
 class _SecCertState extends State<SecCert> {
   @override
-  int myCurrentIndex = 0;
   Widget build(BuildContext context) {
+    int myCurrentIndex = 0;
     double width100 = MediaQuery.of(context).size.width * 0.9;
     double height100 = MediaQuery.of(context).size.height;
     PageController _controller = PageController();
@@ -88,10 +84,6 @@ class secCertBody extends StatelessWidget {
       scrollDirection: Axis.vertical,
       controller: _controller,
       children: [
-        // panelSection(
-        //   height100: height100,
-        // ),
-        // AttendenceSection(),
         AdminPendingPage(),
         AdminApprovedPage(),
       ],
@@ -126,17 +118,9 @@ class AdminPendingPage extends StatelessWidget {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // ElevatedButton(
-                //   onPressed: () {
-                //     // Handle view button press
-                //   },
-                //   child: Text('View'),
-                // ),
                 SizedBox(width: 10.0),
                 ElevatedButton(
-                  onPressed: () {
-                    // Handle verify button press
-                  },
+                  onPressed: () {},
                   child: Text('Proceed'),
                 ),
               ],
@@ -169,9 +153,7 @@ class AdminApprovedPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 ElevatedButton(
-                  onPressed: () {
-                    // Handle view button press
-                  },
+                  onPressed: () {},
                   child: Text('View'),
                 ),
               ],

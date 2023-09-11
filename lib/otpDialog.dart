@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nss_connect/ResetPassword.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:nss_connect/pageTrasitions.dart';
-
-
-import 'createPoAccount.dart';
 
 void otpEmail(BuildContext context, String unitNum) {
   showDialog(
@@ -28,7 +24,7 @@ void otpEmail(BuildContext context, String unitNum) {
         TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              displayBottomSheet(context, "/Create-PoAccount",unitNum);
+              displayBottomSheet(context, "/Create-PoAccount", unitNum);
             },
             child: Text('OK'))
       ],
@@ -57,7 +53,7 @@ void otpPhone(BuildContext context, String userId) {
         TextButton(
             onPressed: () {
               Navigator.of(context).pop();
-              displayBottomSheet(context,"/Reset-Password",userId);
+              displayBottomSheet(context, "/Reset-Password", userId);
             },
             child: Text('OK'))
       ],
@@ -65,7 +61,7 @@ void otpPhone(BuildContext context, String userId) {
   );
 }
 
-void displayBottomSheet(BuildContext context, String nextPage,String userId) {
+void displayBottomSheet(BuildContext context, String nextPage, String userId) {
   double factor = 0.7;
   double otpBoxSize = MediaQuery.of(context).size.height * 0.05;
   double botomSheetSize = MediaQuery.of(context).size.height * factor;
@@ -142,7 +138,7 @@ void displayBottomSheet(BuildContext context, String nextPage,String userId) {
                               FocusScope.of(context).nextFocus();
                             }
                           },
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.titleLarge,
                           keyboardType: TextInputType.number,
                           textAlign: TextAlign.center,
                           inputFormatters: [
@@ -160,7 +156,7 @@ void displayBottomSheet(BuildContext context, String nextPage,String userId) {
                               FocusScope.of(context).nextFocus();
                             }
                           },
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.titleLarge,
                           keyboardType: TextInputType.number,
                           textAlign: TextAlign.center,
                           inputFormatters: [
@@ -179,8 +175,9 @@ void displayBottomSheet(BuildContext context, String nextPage,String userId) {
                   child: const Text('Submit'),
                   onPressed: () {
                     Navigator.pop(context);
-                    // Navigator.pushNamed(context,RegData.id)
-                    nextPagePushNamed(context, nextPage, arguments: nextPage == "/Reset-Password" ? "userId" : userId );
+                    nextPagePushNamed(context, nextPage,
+                        arguments:
+                            nextPage == "/Reset-Password" ? "userId" : userId);
                   },
                 ),
               ],

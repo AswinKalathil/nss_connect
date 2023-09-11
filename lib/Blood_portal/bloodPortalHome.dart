@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nss_connect/Blood_portal/request.dart';
 import 'package:nss_connect/colors.dart';
-import '../pageTrasitions.dart';
 
 class BloodPortal extends StatelessWidget {
   const BloodPortal({super.key});

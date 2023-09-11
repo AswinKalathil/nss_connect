@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nss_connect/colors.dart';
 
 import '../models/dutymodel.dart';
 import '../widgetStyles.dart';
@@ -30,7 +29,6 @@ class _VolDutyState extends State<VolDuty> {
                 shape: CardShape(),
                 child: Row(
                   children: [
-
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.all(20),
@@ -40,8 +38,7 @@ class _VolDutyState extends State<VolDuty> {
                               topRight: Radius.circular(5),
                               bottomRight: Radius.circular(5)),
                         ),
-                        height: height100 *
-                            0.25, //========================height  adjest
+                        height: height100 * 0.25, //height  adjust
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,11 +71,7 @@ class _VolDutyState extends State<VolDuty> {
                     ButtonBar(
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-
-                            // Handle button press
-
-                          },
+                          onPressed: () {},
                           child: Text('Submit'),
                         ),
                       ],

@@ -17,14 +17,12 @@ import 'login.dart';
 import 'createPoAccount.dart';
 import 'welcomeTour.dart';
 import 'SecretaryDashboard.dart';
-import 'colors.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(const MyApp());
 }
-
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -34,18 +32,18 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-@override
-void initState(){
-  super.initState();
-  _ifDark();
-}
-
-void _ifDark() async{
-  bool ifDark = await ThemePreferenceHelper.getisDark();
-  if(ifDark){
-    darkNotifier.value = ifDark;
+  @override
+  void initState() {
+    super.initState();
+    _ifDark();
   }
-}
+
+  void _ifDark() async {
+    bool ifDark = await ThemePreferenceHelper.getisDark();
+    if (ifDark) {
+      darkNotifier.value = ifDark;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +73,20 @@ void _ifDark() async{
               "/Add-Secretary": (ctx) => AddSecretary(),
               "/Event-Create": (ctx) => EventCreate(),
             },
-            home: WelcomeTour(),
+            home: FutureBuilder<bool>(
+              future: WelcomeTourHelper.getTourCompleted(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator.adaptive();
+                } else if (snapshot.hasError) {
+                  return Text("Snapshot Error");
+                } else if (snapshot.data == true) {
+                  return HomeDashboard();
+                } else {
+                  return WelcomeTour();
+                }
+              },
+            ),
           );
         });
   }

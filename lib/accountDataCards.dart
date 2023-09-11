@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
 import 'package:nss_connect/pageTrasitions.dart';
-import 'package:nss_connect/poDashboard.dart';
 import 'widgetStyles.dart';
 
 class AccountDataCard extends StatefulWidget {
@@ -52,7 +50,6 @@ class _AccountDataCardState extends State<AccountDataCard> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      // height: MediaQuery.of(context).size.height * 0.65,
       width: MediaQuery.of(context).size.width,
       child: Card(
         shape: CardShape(padding: 50),
@@ -74,7 +71,6 @@ class _AccountDataCardState extends State<AccountDataCard> {
                   ),
                 ),
               ),
-
               SizedBox(
                 height: 10,
               ),
@@ -195,22 +191,16 @@ class _AccountDataCardState extends State<AccountDataCard> {
                   ),
                 ),
               ),
-
               SizedBox(
                 height: 15,
               ),
-
-              //forgot password container
-
               SizedBox(
                 height: 20,
               ),
-
               LongButton(
                   buttonText: 'SignUp',
                   buttonAction: () {
                     _submitData();
-                    // Navigator.of(context).pushNamed();
                   })
             ]),
       ),
@@ -231,7 +221,6 @@ class _UserDataCardState extends State<UserDataCard> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(10),
-      // height: MediaQuery.of(context).size.height * 0.65,
       width: MediaQuery.of(context).size.width,
       child: Card(
         shape: CardShape(padding: 50),
@@ -253,11 +242,9 @@ class _UserDataCardState extends State<UserDataCard> {
                   ),
                 ),
               ),
-
               SizedBox(
                 height: 10,
               ),
-
               Container(
                 alignment: AlignmentDirectional.topStart,
                 padding: EdgeInsets.only(bottom: 10, left: 30, top: 10),
@@ -336,17 +323,12 @@ class _UserDataCardState extends State<UserDataCard> {
                   ),
                 ),
               ),
-
               SizedBox(
                 height: 15,
               ),
-
-              //forgot password container
-
               SizedBox(
                 height: 20,
               ),
-
               LongButton(buttonText: 'SignUp', buttonAction: () {})
             ]),
       ),

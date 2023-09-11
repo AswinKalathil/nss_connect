@@ -1,22 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:nss_connect/SecretaryDashboard.dart';
-// import 'package:flutter/cupertino.dart';
-import 'package:nss_connect/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:nss_connect/login.dart';
-import 'package:nss_connect/main.dart';
 import 'package:nss_connect/pageTrasitions.dart';
-import 'package:nss_connect/poDashboard.dart';
 import 'package:nss_connect/sharedperfs.dart';
-import 'package:nss_connect/themes.dart';
-// import 'package:nss_connect/slidingCards.dart';
-import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/models/events.dart';
-import 'package:nss_connect/Blood_portal/bloodPortalHome.dart';
 import 'package:nss_connect/globals.dart';
-
-// import 'Secretary.dart';
 
 class HomeDashboard extends StatelessWidget {
   const HomeDashboard({super.key});
@@ -31,21 +19,15 @@ class HomeDashboard extends StatelessWidget {
     Brightness currentBrightness = Theme.of(context).brightness;
 
     return Scaffold(
-      // drawer: NavBar(),
-      // appBar: AppBar(
-      //   title: Text('Side Menu'),
-      // ),
       backgroundColor: themeData.colorScheme.primary,
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.only(
-            top: height100 * .005, //========================height  adjest
-            // bottom: MediaQuery.of(context).padding.bottom,
+            top: height100 * .005, //height  adjust
           ),
-          height: height100, //========================height  adjest
+          height: height100, //height  adjust
           width: width100,
           decoration: BoxDecoration(
-            // color: Colors.black,
             image: currentBrightness == Brightness.light
                 ? DecorationImage(
                     image: AssetImage('assets/images/homeBackground.png'),
@@ -58,7 +40,7 @@ class HomeDashboard extends StatelessWidget {
                     fit: BoxFit.fitWidth,
                     alignment: Alignment.bottomLeft,
                     opacity: 0.15,
-                  ), // No background image for dark theme
+                  ), //
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -109,13 +91,11 @@ class _ConnectButtonAreaState extends State<ConnectButtonArea> {
   Widget build(BuildContext context) {
     bool isDark = darkNotifier.value;
     return Container(
-      // color: Colors.red,
       alignment: Alignment.bottomRight,
       margin: EdgeInsets.only(bottom: widget.height100 * .02),
       padding: EdgeInsets.symmetric(
         vertical: widget.height100 * 0.03,
-        horizontal: MediaQuery.of(context).size.width *
-            0.05, //========================height  adjest
+        horizontal: MediaQuery.of(context).size.width * 0.05, //height  adjust
       ),
       height: widget.height100 * 0.12,
       child: Row(
@@ -137,38 +117,12 @@ class _ConnectButtonAreaState extends State<ConnectButtonArea> {
             duration: Duration(milliseconds: 500),
             curve: Curves.easeIn,
             opacity: 1.0,
-
             child: SmallButton(
                 buttonText: 'Let\'s Connect ',
                 buttonAction: () {
                   nextPagePushNamed(context, '/Login-page');
                 },
                 buttonWidth: MediaQuery.of(context).size.width * 0.32),
-
-            // child: TextButton(
-            //   style: TextButton.styleFrom(
-            //     padding: EdgeInsets.symmetric(
-            //         vertical: height100 * 0.012,
-            //         horizontal: MediaQuery.of(context).size.width *
-            //             0.05), //========================height  adjest
-            //     backgroundColor: Theme.of(context).primaryColor,
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(5.0),
-            //     ),
-            //   ),
-            //   onPressed: () {
-            //     nextPagePush(context, Login());
-            //   },
-            //   child: Text(
-            //     'Let\'s Connect ',
-            //     style: TextStyle(
-            //       color: Colors.white,
-            //       fontFamily: 'Poppins',
-            //       fontSize: width100 * 0.0375,
-            //       fontWeight: FontWeight.bold,
-            //     ),
-            //   ),
-            // ),
           ),
         ],
       ),
@@ -193,22 +147,16 @@ class EventCarosel extends StatelessWidget {
       // color: Colors.red,
       padding: EdgeInsets.all(0),
       width: width100 * .9,
-      height: height100 * 0.3125, //========================height  adjest
+      height: height100 * 0.3125, //height  adjust
       child: CarouselSlider(
         options: CarouselOptions(
-          // height: MediaQuery.of(context).size.height * 0.25,
           viewportFraction: 1,
           autoPlay: true,
           autoPlayInterval: Duration(seconds: 5),
           autoPlayAnimationDuration: Duration(milliseconds: 800),
           autoPlayCurve: Curves.fastOutSlowIn,
           pauseAutoPlayOnTouch: true,
-          // aspectRatio: 2.07,
-          onPageChanged: (index, reason) {
-            // setState(() {
-            //   _current = index;
-            // });
-          },
+          onPageChanged: (index, reason) {},
         ),
         items: eventList.map((eventObject) {
           return Builder(
@@ -238,14 +186,12 @@ class EventCarosel extends StatelessWidget {
                         child: Container(
                           padding: EdgeInsets.all(20),
                           decoration: BoxDecoration(
-                            // color: Colors.white,
                             color: themeData.colorScheme.secondary,
                             borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(5),
                                 bottomRight: Radius.circular(5)),
                           ),
-                          height: height100 *
-                              0.25, //========================height  adjest
+                          height: height100 * 0.25, //height  adjust
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -301,7 +247,7 @@ class HeaderLogo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: width100 * .9,
-      height: height100 * 0.15, //========================height  adjest
+      height: height100 * 0.15, //height  adjust
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -334,7 +280,7 @@ class HeaderLogo extends StatelessWidget {
             ),
           ),
           Container(
-            height: 120, //========================height  adjest
+            height: 120, //height  adjust
             padding: EdgeInsets.symmetric(
                 vertical: width100 * 0.02, horizontal: width100 * 0.02),
             child: Column(
@@ -363,8 +309,6 @@ class HeaderLogo extends StatelessWidget {
                     style: TextStyle(
                       fontFamily: 'Poppins',
                       fontSize: width100 * .0711,
-                      // color: const Color.fromARGB(255, 0, 0, 0),
-                      // color: ThemeClass().accentColor,
                     ),
                     children: [
                       TextSpan(

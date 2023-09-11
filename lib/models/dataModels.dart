@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../colors.dart';
 
 List<User> POUserData = [
   User("username", "123456"),

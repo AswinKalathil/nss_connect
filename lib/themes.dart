@@ -1,7 +1,4 @@
-// library config.globals;
 import 'package:flutter/material.dart';
-import 'package:nss_connect/sharedperfs.dart';
-
 class ThemeClass with ChangeNotifier {
   static bool isDark = true;
 

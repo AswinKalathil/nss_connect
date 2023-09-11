@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nss_connect/AddSecretary.dart';
 import 'package:nss_connect/globals.dart';
 import 'package:nss_connect/pageTrasitions.dart';
 import 'package:nss_connect/sharedperfs.dart';
@@ -59,13 +58,9 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
         ],
       ),
       drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
         child: Container(
           color: themeData.colorScheme.secondary,
           child: ListView(
-            // Important: Remove any padding from the ListView.
             padding: EdgeInsets.zero,
             children: [
               Container(
@@ -102,7 +97,6 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
                       alignment: Alignment.bottomRight,
                       height: double.maxFinite,
                       width: width100 * .4,
-                      // color: themeData.colorScheme.secondary,
                       child: IconButton(
                           onPressed: () {
                             isDark = !isDark;
@@ -116,8 +110,7 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
                           },
                           icon: !isDark
                               ? Icon(Icons.dark_mode)
-                              : Icon(Icons
-                                  .light_mode)), // ========place for darck mode button===========
+                              : Icon(Icons.light_mode)),
                     )
                   ],
                 ),
@@ -125,26 +118,18 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
               ListTile(
                 leading: IconButton(
                   icon: Icon(Icons.help_outline_outlined),
-                  onPressed: () {
-                    // Handle onPressed for IconButton
-                  },
+                  onPressed: () {},
                 ),
                 title: Text('Help'),
-                onTap: () {
-                  // Handle onTap for ListTile
-                },
+                onTap: () {},
               ),
               ListTile(
                 leading: IconButton(
                   icon: Icon(Icons.settings_outlined),
-                  onPressed: () {
-                    // Handle onPressed for IconButton
-                  },
+                  onPressed: () {},
                 ),
                 title: Text('Settings'),
-                onTap: () {
-                  // Handle onTap for ListTile
-                },
+                onTap: () {},
               ),
               Expanded(
                   child: Container(
@@ -153,14 +138,10 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
               ListTile(
                 leading: IconButton(
                   icon: Icon(Icons.logout),
-                  onPressed: () {
-                    // Handle onPressed for IconButton
-                  },
+                  onPressed: () {},
                 ),
                 title: Text('Logout'),
-                onTap: () {
-                  // Handle onTap for ListTile
-                },
+                onTap: () {},
               ),
             ],
           ),
@@ -281,21 +262,7 @@ class Events {
 int index = 0;
 
 class GridPanels extends StatelessWidget {
-  // static const List<Color> lightColors = [
-  //   Color.fromARGB(255, 255, 255, 202), // Beige
-  //   Color.fromARGB(255, 255, 224, 192), // Linen
-  //   Color.fromARGB(255, 197, 255, 225), // Cornsilk
-  //   Color.fromARGB(255, 228, 255, 184), // Floral White
-  //   Color.fromARGB(255, 165, 203, 255), // Old Lace
-  //   Color.fromARGB(255, 255, 221, 233), // Papaya Whip
-  // ];
-  // final List<Events> PanelTitle = [
-  //   Events(title: 'Dakshatha 6.O', status: 'Blood Donation Camp',Dates: '26-6-23 '),
-  //   Events(title: 'KTUCare Annual Meet', status: 'Annual Volunteer Meet',Dates: '06-7-23 '),
-  //   Events(title: 'Project Prithvi', status: 'Clean CET Initiative',Dates: '12-7-23 '),
-  //
-  // ];
-  List<String> PanelTitle = [
+  final List<String> PanelTitle = const [
     'Dakshatha 6.O',
     'KTUCare Annual Meet',
     'Project Prithvi',
@@ -304,8 +271,6 @@ class GridPanels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
-    bool isDark = darkNotifier.value;
     return GridView.count(
       crossAxisCount: 3,
       children: eventList.map((e) {
@@ -339,30 +304,6 @@ class GridPanels extends StatelessWidget {
           },
         );
       }).toList(),
-
-      // List.generate(4, (index) {
-      //   return RotationTransition(
-      //     turns: AlwaysStoppedAnimation(-5 / 360),
-      //     child: Card(
-      //       shape: CardShapeX(radius: 20),
-      //       elevation: 2,
-      //       // color: lightColors[index],
-      //       child: Padding(
-      //         padding: EdgeInsets.all(10),
-      //         child: RotationTransition(
-      //           turns: AlwaysStoppedAnimation(5 / 360),
-      //           child: Stack(children: [
-      //             Text(
-      //               PanelTitle[index],
-      //               style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
-      //             ),
-
-      //           ]),
-      //         ),
-      //       ),
-      //     ),
-      //   );
-      // }),
     );
   }
 }
@@ -384,7 +325,6 @@ class POrequestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
-    bool isDark = darkNotifier.value;
     return Scaffold(
       backgroundColor: themeData.colorScheme.secondary,
       body: ListView.builder(
@@ -397,21 +337,13 @@ class POrequestPage extends StatelessWidget {
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // ElevatedButton(
-                //   onPressed: () {
-                //     // Handle view button press
-                //   },
-                //   child: Text('View'),
-                // ),
                 SizedBox(width: 10.0),
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
                         themeData.colorScheme.tertiary),
                   ),
-                  onPressed: () {
-                    // Handle verify button press
-                  },
+                  onPressed: () {},
                   child: Text(
                     'Proceed',
                     style: TextStyle(color: ThemeClass().darkTextColor),

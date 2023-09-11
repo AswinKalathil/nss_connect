@@ -3,8 +3,6 @@ import 'package:nss_connect/Sec_Pages/NewVol.dart';
 import 'package:nss_connect/Sec_Pages/SeCert.dart';
 import 'package:nss_connect/Sec_Pages/SecEvent.dart';
 import 'package:nss_connect/Sec_Pages/SecHome.dart';
-import 'package:nss_connect/pageTrasitions.dart';
-import 'Sec_Pages/EventCreate.dart';
 import 'colors.dart';
 
 class SecretaryDashboard extends StatefulWidget {
@@ -18,16 +16,8 @@ class SecretaryDashboard extends StatefulWidget {
 class _SecretaryDashboardState extends State<SecretaryDashboard> {
   @override
   Widget build(BuildContext context) {
-    bool isDarkModeEnabled = false;
-
-    void toggleDarkMode() {
-      setState(() {
-        isDarkModeEnabled = !isDarkModeEnabled;
-      });
-    }
-
     final height100 = MediaQuery.of(context).size.height;
-    final width100 = MediaQuery.of(context).size.width;
+    // final width100 = MediaQuery.of(context).size.width;
     return DefaultTabController(
       length: 3,
       child: Scaffold(

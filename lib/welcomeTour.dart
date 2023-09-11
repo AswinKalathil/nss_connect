@@ -1,14 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:nss_connect/HomeDasboard.dart';
-import 'package:nss_connect/pageTrasitions.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-// import 'package:smooth_page_indicator/src/effects/customizable_effect.dart';
 import 'intro_screens/intro_screen_1.dart';
 import 'intro_screens/intro_screen_2.dart';
 import 'intro_screens/intro_screen_3.dart';
-import 'package:nss_connect/sharedperfs.dart';
 
 class WelcomeTour extends StatefulWidget {
   const WelcomeTour({super.key});
@@ -27,7 +23,6 @@ class _WelcomeTourState extends State<WelcomeTour> {
   void initState() {
     super.initState();
     _startTimer();
-    _checkTourStatus();
   }
 
   @override
@@ -36,28 +31,11 @@ class _WelcomeTourState extends State<WelcomeTour> {
     super.dispose();
   }
 
-  void _checkTourStatus() async{
-    bool tourCompleted = await WelcomeTourHelper.getTourCompleted();
-
-    if(tourCompleted){
-      //If the tour has been completed earlier, the tour wont be shown again, and navigated to Home Dashboard
-      nextPageReplaceNamed(context, '/Home-Dashboard');
-    }
-  }
-
-  void _marktourCompleted() async{
-    await WelcomeTourHelper.setTourCompleted();
-  }
-
   void _startTimer() {
     _timer = Timer.periodic(Duration(seconds: 2), (_) async {
       if (_controller.page == 2) {
         _timer?.cancel();
-        // await Future.delayed(Duration(seconds: 1));
-
-        // nextPage(context, HomeDashboard());
       } else {
-        //
         _controller.nextPage(
           duration: Duration(milliseconds: 300),
           curve: Curves.easeIn,
@@ -98,11 +76,7 @@ class _WelcomeTourState extends State<WelcomeTour> {
           Container(
               alignment: const Alignment(.95, -.83),
               child: TextButton(
-                  // style: TextButton.styleFrom(
-                  //   backgroundColor: Colors.grey.withOpacity(.3), // Set the background color
-                  // ),
                   onPressed: () {
-                    _marktourCompleted();
                     Navigator.pushReplacement(
                       context,
                       PageRouteBuilder(
@@ -130,7 +104,6 @@ class _WelcomeTourState extends State<WelcomeTour> {
                         },
                       ),
                     );
-                    // nextPage(context, HomeDashboard());
                   },
                   child: Icon(
                     Icons.close_rounded,

@@ -1,17 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nss_connect/SecretaryDashboard.dart';
 import 'package:nss_connect/pageTrasitions.dart';
-import 'package:nss_connect/poDashboard.dart';
 import 'package:nss_connect/themes.dart';
-import 'package:nss_connect/volunteer_dashboard.dart';
 import 'package:nss_connect/widgetStyles.dart';
 import 'models/dataModels.dart';
-import 'register.dart';
 import 'dart:async';
 import 'otpDialog.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:nss_connect/widgetStyles.dart';
 import 'package:nss_connect/animation.dart';
 
 class credCard extends StatefulWidget {
@@ -39,11 +34,6 @@ class _credCardState extends State<credCard> {
   List<User> loginData = List.empty();
   Widget? nextRoute;
 
-  // void _onTextFieldChange() {
-  //   setState(() {
-  //     _errorMessageVisible = true;
-  //   });
-  // }
   @override
   void dispose() {
     _errorTimer?.cancel();
@@ -67,7 +57,6 @@ class _credCardState extends State<credCard> {
       setState(() {
         _isUsernameEmpty = enteredUsername.isNotEmpty;
         _isPasswordEmpty = enteredPassword.isNotEmpty;
-        // _errorMessageVisible = _isUsernameEmpty || _isPasswordEmpty;
       });
       if (!_isUsernameEmpty || !_isPasswordEmpty) {
         print("Setting error flags to true and starting timer");
@@ -79,7 +68,6 @@ class _credCardState extends State<credCard> {
 
         _errorTimer = Timer(Duration(seconds: 10), () {
           setState(() {
-            // _errorMessageVisible = true;
             _isUsernameEmpty = true;
             _isPasswordEmpty = true;
           });
@@ -111,41 +99,13 @@ class _credCardState extends State<credCard> {
     }
     print(isCredentialsValid);
     if (isCredentialsValid) {
-      // Credentials are valid, navigate to the appropriate dashboard
-      // if (_selectedOption == poString) {
-      //   nextRoute = PoDashboardPage();
-      // } else if (_selectedOption == secString) {
-      //   nextRoute = SecretaryDashboard();
-      // } else if (_selectedOption == volString) {
-      //   nextRoute = VolunteerDashboardPage();
-      // }
-
       print("Username: $enteredUsername\nPassword: $enteredPassword");
       FocusScope.of(context).requestFocus(FocusNode());
       nextPageReplaceNamed(context, _selectedOption);
     } else {
-      // Credentials are invalid, display an error message or perform some action
-      // e.g., show a snackbar or dialog
       setState(() {
         _isNotValid = true;
       });
-      // showDialog(
-      //   context: context,
-      //   builder: (context) {
-      //     return AlertDialog(
-      //       title: Text('Invalid Credentials'),
-      //       content: Text('Please enter valid username and password.'),
-      //       actions: [
-      //         TextButton(
-      //           onPressed: () {
-      //             Navigator.of(context).pop();
-      //           },
-      //           child: Text('OK'),
-      //         ),
-      //       ],
-      //     );
-      //   },
-      // );
     }
   }
 
@@ -168,8 +128,6 @@ class _credCardState extends State<credCard> {
     bool isDark = currentBrightnessValue == Brightness.dark;
     return Container(
       padding: EdgeInsets.all(10),
-      // height: MediaQuery.of(context).size.height *
-      //     (_selectedOption == poString ? 0.72 : .65),
       width: MediaQuery.of(context).size.width * 8,
       child: Card(
         shape: CardShape(padding: 50),
@@ -183,7 +141,6 @@ class _credCardState extends State<credCard> {
             child: Text(
               'Login as',
               style: TextStyle(
-                // color: isDarkTheme? ThemeClass().darkTextColor : ThemeClass().lightTextColor,
                 fontSize: 30,
                 fontWeight: FontWeight.w600,
                 fontFamily: 'Nexa',
@@ -199,28 +156,17 @@ class _credCardState extends State<credCard> {
                 iconStyleData: IconStyleData(
                   icon: Icon(
                     Icons.arrow_drop_down_sharp,
-                    // color: Colors.black,
                   ),
                 ),
                 dropdownStyleData: DropdownStyleData(
                   elevation: 10,
                   decoration: BoxDecoration(
-                    // color: isDarkTheme? Colors.black.withOpacity(0.7):Colors.grey.withOpacity(0.3),
                     borderRadius: BorderRadius.all(Radius.circular(7)),
                     border: Border.all(
                       color: isDark
                           ? ThemeClass().darkTextColor.withOpacity(0.3)
                           : ThemeClass().lightTextColor.withOpacity(0.3),
-                      // color: isDarkTheme? Colors.white.withOpacity(0.3):Colors.grey.withOpacity(0.3),
                     ),
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //     color: ThemeClass().accentColor,
-                    //     spreadRadius: 1,
-                    //     blurRadius: 1,
-                    //     offset: Offset(3, 3),
-                    //   ),
-                    // ],
                   ),
                 ),
                 alignment: AlignmentDirectional.centerStart,
@@ -266,7 +212,6 @@ class _credCardState extends State<credCard> {
                         style: TextStyle(
                           color: ThemeData().colorScheme.error,
                           fontSize: 16,
-                          // fontWeight: FontWeight.w400,
                         ),
                         children: [
                       WidgetSpan(
@@ -419,8 +364,6 @@ class _credCardState extends State<credCard> {
                 buttonAction: () {
                   FocusScope.of(context).requestFocus(FocusNode());
                   nextPagePushNamed(context, "/Register");
-
-                  // Navigator.pushNamed(context, Register.id);
                 })
         ]),
       ),
