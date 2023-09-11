@@ -102,7 +102,7 @@ void displayBottomSheet(BuildContext context, String nextPage, String userId) {
                               FocusScope.of(context).nextFocus();
                             }
                           },
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.titleLarge,
                           keyboardType: TextInputType.number,
                           textAlign: TextAlign.center,
                           inputFormatters: [
@@ -120,7 +120,7 @@ void displayBottomSheet(BuildContext context, String nextPage, String userId) {
                               FocusScope.of(context).nextFocus();
                             }
                           },
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.titleLarge,
                           keyboardType: TextInputType.number,
                           textAlign: TextAlign.center,
                           inputFormatters: [
