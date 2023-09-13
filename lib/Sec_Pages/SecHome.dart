@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/Sec_Pages/AttendenceSection.dart';
+import 'package:nss_connect/globals.dart';
 import 'package:nss_connect/models/dataModels.dart';
+import 'package:nss_connect/themes.dart';
 
 class SecHome extends StatefulWidget {
   const SecHome({super.key});
@@ -12,16 +14,21 @@ class SecHome extends StatefulWidget {
 class _SecHomeState extends State<SecHome> {
   int myCurrentIndex = 0;
   Widget build(BuildContext context) {
+    bool isDark = darkNotifier.value;
+    ThemeData themeData = Theme.of(context);
     double displaywidth = MediaQuery.of(context).size.width * 0.9;
     double height100 = MediaQuery.of(context).size.height;
     PageController _controller = PageController();
     return Scaffold(
+      backgroundColor: themeData.colorScheme.secondary,
       body: secHomeBody(
         controller: _controller,
         height100: height100,
       ),
-      bottomNavigationBar: Container(
+      bottomNavigationBar: 
+      Container(
         decoration: BoxDecoration(
+          color: themeData.colorScheme.secondary,
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(.1),
@@ -36,8 +43,9 @@ class _SecHomeState extends State<SecHome> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15),
           child: BottomNavigationBar(
-            selectedItemColor: Theme.of(context).primaryColor,
-            unselectedItemColor: Colors.grey,
+            backgroundColor: themeData.colorScheme.primary,
+            selectedItemColor: themeData.colorScheme.onPrimary.withOpacity(1),
+            unselectedItemColor: themeData.colorScheme.onPrimary.withOpacity(0.3),
             currentIndex: myCurrentIndex,
             iconSize: 30,
             items: [
@@ -75,7 +83,7 @@ class secHomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView(
-      scrollDirection: Axis.vertical,
+      // scrollDirection: Axis.vertical,
       controller: _controller,
       children: [
         panelSection(
@@ -97,9 +105,10 @@ class panelSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: themeData.colorScheme.secondary,
       ),
       child: Column(
         children: [
@@ -117,6 +126,8 @@ class panelSection extends StatelessWidget {
 class GridPanels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
+    bool isDark = darkNotifier.value;
     double tiltValue = 0 / 360;
     return GridView.count(
       crossAxisCount: 3,
@@ -130,7 +141,7 @@ class GridPanels extends StatelessWidget {
               boxShadow: [],
               gradient: LinearGradient(
                 colors: [
-                  Panels[index].color.withOpacity(0.2),
+                  Panels[index].color.withOpacity(0.5),
                   Panels[index].color,
                 ],
                 begin: Alignment.topLeft,
@@ -148,7 +159,10 @@ class GridPanels extends StatelessWidget {
                     Text(
                       Panels[index].title,
                       style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: isDark? ThemeClass().darkTextColor : ThemeClass().lightTextColor),
                     ),
                   ],
                 ),

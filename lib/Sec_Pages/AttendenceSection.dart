@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:nss_connect/globals.dart';
+import 'package:nss_connect/themes.dart';
 import '../models/dataModels.dart';
 
 class AttendenceSection extends StatefulWidget {
@@ -10,12 +12,26 @@ class AttendenceSection extends StatefulWidget {
 class _AttendenceSectionState extends State<AttendenceSection> {
   DateTime selectedDate = DateTime.now().subtract(Duration(days: 14));
   Future<void> _selectDate(BuildContext context) async {
+    final bool isDark = darkNotifier.value;
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: DateTime.now(),
       firstDate: selectedDate,
       lastDate: DateTime.now(),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.light(
+                primary: isDark
+                    ? ThemeClass().darkAccentColor
+                    : ThemeClass().lightAccentColor),
+            buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
+          ),
+          child: child!,
+        );
+      },
     );
+
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
@@ -56,6 +72,7 @@ class _AttendenceSectionState extends State<AttendenceSection> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = darkNotifier.value;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -66,10 +83,28 @@ class _AttendenceSectionState extends State<AttendenceSection> {
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        TextButton(
-          onPressed: () => _selectDate(context),
-          child: Text(
-            'Select Date: ${DateFormat('dd-MM-yyyy').format(selectedDate)}',
+        Padding(
+          padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
+          child: Row(
+            children: <Widget>[
+              Text(
+                'Date: ${DateFormat('dd-MM-yyyy').format(selectedDate)}',
+                style: TextStyle(
+                  color: isDark
+                      ? ThemeClass().darkTextColor
+                      : ThemeClass().lightTextColor,
+                ),
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              IconButton(
+                onPressed: () async {
+                  await _selectDate(context);
+                },
+                icon: Icon(Icons.calendar_today),
+              ),
+            ],
           ),
         ),
         Expanded(

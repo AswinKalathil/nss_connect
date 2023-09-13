@@ -131,10 +131,14 @@ class _PoDashboardPageState extends State<PoDashboardPage> {
                 title: Text('Settings'),
                 onTap: () {},
               ),
-              Expanded(
-                  child: Container(
-                height: height100 * .55,
-              )),
+              //DON'T USE EXPANDED INSIDE LIST. IT CAN ONLY BE USED INSIDE COLUMN, ROW, OR FLEX.
+              // Expanded(
+              //     child: Container(
+              //   height: height100 * .55,
+              // )),
+              SizedBox(
+                height: height100 * 0.6,
+              ),
               ListTile(
                 leading: IconButton(
                   icon: Icon(Icons.logout),
