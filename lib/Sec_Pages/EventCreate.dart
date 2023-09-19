@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nss_connect/colors.dart';
 import 'package:nss_connect/models/events.dart';
+import 'package:nss_connect/globals.dart';
+import 'package:nss_connect/themes.dart';
+import 'package:nss_connect/widgetStyles.dart';
 
 class EventCreate extends StatelessWidget {
   const EventCreate({super.key});
@@ -76,11 +79,24 @@ class _EventScreenState extends State<EventScreen> {
   }
 
   Future<void> _selectDate(BuildContext context) async {
+    bool isDark = darkNotifier.value;
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
       firstDate: DateTime.now(),
       lastDate: DateTime(2101),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.light(
+                primary: isDark
+                    ? ThemeClass().darkAccentColor
+                    : ThemeClass().lightAccentColor),
+            buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
+          ),
+          child: child!,
+        );
+      },
     );
     if (picked != null && picked != selectedDate)
       setState(() {
@@ -89,10 +105,24 @@ class _EventScreenState extends State<EventScreen> {
   }
 
   Future<void> _selectTime(BuildContext context) async {
+    bool isDark = darkNotifier.value;
     final TimeOfDay? picked = await showTimePicker(
       context: context,
       initialTime: selectedTime,
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: ThemeData.light().copyWith(
+            colorScheme: ColorScheme.light(
+                primary: isDark
+                    ? ThemeClass().darkAccentColor
+                    : ThemeClass().lightAccentColor),
+            buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
+          ),
+          child: child!,
+        );
+      },
     );
+
     if (picked != null && picked != selectedTime)
       setState(() {
         selectedTime = picked;
@@ -101,120 +131,205 @@ class _EventScreenState extends State<EventScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = darkNotifier.value;
+    ThemeData themeData = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Event Creation'),
+        backgroundColor: themeData.colorScheme.tertiary,
+        foregroundColor: ThemeClass().darkTextColor,
+        title: Text(
+          'Event Creation',
+          style: TextStyle(
+            color: ThemeClass().darkTextColor,
+          ),
+        ),
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            TextField(
-              decoration: InputDecoration(labelText: 'Event Name'),
-              onChanged: (value) {
-                setState(() {
-                  eventName = value;
-                });
-              },
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              decoration: InputDecoration(labelText: 'Event Description'),
-              onChanged: (value) {
-                setState(() {
-                  eventDescription = value;
-                });
-              },
-            ),
-            SizedBox(height: 16.0),
-            DropdownButtonFormField<String>(
-              value: widget.selectedOption,
-              decoration: InputDecoration(labelText: 'Event Type'),
-              onChanged: (String? newValue) {
-                setState(() {
-                  selectedOption = newValue!;
-                });
-              },
-              items: [
-                DropdownMenuItem<String>(
-                  value: 'Community',
-                  child: Text('Community'),
+      body: Container(
+        color: themeData.colorScheme.secondary,
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              TextField(
+                cursorColor: themeData.colorScheme.onPrimary,
+                decoration: InputDecoration(
+                  labelText: 'Event Name',
+                  labelStyle: TextStyle(
+                    color: themeData.colorScheme.onPrimary,
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: themeData.colorScheme.onPrimary,
+                    ), // Change to your desired color
+                  ),
                 ),
-                DropdownMenuItem<String>(
-                  value: 'College',
-                  child: Text('College'),
+                onChanged: (value) {
+                  setState(() {
+                    eventName = value;
+                  });
+                },
+              ),
+              SizedBox(height: 16.0),
+              TextField(
+                cursorColor: themeData.colorScheme.onPrimary,
+                decoration: InputDecoration(
+                  labelText: 'Event Description',
+                  labelStyle: TextStyle(
+                    color: themeData.colorScheme.onPrimary,
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: themeData.colorScheme.onPrimary,
+                    ), // Change to your desired color
+                  ),
                 ),
-                DropdownMenuItem<String>(
-                  value: 'General Orientation',
-                  child: Text('General Orientation'),
-                ),
-                DropdownMenuItem<String>(
-                  value: 'Flagship ',
-                  child: Text('Flagship'),
-                ),
-              ],
-            ),
-            SizedBox(height: 16.0),
-            TextField(
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(labelText: 'Number of Participants'),
-              onChanged: (value) {
-                setState(() {
-                  participants = int.tryParse(value) ?? 0;
-                });
-              },
-            ),
-            SizedBox(height: 16.0),
-            Row(
-              children: [
-                Expanded(
-                  child: TextButton(
-                    onPressed: () => _selectDate(context),
-                    child: Text(
-                      'Select Date: ${DateFormat('yyyy-MM-dd').format(selectedDate)}',
+                onChanged: (value) {
+                  setState(() {
+                    eventDescription = value;
+                  });
+                },
+              ),
+              SizedBox(height: 16.0),
+              DropdownButtonFormField<String>(
+                value: widget.selectedOption,
+                dropdownColor: themeData.colorScheme.primary,
+                decoration: InputDecoration(
+                    labelText: 'Event Type',
+                    labelStyle: TextStyle(
+                      color: themeData.colorScheme.onPrimary,
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: themeData.colorScheme.onPrimary))),
+                onChanged: (String? newValue) {
+                  setState(() {
+                    selectedOption = newValue!;
+                  });
+                },
+                style: TextStyle(color: themeData.colorScheme.onPrimary),
+                items: [
+                  DropdownMenuItem<String>(
+                    value: 'Community',
+                    child: Text('Community'),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: 'College',
+                    child: Text('College'),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: 'General Orientation',
+                    child: Text('General Orientation'),
+                  ),
+                  DropdownMenuItem<String>(
+                    value: 'Flagship ',
+                    child: Text('Flagship'),
+                  ),
+                ],
+              ),
+              SizedBox(height: 16.0),
+              TextField(
+                cursorColor: themeData.colorScheme.onPrimary,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(
+                    labelText: 'Number of Participants',
+                    labelStyle: TextStyle(
+                      color: themeData.colorScheme.onPrimary,
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: themeData.colorScheme.onPrimary))),
+                onChanged: (value) {
+                  setState(() {
+                    participants = int.tryParse(value) ?? 0;
+                  });
+                },
+              ),
+              SizedBox(height: 16.0),
+              Row(
+                children: [
+                  Expanded(
+                    child: Row(
+                      children: <Widget>[
+                        Text(
+                          'Date: ${DateFormat('yyyy-MM-dd').format(selectedDate)}',
+                          style: TextStyle(
+                            color: themeData.colorScheme.onPrimary,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        IconButton(
+                          onPressed: () async {
+                            await _selectDate(context);
+                          },
+                          icon: Icon(Icons.calendar_today),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-                SizedBox(width: 16.0),
-                Expanded(
-                  child: TextButton(
-                    onPressed: () => _selectTime(context),
-                    child: Text(
-                      'Select Time: ${selectedTime.format(context)}',
+                  SizedBox(width: 16.0),
+                  Expanded(
+                    child: Row(
+                      children: <Widget>[
+                        Text(
+                          'Time: ${selectedTime.format(context)}',
+                          style: TextStyle(
+                            color: themeData.colorScheme.onPrimary,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        IconButton(
+                          onPressed: () async {
+                            await _selectTime(context);
+                          },
+                          icon: Icon(Icons.access_time_outlined),
+                        ),
+                      ],
                     ),
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 16.0),
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    keyboardType: TextInputType.number,
-                    decoration:
-                        InputDecoration(labelText: 'Event Duration (hours)'),
-                    onChanged: (value) {
-                      setState(() {
-                        eventDuration =
-                            Duration(hours: int.tryParse(value) ?? 0);
-                      });
-                    },
+                ],
+              ),
+              // SizedBox(height: 10.0),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      keyboardType: TextInputType.number,
+                      cursorColor: themeData.colorScheme.onPrimary,
+                      decoration: InputDecoration(
+                          labelText: 'Event Duration (hours)',
+                          labelStyle: TextStyle(
+                            color: themeData.colorScheme.onPrimary,
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: themeData.colorScheme.onPrimary))),
+                      onChanged: (value) {
+                        setState(() {
+                          eventDuration =
+                              Duration(hours: int.tryParse(value) ?? 0);
+                        });
+                      },
+                    ),
                   ),
-                ),
-                SizedBox(width: 16.0),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      addEvent();
-                    },
-                    child: Text('Create Event'),
+                  SizedBox(width: 16.0),
+                  Expanded(
+                    child: SmallButton(
+                      buttonText: 'Create',
+                      buttonAction: () {
+                        addEvent();
+                      },
+                      buttonWidth: 100,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

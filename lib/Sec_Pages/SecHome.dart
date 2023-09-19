@@ -12,21 +12,33 @@ class SecHome extends StatefulWidget {
 }
 
 class _SecHomeState extends State<SecHome> {
+  PageController _controller = PageController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = PageController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   int myCurrentIndex = 0;
   Widget build(BuildContext context) {
     bool isDark = darkNotifier.value;
     ThemeData themeData = Theme.of(context);
     double displaywidth = MediaQuery.of(context).size.width * 0.9;
     double height100 = MediaQuery.of(context).size.height;
-    PageController _controller = PageController();
     return Scaffold(
       backgroundColor: themeData.colorScheme.secondary,
       body: secHomeBody(
         controller: _controller,
         height100: height100,
       ),
-      bottomNavigationBar: 
-      Container(
+      bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: themeData.colorScheme.secondary,
           boxShadow: [
@@ -45,7 +57,8 @@ class _SecHomeState extends State<SecHome> {
           child: BottomNavigationBar(
             backgroundColor: themeData.colorScheme.primary,
             selectedItemColor: themeData.colorScheme.onPrimary.withOpacity(1),
-            unselectedItemColor: themeData.colorScheme.onPrimary.withOpacity(0.3),
+            unselectedItemColor:
+                themeData.colorScheme.onPrimary.withOpacity(0.3),
             currentIndex: myCurrentIndex,
             iconSize: 30,
             items: [
@@ -83,42 +96,12 @@ class secHomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView(
-      // scrollDirection: Axis.vertical,
+      scrollDirection: Axis.vertical,
       controller: _controller,
       children: [
-        panelSection(
-          height100: height100,
-        ),
+        GridPanels(),
         AttendenceSection(),
       ],
-    );
-  }
-}
-
-class panelSection extends StatelessWidget {
-  const panelSection({
-    super.key,
-    required this.height100,
-  });
-
-  final double height100;
-
-  @override
-  Widget build(BuildContext context) {
-    ThemeData themeData = Theme.of(context);
-    return Container(
-      decoration: BoxDecoration(
-        color: themeData.colorScheme.secondary,
-      ),
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.all(10),
-            height: height100 * .35,
-            child: GridPanels(),
-          ),
-        ],
-      ),
     );
   }
 }
@@ -126,51 +109,91 @@ class panelSection extends StatelessWidget {
 class GridPanels extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double height100 = MediaQuery.of(context).size.height;
+    double width100 = MediaQuery.of(context).size.width;
+
     ThemeData themeData = Theme.of(context);
     bool isDark = darkNotifier.value;
     double tiltValue = 0 / 360;
-    return GridView.count(
-      crossAxisCount: 3,
-      children: List.generate(6, (index) {
-        return RotationTransition(
-          turns: AlwaysStoppedAnimation(-tiltValue),
-          child: Container(
-            margin: EdgeInsets.all(5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [],
-              gradient: LinearGradient(
-                colors: [
-                  Panels[index].color.withOpacity(0.5),
-                  Panels[index].color,
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Transform.rotate(
-                angle: tiltValue *
-                    3.14159265359 /
-                    180, // Convert degrees to radians
-                child: Stack(
-                  children: [
-                    Text(
-                      Panels[index].title,
-                      style:
-                          TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: isDark? ThemeClass().darkTextColor : ThemeClass().lightTextColor),
+    return Container(
+      
+      padding: EdgeInsets.all(10),
+      height: height100 * .35,
+      child: Stack(
+        children: [
+
+          GridView.count(
+            crossAxisCount: 3,
+            children: List.generate(6, (index) {
+              return RotationTransition(
+                turns: AlwaysStoppedAnimation(-tiltValue),
+                child: Container(
+                  margin: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [],
+                    color: Colors.white
+                   
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Transform.rotate(
+                      angle: tiltValue *
+                          3.14159265359 /
+                          180, // Convert degrees to radians
+                      
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
+              );
+            }),
           ),
-        );
-      }),
+          GridView.count(
+            crossAxisCount: 3,
+            children: List.generate(6, (index) {
+              return RotationTransition(
+                turns: AlwaysStoppedAnimation(-tiltValue),
+                child: Container(
+                  margin: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [],
+                    gradient: LinearGradient(
+                      colors: [
+                        Panels[index].color.withOpacity(0.5),
+                        Panels[index].color,
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Transform.rotate(
+                      angle: tiltValue *
+                          3.14159265359 /
+                          180, // Convert degrees to radians
+                      child: Stack(
+                        children: [
+                          Text(
+                            Panels[index].title,
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: ThemeClass().lightTextColor),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            }),
+          ),
+
+          
+        ],
+      ),
     );
   }
 }

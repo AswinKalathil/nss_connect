@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/themes.dart';
 
 class SecCert extends StatefulWidget {
   const SecCert({super.key});
@@ -7,36 +8,31 @@ class SecCert extends StatefulWidget {
   State<SecCert> createState() => _SecCertState();
 }
 
+int myCurrentIndex = 0;
+
 class _SecCertState extends State<SecCert> {
   @override
   Widget build(BuildContext context) {
-    int myCurrentIndex = 0;
+    ThemeData themeData = Theme.of(context);
     double width100 = MediaQuery.of(context).size.width * 0.9;
     double height100 = MediaQuery.of(context).size.height;
     PageController _controller = PageController();
     return Scaffold(
+      backgroundColor: themeData.colorScheme.secondary,
       body: secCertBody(
         controller: _controller,
         height100: height100,
       ),
       bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(.1),
-              blurRadius: 30,
-              offset: Offset(0, 10),
-            )
-          ],
-        ),
         margin: EdgeInsets.symmetric(
             horizontal: width100 * .10, vertical: width100 * .05),
         height: height100 * .08,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15),
           child: BottomNavigationBar(
-            selectedItemColor: Theme.of(context).primaryColor,
-            unselectedItemColor: Colors.grey,
+            selectedItemColor: themeData.colorScheme.onPrimary.withOpacity(1),
+            unselectedItemColor:
+                themeData.colorScheme.onPrimary.withOpacity(0.3),
             currentIndex: myCurrentIndex,
             iconSize: 30,
             items: [
@@ -107,7 +103,9 @@ class AdminPendingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return Scaffold(
+      backgroundColor: themeData.colorScheme.secondary,
       body: ListView.builder(
         itemCount: pendingCertificates.length,
         itemBuilder: (context, index) {
@@ -120,8 +118,15 @@ class AdminPendingPage extends StatelessWidget {
               children: [
                 SizedBox(width: 10.0),
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        themeData.colorScheme.tertiary),
+                  ),
                   onPressed: () {},
-                  child: Text('Proceed'),
+                  child: Text(
+                    'Proceed',
+                    style: TextStyle(color: ThemeClass().darkTextColor),
+                  ),
                 ),
               ],
             ),
@@ -141,7 +146,9 @@ class AdminApprovedPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     return Scaffold(
+      backgroundColor: themeData.colorScheme.secondary,
       body: ListView.builder(
         itemCount: pendingCertificates.length,
         itemBuilder: (context, index) {
@@ -153,8 +160,15 @@ class AdminApprovedPage extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        themeData.colorScheme.tertiary),
+                  ),
                   onPressed: () {},
-                  child: Text('View'),
+                  child: Text(
+                    'View',
+                    style: TextStyle(color: ThemeClass().darkTextColor),
+                  ),
                 ),
               ],
             ),

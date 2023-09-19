@@ -240,7 +240,7 @@ class _DataCardState extends State<DataCard> {
                   title: "Set Password",
                   placeholder: "Auto Generated",
                   textEditingController: _setPassController,
-                  isPasswordEmpty: false,
+                  isPasswordEmpty: true,
                   submitFunction: () =>
                       {_setPassController.text = generateRandomPassword(6)}),
               SizedBox(

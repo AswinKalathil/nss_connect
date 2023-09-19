@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nss_connect/colors.dart';
+import 'package:nss_connect/globals.dart';
 import 'package:nss_connect/models/events.dart';
+import 'package:nss_connect/themes.dart';
 
 import '../widgetStyles.dart';
 import 'EventCreate.dart';
@@ -36,6 +38,8 @@ class _SecEventState extends State<SecEvent> {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = darkNotifier.value;
+    ThemeData themeData = Theme.of(context);
     double width100 = MediaQuery.of(context).size.width;
     double height100 = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
@@ -51,8 +55,9 @@ class _SecEventState extends State<SecEvent> {
           // Navigator.pushNamed(context, EventApp.id);
           addNewEvent(context);
         },
-        child: Icon(Icons.add),
-        backgroundColor: primaryButton, // Customize FAB color
+        child: Icon(Icons.add,color: ThemeClass().darkTextColor),
+        backgroundColor: themeData.colorScheme.tertiary,
+         // Customize FAB color
       ),
     );
   }
@@ -69,6 +74,8 @@ class secEventBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = darkNotifier.value;
+    ThemeData themeData = Theme.of(context);
     eventList.sort((a, b) => a.eventDate.compareTo(b.eventDate));
     return ListView(
       children: eventList.map((eventObject) {
@@ -76,7 +83,8 @@ class secEventBody extends StatelessWidget {
           builder: (BuildContext context) {
             return Container(
               width: width100 * .9,
-              height: height100 * 0.2, //height adjust
+              height: height100 * 0.2,
+              color: themeData.colorScheme.primary, //height adjust
               child: Card(
                 elevation: 5,
                 shape: CardShape(),
@@ -98,7 +106,7 @@ class secEventBody extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: themeData.colorScheme.secondary,
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(5),
                               bottomRight: Radius.circular(5)),
@@ -112,6 +120,9 @@ class secEventBody extends StatelessWidget {
                             Text(
                               '${eventObject.eventTitle}',
                               style: TextStyle(
+                                  color: isDark
+                                      ? ThemeClass().darkTextColor
+                                      : ThemeClass().lightTextColor,
                                   fontFamily: 'Source Code Pro',
                                   fontSize: width100 * 0.07,
                                   fontWeight: FontWeight.bold),
@@ -119,6 +130,9 @@ class secEventBody extends StatelessWidget {
                             Text(
                               '${eventObject.eventDescription}',
                               style: TextStyle(
+                                  color: isDark
+                                      ? ThemeClass().darkTextColor
+                                      : ThemeClass().lightTextColor,
                                   fontFamily: 'Source Code Pro',
                                   fontWeight: FontWeight.w400,
                                   fontSize: width100 * 0.0375),
@@ -126,6 +140,9 @@ class secEventBody extends StatelessWidget {
                             Text(
                               '${eventObject.eventDate}',
                               style: TextStyle(
+                                  color: isDark
+                                      ? ThemeClass().darkTextColor
+                                      : ThemeClass().lightTextColor,
                                   fontFamily: 'Source Code Pro',
                                   fontWeight: FontWeight.w400,
                                   fontSize: width100 * 0.0375),

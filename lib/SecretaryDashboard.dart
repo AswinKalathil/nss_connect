@@ -49,7 +49,12 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
               ? ThemeClass().darkAccentColor
               : ThemeClass().lightAccentColor,
           foregroundColor: ThemeClass().darkTextColor,
+
           bottom: TabBar(
+            labelColor: ThemeClass().darkTextColor,
+            indicatorColor: ThemeClass().darkTextColor,
+            unselectedLabelColor:
+                ThemeClass().darkTextColor.withOpacity(0.4),
             tabs: [
               Tab(
                 text: 'Home',

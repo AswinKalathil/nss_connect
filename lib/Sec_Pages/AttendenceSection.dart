@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:nss_connect/globals.dart';
 import 'package:nss_connect/themes.dart';
+import 'package:nss_connect/widgetStyles.dart';
 import '../models/dataModels.dart';
 
 class AttendenceSection extends StatefulWidget {
@@ -72,23 +73,41 @@ class _AttendenceSectionState extends State<AttendenceSection> {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData themeData = Theme.of(context);
     bool isDark = darkNotifier.value;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: EdgeInsets.all(16),
-          child: Text(
-            'Mark Attendance',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          child: Center(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.85,
+                height: MediaQuery.of(context).size.height * 0.06,
+                color: themeData.colorScheme.tertiary,
+                child: Center(
+                  child: Text(
+                    'Mark Attendance',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: '',
+                      color: ThemeClass().darkTextColor,
+                    ),
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.only(left: 16, top: 8, bottom: 8),
+          padding: EdgeInsets.only(left: 30, top: 8, bottom: 8),
           child: Row(
             children: <Widget>[
               Text(
-                'Date: ${DateFormat('dd-MM-yyyy').format(selectedDate)}',
+                '${DateFormat('dd-MM-yyyy').format(selectedDate)}',
                 style: TextStyle(
                   color: isDark
                       ? ThemeClass().darkTextColor
@@ -108,39 +127,46 @@ class _AttendenceSectionState extends State<AttendenceSection> {
           ),
         ),
         Expanded(
-          child: ListView.builder(
-            itemCount: VOLUserData.length,
-            itemBuilder: (BuildContext context, int index) {
-              User user = VOLUserData[index];
-              bool? isAttending = getAttendanceStatus(index);
-
-              return ListTile(
-                title: Text(user.userName),
-                trailing: Checkbox(
-                  value: isAttending,
-                  onChanged: (bool? value) {
-                    setAttendanceStatus(index, value);
-                  },
-                ),
-              );
-            },
+          child: Padding(
+            padding: EdgeInsets.only(left: 10),
+            child: ListView.builder(
+              itemCount: VOLUserData.length,
+              itemBuilder: (BuildContext context, int index) {
+                User user = VOLUserData[index];
+                bool? isAttending = getAttendanceStatus(index);
+            
+                return ListTile(
+                  title: Text(user.userName),
+                  trailing: Checkbox(
+                    value: isAttending,
+                    onChanged: (bool? value) {
+                      setAttendanceStatus(index, value);
+                    },
+                  ),
+                );
+              },
+            ),
           ),
         ),
         Padding(
-          padding: EdgeInsets.all(16),
-          child: ElevatedButton(
-            onPressed: () {
-              // Process the attendance data
-              List<String> presentStudents = [];
-              for (int i = 0; i < names.length; i++) {
-                if (attendance[i]) {
-                  presentStudents.add(names[i]);
+          padding: EdgeInsets.only(top: 16, bottom: 16, right: 30),
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: SmallButton(
+              buttonWidth: MediaQuery.of(context).size.width * 0.25,
+              buttonAction: () {
+                // Process the attendance data
+                List<String> presentStudents = [];
+                for (int i = 0; i < names.length; i++) {
+                  if (attendance[i]) {
+                    presentStudents.add(names[i]);
+                  }
                 }
-              }
-              // Print the list of students present
-              print('Present Students: $presentStudents');
-            },
-            child: Text('Submit'),
+                // Print the list of students present
+                print('Present Students: $presentStudents');
+              },
+              buttonText: 'Submit',
+            ),
           ),
         ),
       ],
