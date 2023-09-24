@@ -33,21 +33,14 @@ class _SecHomeState extends State<SecHome> {
     double displaywidth = MediaQuery.of(context).size.width * 0.9;
     double height100 = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: themeData.colorScheme.secondary,
+      backgroundColor: isDark? themeData.colorScheme.secondary : themeData.colorScheme.primary,
       body: secHomeBody(
         controller: _controller,
         height100: height100,
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
-          color: themeData.colorScheme.secondary,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(.1),
-              blurRadius: 30,
-              offset: Offset(0, 10),
-            )
-          ],
+          color: isDark? themeData.colorScheme.secondary : themeData.colorScheme.primary,
         ),
         margin: EdgeInsets.symmetric(
             horizontal: displaywidth * .10, vertical: displaywidth * .05),
@@ -55,7 +48,7 @@ class _SecHomeState extends State<SecHome> {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15),
           child: BottomNavigationBar(
-            backgroundColor: themeData.colorScheme.primary,
+            backgroundColor: isDark? themeData.colorScheme.primary : themeData.colorScheme.secondary,
             selectedItemColor: themeData.colorScheme.onPrimary.withOpacity(1),
             unselectedItemColor:
                 themeData.colorScheme.onPrimary.withOpacity(0.3),

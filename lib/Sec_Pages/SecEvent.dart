@@ -45,6 +45,7 @@ class _SecEventState extends State<SecEvent> {
         MediaQuery.of(context).padding.top -
         MediaQuery.of(context).padding.bottom;
     return Scaffold(
+      backgroundColor: themeData.colorScheme.primary,
       body: secEventBody(
         height100: height100,
         width100: width100,

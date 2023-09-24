@@ -12,6 +12,8 @@ class AttendenceSection extends StatefulWidget {
 
 class _AttendenceSectionState extends State<AttendenceSection> {
   DateTime selectedDate = DateTime.now().subtract(Duration(days: 14));
+  bool isDateselected = false;
+  TextEditingController dateController = TextEditingController();
   Future<void> _selectDate(BuildContext context) async {
     final bool isDark = darkNotifier.value;
     final DateTime? picked = await showDatePicker(
@@ -33,9 +35,16 @@ class _AttendenceSectionState extends State<AttendenceSection> {
       },
     );
 
+    if (picked == null) {
+      setState(() {
+        isDateselected = false;
+      });
+    }
+
     if (picked != null && picked != selectedDate)
       setState(() {
         selectedDate = picked;
+        isDateselected = true;
       });
   }
 
@@ -75,101 +84,178 @@ class _AttendenceSectionState extends State<AttendenceSection> {
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
     bool isDark = darkNotifier.value;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Padding(
-          padding: EdgeInsets.all(16),
-          child: Center(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+      child: Scaffold(
+        backgroundColor: isDark
+            ? themeData.colorScheme.secondary
+            : themeData.colorScheme.primary,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 5,
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 5, top: 8, bottom: 8, right: 10),
               child: Container(
-                width: MediaQuery.of(context).size.width * 0.85,
+                alignment: Alignment.centerLeft,
+                // width: MediaQuery.of(context).size.width * 0.35,
                 height: MediaQuery.of(context).size.height * 0.06,
-                color: themeData.colorScheme.tertiary,
-                child: Center(
-                  child: Text(
-                    'Mark Attendance',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: '',
-                      color: ThemeClass().darkTextColor,
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                        height: MediaQuery.of(context).size.height * 0.05,
+                        padding: EdgeInsets.only(left: 15),
+                        // color: themeData.colorScheme.primary,
+                        child: Align(
+                            alignment: AlignmentDirectional.centerStart,
+                            child: ClipOval(
+                              child: Container(
+                                alignment: Alignment.center,
+                                color: isDark
+                                    ? themeData.colorScheme.primary
+                                        .withOpacity(0.5)
+                                    : themeData.colorScheme.secondary
+                                        .withOpacity(0.5),
+                                child: IconButton(
+                                  icon: Icon(Icons.calendar_today_outlined),
+                                  onPressed: () async {
+                                    await _selectDate(context);
+                                  },
+                                ),
+                              ),
+                            ))),
+
+                    SizedBox(
+                      width: 10,
                     ),
-                  ),
+                    Text(
+                      isDateselected
+                          ? '${DateFormat('dd-MM-yyyy').format(selectedDate)}'
+                          : 'Choose Date',
+                      style: TextStyle(
+                        fontSize: MediaQuery.of(context).size.width * 0.05,
+                        fontWeight: FontWeight.bold,
+                        color: isDark
+                            ? ThemeClass().darkTextColor
+                            : ThemeClass().lightTextColor,
+                      ),
+                    ),
+                    // SizedBox(
+                    //   width: 8,
+                    // ),
+                    // IconButton(
+                    //   onPressed: () async {
+                    //     await _selectDate(context);
+                    //   },
+                    //   icon: Icon(Icons.calendar_today),
+                    // ),
+                  ],
                 ),
               ),
             ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(left: 30, top: 8, bottom: 8),
-          child: Row(
-            children: <Widget>[
-              Text(
-                '${DateFormat('dd-MM-yyyy').format(selectedDate)}',
-                style: TextStyle(
-                  color: isDark
-                      ? ThemeClass().darkTextColor
-                      : ThemeClass().lightTextColor,
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: ListView.builder(
+                  itemCount: VOLUserData.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    User user = VOLUserData[index];
+                    bool? isAttending = getAttendanceStatus(index);
+
+                    return Container(
+                      margin: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: isDark? themeData.colorScheme.primary : themeData.colorScheme.secondary,
+                        // border: Border.all(
+                        //   color: isDark? themeData.colorScheme.primary : themeData.colorScheme.tertiary, // You can change the border color
+                        //   width: 1.0, // You can change the border width
+                        // ),
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: ListTile(
+                        title: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Checkbox(
+                                  activeColor: isDark? themeData.colorScheme.primary : themeData.colorScheme.secondary,
+                                  checkColor: themeData.colorScheme.onPrimary,
+                                  value: isAttending,
+                                  onChanged: (bool? value) {
+                                    setAttendanceStatus(index, value);
+                                  },
+                                ),
+                                Text(user.userName),
+                              ],
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: isAttending == true
+                                      ? isDark
+                                          ? ThemeClass()
+                                              .darkRightColor
+                                              .withOpacity(0.3)
+                                          : ThemeClass()
+                                              .lightRightColor
+                                              .withOpacity(0.2)
+                                      : themeData.colorScheme.error
+                                          .withOpacity(0.2),
+                                  borderRadius: BorderRadius.circular(3)),
+                              height:
+                                  MediaQuery.of(context).size.height * 0.035,
+                              width: MediaQuery.of(context).size.width * 0.27,
+                              child: Center(
+                                child: Text(
+                                  isAttending == true
+                                      ? 'Attended'
+                                      : 'Not Attended',
+                                  style: TextStyle(
+                                      color: isAttending == true
+                                          ? isDark
+                                              ? ThemeClass().darkRightColor
+                                              : ThemeClass().lightRightColor
+                                          : themeData.colorScheme.error),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
-              SizedBox(
-                width: 8,
-              ),
-              IconButton(
-                onPressed: () async {
-                  await _selectDate(context);
-                },
-                icon: Icon(Icons.calendar_today),
-              ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.only(left: 10),
-            child: ListView.builder(
-              itemCount: VOLUserData.length,
-              itemBuilder: (BuildContext context, int index) {
-                User user = VOLUserData[index];
-                bool? isAttending = getAttendanceStatus(index);
-            
-                return ListTile(
-                  title: Text(user.userName),
-                  trailing: Checkbox(
-                    value: isAttending,
-                    onChanged: (bool? value) {
-                      setAttendanceStatus(index, value);
-                    },
-                  ),
-                );
-              },
             ),
-          ),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 16, bottom: 16, right: 30),
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: SmallButton(
-              buttonWidth: MediaQuery.of(context).size.width * 0.25,
-              buttonAction: () {
-                // Process the attendance data
-                List<String> presentStudents = [];
-                for (int i = 0; i < names.length; i++) {
-                  if (attendance[i]) {
-                    presentStudents.add(names[i]);
-                  }
-                }
-                // Print the list of students present
-                print('Present Students: $presentStudents');
-              },
-              buttonText: 'Submit',
+            Padding(
+              padding: EdgeInsets.only(top: 16, bottom: 16, right: 20),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: SmallButton(
+                  buttonWidth: MediaQuery.of(context).size.width * 0.25,
+                  buttonAction: () {
+                    // Process the attendance data
+                    List<String> presentStudents = [];
+                    for (int i = 0; i < names.length; i++) {
+                      if (attendance[i]) {
+                        presentStudents.add(names[i]);
+                      }
+                    }
+                    // Print the list of students present
+                    print('Present Students: $presentStudents');
+                  },
+                  buttonText: 'Submit',
+                ),
+              ),
             ),
-          ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

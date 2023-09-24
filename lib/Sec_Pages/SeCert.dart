@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nss_connect/globals.dart';
 import 'package:nss_connect/themes.dart';
 
 class SecCert extends StatefulWidget {
@@ -14,22 +15,25 @@ class _SecCertState extends State<SecCert> {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
+    bool isDark = darkNotifier.value;
     double width100 = MediaQuery.of(context).size.width * 0.9;
     double height100 = MediaQuery.of(context).size.height;
     PageController _controller = PageController();
     return Scaffold(
-      backgroundColor: themeData.colorScheme.secondary,
+      backgroundColor: isDark? themeData.colorScheme.secondary : themeData.colorScheme.primary,
       body: secCertBody(
         controller: _controller,
         height100: height100,
       ),
       bottomNavigationBar: Container(
+        color: isDark? themeData.colorScheme.secondary : themeData.colorScheme.primary,
         margin: EdgeInsets.symmetric(
             horizontal: width100 * .10, vertical: width100 * .05),
         height: height100 * .08,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(15),
           child: BottomNavigationBar(
+            backgroundColor: isDark? themeData.colorScheme.primary : themeData.colorScheme.secondary,
             selectedItemColor: themeData.colorScheme.onPrimary.withOpacity(1),
             unselectedItemColor:
                 themeData.colorScheme.onPrimary.withOpacity(0.3),
@@ -39,7 +43,7 @@ class _SecCertState extends State<SecCert> {
               BottomNavigationBarItem(
                   icon: ImageIcon(
                     AssetImage('assets/images/request2.png'),
-                    size: 20,
+                    size: 24,
                   ),
                   label: 'Requests'),
               BottomNavigationBarItem(
@@ -104,8 +108,9 @@ class AdminPendingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeData themeData = Theme.of(context);
+    bool isDark = darkNotifier.value;
     return Scaffold(
-      backgroundColor: themeData.colorScheme.secondary,
+      backgroundColor: isDark? themeData.colorScheme.secondary : themeData.colorScheme.primary,
       body: ListView.builder(
         itemCount: pendingCertificates.length,
         itemBuilder: (context, index) {

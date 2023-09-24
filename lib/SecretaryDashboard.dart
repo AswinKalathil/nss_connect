@@ -130,7 +130,7 @@ class _SecretaryDashboardState extends State<SecretaryDashboard> {
                               _setIcon();
                             },
                             icon: !isDark
-                                ? Icon(Icons.dark_mode)
+                                ? Icon(Icons.dark_mode_rounded, color: ThemeClass().darkTextColor,)
                                 : Icon(Icons.light_mode)),
                       )
                     ],
