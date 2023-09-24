@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:nss_connect/backEnd/supporters.dart';
 import 'package:nss_connect/globals.dart';
 import 'package:nss_connect/themes.dart';
 import 'package:nss_connect/widgetStyles.dart';
@@ -45,39 +46,58 @@ class _AttendenceSectionState extends State<AttendenceSection> {
       setState(() {
         selectedDate = picked;
         isDateselected = true;
+
+        List<String> presentStudents = [];
       });
   }
 
-  List<String> names = [
-    'John Doe',
-    'Jane Smith',
-    'Michael Johnson',
-    'Emily Davis',
-    'Robert Brown',
-    'John Doe',
-    'Jane Smith',
-    'Michael Johnson',
-    'Emily Davis',
-    'Robert Brown',
-  ];
-  List<bool> attendance = [];
+  // List<String> names = [
+  //   'John Doe',
+  //   'Jane Smith',
+  //   'Michael Johnson',
+  //   'Emily Davis',
+  //   'Robert Brown',
+  //   'John Doe',
+  //   'Jane Smith',
+  //   'Michael Johnson',
+  //   'Emily Davis',
+  //   'Robert Brown',
+  // ];
+  List<bool> fVolNames = [];
+  List<VolAttendence> VolNames = [];
   bool Attend = false;
 
   bool? getAttendanceStatus(int index) {
-    return attendance[index];
+    return VolNames[index].isAttended;
+  }
+
+  void sortList() {
+    setState(() {
+      VolNames.sort((a, b) {
+        if (a.isAttended == b.isAttended) {
+          // If attendance status is the same, compare alphabetically
+          return a.name.userName.compareTo(b.name.userName);
+        } else {
+          // Sort by attendance status, with attended first
+          return a.isAttended ? -1 : 1;
+        }
+      });
+    });
   }
 
   void setAttendanceStatus(int index, bool? value) {
     setState(() {
-      attendance[index] = value as bool;
+      VolNames[index].isAttended = value as bool;
     });
   }
 
   @override
   void initState() {
     super.initState();
-    // Initialize the attendance list with false values
-    attendance = List<bool>.generate(names.length, (index) => false);
+    // Initialize the  VolNames list with false values
+
+    VolNames = List<VolAttendence>.generate(VOLUserData.length,
+        (index) => VolAttendence(VOLUserData[index], false));
   }
 
   @override
@@ -130,17 +150,40 @@ class _AttendenceSectionState extends State<AttendenceSection> {
                     SizedBox(
                       width: 10,
                     ),
-                    Text(
-                      isDateselected
-                          ? '${DateFormat('dd-MM-yyyy').format(selectedDate)}'
-                          : 'Choose Date',
-                      style: TextStyle(
-                        fontSize: MediaQuery.of(context).size.width * 0.05,
-                        fontWeight: FontWeight.bold,
-                        color: isDark
-                            ? ThemeClass().darkTextColor
-                            : ThemeClass().lightTextColor,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          isDateselected
+                              ? '${DateFormat('dd-MM-yyyy').format(selectedDate)}'
+                              : 'Choose Date',
+                          style: TextStyle(
+                            fontSize: MediaQuery.of(context).size.width * 0.05,
+                            fontWeight: FontWeight.bold,
+                            color: isDark
+                                ? ThemeClass().darkTextColor
+                                : ThemeClass().lightTextColor,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 50,
+                        ),
+                        SmallButton(
+                          buttonWidth: MediaQuery.of(context).size.width * 0.25,
+                          buttonAction: () {
+                            // Process the  VolNames data
+                            List<String> presentStudents = [];
+                            for (int i = 0; i < VOLUserData.length; i++) {
+                              if (VolNames[i].isAttended) {
+                                presentStudents.add(VOLUserData[i].userName);
+                              }
+                            }
+                            // Print the list of students present
+                            print('Present Students: $presentStudents');
+                          },
+                          buttonText: 'Submit',
+                        ),
+                      ],
                     ),
                     // SizedBox(
                     //   width: 8,
@@ -159,15 +202,17 @@ class _AttendenceSectionState extends State<AttendenceSection> {
               child: Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: ListView.builder(
-                  itemCount: VOLUserData.length,
+                  itemCount: VolNames.length,
                   itemBuilder: (BuildContext context, int index) {
-                    User user = VOLUserData[index];
+                    User user = VolNames[index].name;
                     bool? isAttending = getAttendanceStatus(index);
 
                     return Container(
                       margin: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
                       decoration: BoxDecoration(
-                        color: isDark? themeData.colorScheme.primary : themeData.colorScheme.secondary,
+                        color: isDark
+                            ? themeData.colorScheme.primary
+                            : themeData.colorScheme.secondary,
                         // border: Border.all(
                         //   color: isDark? themeData.colorScheme.primary : themeData.colorScheme.tertiary, // You can change the border color
                         //   width: 1.0, // You can change the border width
@@ -184,11 +229,15 @@ class _AttendenceSectionState extends State<AttendenceSection> {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Checkbox(
-                                  activeColor: isDark? themeData.colorScheme.primary : themeData.colorScheme.secondary,
+                                  activeColor: isDark
+                                      ? themeData.colorScheme.primary
+                                      : themeData.colorScheme.secondary,
                                   checkColor: themeData.colorScheme.onPrimary,
                                   value: isAttending,
                                   onChanged: (bool? value) {
                                     setAttendanceStatus(index, value);
+                                    delay(300);
+                                    sortList();
                                   },
                                 ),
                                 Text(user.userName),
@@ -229,27 +278,6 @@ class _AttendenceSectionState extends State<AttendenceSection> {
                       ),
                     );
                   },
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 16, bottom: 16, right: 20),
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: SmallButton(
-                  buttonWidth: MediaQuery.of(context).size.width * 0.25,
-                  buttonAction: () {
-                    // Process the attendance data
-                    List<String> presentStudents = [];
-                    for (int i = 0; i < names.length; i++) {
-                      if (attendance[i]) {
-                        presentStudents.add(names[i]);
-                      }
-                    }
-                    // Print the list of students present
-                    print('Present Students: $presentStudents');
-                  },
-                  buttonText: 'Submit',
                 ),
               ),
             ),

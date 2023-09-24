@@ -25,3 +25,7 @@ void main() {
   final String password = generateRandomPassword(passwordLength);
   print('Generated Password: $password');
 }
+Future<void> delay(int ms) async {
+  await Future.delayed(Duration(milliseconds: ms));
+  // Code to be executed after the delay
+}
